@@ -35,12 +35,6 @@ namespace FSM.Editor
                 .Where(type => type.IsClass && type.IsAbstract == false && type.IsSubclassOf(typeof(AgentState))).ToList();
 
             dropdownField.choices.AddRange(derivedTypes.Select(type => type.FullName));
-            
-            if (dropdownField.choices.Count > 0 )
-            {
-                dropdownField.SetValueWithoutNotify(derivedTypes[0].FullName);
-        
-            }
 
         }
     }

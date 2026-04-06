@@ -10,6 +10,7 @@ namespace Systems
         public event Action<Vector2> OnMovementPressed;
         public event Action OnLeftMousePressedStart;
         public event Action OnLeftMousePressedEnd;
+        public event Action<Vector2> OnMouseDeltaPos;
         
         private Controller _inputSo;
         private void OnEnable()
@@ -40,6 +41,12 @@ namespace Systems
                 OnLeftMousePressedStart?.Invoke();
             if(context.canceled)
                 OnLeftMousePressedEnd?.Invoke();
+        }
+
+        public void OnMouseDeltaPosition(InputAction.CallbackContext context)
+        {
+            Vector2 delta = context.ReadValue<Vector2>();
+            OnMouseDeltaPos?.Invoke(delta);
         }
     }
 }

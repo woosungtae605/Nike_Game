@@ -109,6 +109,15 @@ public partial class @Controller: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseDeltaPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""58463ee9-cd5d-4e4f-8755-cd854e237830"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -175,6 +184,17 @@ public partial class @Controller: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8838b70d-4632-42ee-b994-4a7c6e26dded"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseDeltaPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -764,6 +784,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_MouseClick = m_Player.FindAction("MouseClick", throwIfNotFound: true);
+        m_Player_MouseDeltaPosition = m_Player.FindAction("MouseDeltaPosition", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -859,6 +880,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_MouseClick;
+    private readonly InputAction m_Player_MouseDeltaPosition;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -878,6 +900,10 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/MouseClick".
         /// </summary>
         public InputAction @MouseClick => m_Wrapper.m_Player_MouseClick;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MouseDeltaPosition".
+        /// </summary>
+        public InputAction @MouseDeltaPosition => m_Wrapper.m_Player_MouseDeltaPosition;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -910,6 +936,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
             @MouseClick.started += instance.OnMouseClick;
             @MouseClick.performed += instance.OnMouseClick;
             @MouseClick.canceled += instance.OnMouseClick;
+            @MouseDeltaPosition.started += instance.OnMouseDeltaPosition;
+            @MouseDeltaPosition.performed += instance.OnMouseDeltaPosition;
+            @MouseDeltaPosition.canceled += instance.OnMouseDeltaPosition;
         }
 
         /// <summary>
@@ -927,6 +956,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
             @MouseClick.started -= instance.OnMouseClick;
             @MouseClick.performed -= instance.OnMouseClick;
             @MouseClick.canceled -= instance.OnMouseClick;
+            @MouseDeltaPosition.started -= instance.OnMouseDeltaPosition;
+            @MouseDeltaPosition.performed -= instance.OnMouseDeltaPosition;
+            @MouseDeltaPosition.canceled -= instance.OnMouseDeltaPosition;
         }
 
         /// <summary>
@@ -1241,6 +1273,13 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMouseClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MouseDeltaPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMouseDeltaPosition(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

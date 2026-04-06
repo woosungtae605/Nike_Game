@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148e79528ce64fc8ab59f28b1f7c24de, type: 3}
-  m_Name: inputSystem
+  m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
+  m_Name: SHOOTING param
   m_EditorClassIdentifier: 
+  <ParamName>k__BackingField: SHOOTING
+  <ParamHash>k__BackingField: 1352990577

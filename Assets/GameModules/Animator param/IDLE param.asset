@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e0f523c745f45b0832d3986225552d3, type: 3}
-  m_Name: Player FSM manager
+  m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
+  m_Name: IDLE param
   m_EditorClassIdentifier: 
-  enumName: PlayerStates
-  states:
-  - {fileID: 11400000, guid: 17284ada1131b0b47b9f31c595dc0ece, type: 2}
-  - {fileID: 11400000, guid: ae10b773d0b4a7b4b93bfa56b90e4f60, type: 2}
+  <ParamName>k__BackingField: IDLE
+  <ParamHash>k__BackingField: -357476191
