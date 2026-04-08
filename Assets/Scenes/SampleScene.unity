@@ -531,6 +531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98313a7dcccf4de091c8c31e4f95cb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilAngle: 2.5
+  recoilAngleDuration: 0.4
+  recoilBack: 0.12
+  recoilBackDuration: 0.3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75957af58fe04b64a68cd2914fb48741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 11400000, guid: e63042d841f1391428507130b880749c, type: 2}
   cameraPivot: {fileID: 1722560938}
   cameraRecoil: {fileID: 711844327}
 --- !u!1 &1400307107
@@ -703,7 +708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e85cb1942144429953293bcd8acd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 11400000, guid: e63042d841f1391428507130b880749c, type: 2}
   maxCameraAngleY: 10
   minCameraAngleY: -10
   cameraAngleYSpeed: 0.02
