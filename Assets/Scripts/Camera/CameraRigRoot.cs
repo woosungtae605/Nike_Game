@@ -11,6 +11,7 @@ namespace Camera
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private CameraPivot cameraPivot;
         [SerializeField] private CameraRecoil cameraRecoil;
+        [SerializeField] private CameraMove cameraMove;
         
         public void Awake()
         {
