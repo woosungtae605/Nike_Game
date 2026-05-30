@@ -7,6 +7,7 @@ namespace Agents.Module
     {
         public Vector3 HitPoint { get; set; }
         public Vector3 HitNormal { get; set; }
+        public float HitDistance { get; set; }
         public ModuleOwner Attacker { get; set; }
 
         private ModuleOwner _owner;

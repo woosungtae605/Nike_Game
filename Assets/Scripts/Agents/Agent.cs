@@ -23,6 +23,7 @@ namespace Agents
             {
                 ActionData.HitNormal = damageData.HitNormal;
                 ActionData.HitPoint = damageData.HitPoint;
+                ActionData.HitDistance = damageData.HitDistance;
                 ActionData.Attacker = damageData.Attacker;
             }
             HealthModule.ApplyDamage(damageData.Damage);

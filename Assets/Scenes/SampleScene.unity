@@ -256,6 +256,50 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &334367212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334367213}
+  - component: {fileID: 334367214}
+  m_Layer: 7
+  m_Name: DamageRayCast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &334367213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334367212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522208439}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &334367214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334367212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb5d5f14d2b4d16be7cd803cb518e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &357531608 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 437531712918624133, guid: 1fb33316e7174214faad2863a5b1b817, type: 3}
@@ -1279,7 +1323,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 334367213}
   m_Father: {fileID: 1739004140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1522208440
@@ -1294,7 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6ea277aaa94ec18325a08466a0ab21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: c46f195d8adb7e94f9a1b0e1991ff117, type: 2}
+  <PlayerGunData>k__BackingField: {fileID: 11400000, guid: c46f195d8adb7e94f9a1b0e1991ff117, type: 2}
 --- !u!1 &1687233501
 GameObject:
   m_ObjectHideFlags: 0

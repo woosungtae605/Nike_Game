@@ -13,6 +13,6 @@ namespace Agents.CombatSystem
             CasterOwner = owner;
         }
  
-        public abstract void CastDamage(Vector3 position, Vector3 direction, DamageData damageData);
+        public abstract void RayCastDamage(Vector3 position, Vector3 direction, DamageData damageData);
     }
 }
