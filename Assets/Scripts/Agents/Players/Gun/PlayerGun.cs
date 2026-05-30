@@ -13,7 +13,7 @@ namespace Agents.Players.Gun
         private int _currentAmmo;
         private float _lastFireTime;
         
-        private AbstractDamageCaster _rayDamageCaster;
+        public AbstractDamageCaster RayDamageCaster { get; private set; }
         
         public void Initialize(ModuleOwner owner)
         {
@@ -21,8 +21,9 @@ namespace Agents.Players.Gun
             Debug.Assert(PlayerGunData != null, "PlayerGunData is null");
             _currentAmmo = PlayerGunData.GunData.MaxAmmo;
 
-            _rayDamageCaster = GetComponentInChildren<AbstractDamageCaster>();
-            Debug.Assert(_rayDamageCaster != null, "Don't have AbstractDamageCaster as children");
+            RayDamageCaster = GetComponentInChildren<AbstractDamageCaster>();
+            Debug.Assert(RayDamageCaster != null, "Don't have AbstractDamageCaster as children");
+            RayDamageCaster.InitCaster(_owner);
         }
         public bool TryFire()
         {
@@ -33,11 +34,6 @@ namespace Agents.Players.Gun
             _currentAmmo--;
             PlayerGunData.GunData.Shot(this);
             return true;
-        }
-
-        public void RayDamageCast(Vector3 direction)
-        {
-            
         }
     }
 }

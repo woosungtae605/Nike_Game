@@ -9,11 +9,13 @@ namespace Agents.CombatSystem
     {
         private GunData _gunData;
         
-        public override void InitCaster(ModuleOwner owner)
+        public override void InitCaster(Agent owner)
         {
             base.InitCaster(owner);
+            
             PlayerGun playerGun = owner.GetModule<PlayerGun>();
             Debug.Assert(playerGun != null, "playerGun don't have as module");
+            
             _gunData = playerGun.PlayerGunData.GunData;
         }
         
@@ -21,18 +23,41 @@ namespace Agents.CombatSystem
         {
             if (!Physics.Raycast(position, direction, out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
                 return;
+            
+            ApplyDamage(hitInfo, damageData);
+        }
 
+        public override void SphereCastDamage(Vector3 position, Vector3 direction, DamageData damageData, float radius)
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(
+                position, radius, direction, _gunData.MaxDistance, _gunData.HitMask);
+
+            foreach (RaycastHit hitInfo in hits)
+            {
+                ApplyDamage(hitInfo, damageData);
+            }
+        }
+
+        public override void BoxCastDamage(Vector3 position, Vector3 direction, DamageData damageData, Vector3 halfExtents)
+        {
+            RaycastHit[] hits = Physics.BoxCastAll( 
+                position, halfExtents, direction, transform.rotation, _gunData.MaxDistance, _gunData.HitMask);
+
+            foreach (RaycastHit hitInfo in hits)
+            {
+                ApplyDamage(hitInfo, damageData);
+            }
+        }
+
+        private void ApplyDamage(RaycastHit hitInfo, DamageData damageData)
+        {
             damageData.HitPoint = hitInfo.point;
             damageData.HitNormal = hitInfo.normal;
 
-            if (hitInfo.collider.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.ApplyDamage(damageData);
+            if (!hitInfo.collider.TryGetComponent(out IDamageable damageable))
                 return;
-            }
-
-            damageable = hitInfo.collider.GetComponentInParent<IDamageable>();
-            damageable?.ApplyDamage(damageData);
+            
+            damageable.ApplyDamage(damageData);
         }
     }
 }
