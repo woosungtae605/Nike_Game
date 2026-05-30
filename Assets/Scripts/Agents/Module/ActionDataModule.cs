@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Agents.Module
 {
-    public class ActionDataModule : MonoBehaviour
+    public class ActionDataModule : MonoBehaviour, IModule
     {
         public Vector3 HitPoint { get; set; }
         public Vector3 HitNormal { get; set; }

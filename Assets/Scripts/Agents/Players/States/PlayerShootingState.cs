@@ -18,7 +18,7 @@ namespace Agents.Players.States
         public override void Update()
         {
             base.Update();
-            Player.PlayerGunCompo.Fire();
+            Player.PlayerGunCompo.TryFire();
         }
 
         public override void Exit()

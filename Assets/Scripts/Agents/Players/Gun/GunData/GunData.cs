@@ -11,7 +11,7 @@ namespace Agents.Players.Gun.GunData
     public abstract class GunData
     {
         [Header("Common")]
-        [SerializeField] private float damage = 10f;
+        [SerializeField] private int damage = 10;
         [SerializeField] private float fireInterval = 0.1f;
         [SerializeField] private int maxAmmo = 30;
         [SerializeField] private float reloadTime = 1.5f;
@@ -23,7 +23,7 @@ namespace Agents.Players.Gun.GunData
         [SerializeField] private float cameraShakePower = 0.1f;
         [SerializeField] private float cameraShakeDuration = 0.08f;
         
-        public float Damage => damage;
+        public int Damage => damage;
         public float FireInterval => fireInterval;
         public int MaxAmmo => maxAmmo;
         public float ReloadTime => reloadTime;
