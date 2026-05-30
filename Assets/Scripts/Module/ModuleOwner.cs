@@ -16,14 +16,14 @@ namespace Module
         }
 
 
-        private void InitializeComponents()
+        protected virtual void InitializeComponents()
         {
             foreach (IModule module in _moduleDict.Values)
             {
                 module.Initialize(this);
             }
         }
-        private void AfterInitComponents()
+        protected virtual void AfterInitComponents()
         {
             foreach (IAfterInitModule afterModule in _moduleDict.Values.OfType<IAfterInitModule>())
             {

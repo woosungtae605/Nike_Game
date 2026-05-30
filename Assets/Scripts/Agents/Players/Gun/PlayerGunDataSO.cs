@@ -1,6 +1,4 @@
-﻿using System;
-using Agents.Players.Gun.GunData;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Agents.Players.Gun
 {

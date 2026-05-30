@@ -6,6 +6,12 @@ namespace Agents.Players.Gun.GunData
     [Serializable]
     public class ARData : GunData
     {
-        [SerializeField] private float ar;
+        [Header("ARData")]
+        [SerializeField] public float ar;
+
+        public override void Shot(Gun gunOwner)
+        {
+            
+        }
     }
 }

@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Player gun data
   m_EditorClassIdentifier: 
   gunData:
-    rid: 3787333877983871049
+    rid: 3787334453019017291
   className: ARData
   references:
     version: 2
     RefIds:
-    - rid: 3787333877983871049
+    - rid: 3787334453019017291
       type: {class: ARData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
-        Ez: 0
+        damage: 10
+        fireInterval: 0.1
+        maxAmmo: 30
+        reloadTime: 1.5
+        maxDistance: 20
+        hitMask:
+          serializedVersion: 2
+          m_Bits: 0
+        cameraShakePower: 0.1
+        cameraShakeDuration: 0.08
         ar: 0

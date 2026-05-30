@@ -2,11 +2,11 @@
 using Systems.AnimationSystems;
 using UnityEngine;
 
-namespace Agents
+namespace Agents.Module
 {
 
     [RequireComponent(typeof(Animator))]
-    public class Renderer : MonoBehaviour, IModule, IRenderer
+    public class RendererModule : MonoBehaviour, IModule, IRenderer
     {
         private Agent _owner;
         private Animator _animator;
