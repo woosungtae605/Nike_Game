@@ -6,15 +6,13 @@ namespace Agents.CombatSystem
     {
         public Agent Attacker;
         public int Damage;
-        public bool Weakness;
         public Vector3 HitPoint;
         public Vector3 HitNormal;
 
-        public DamageData(Agent attacker, int damage, bool weakness,  Vector3 hitPoint, Vector3 hitNormal)
+        public DamageData(Agent attacker, int damage,  Vector3 hitPoint, Vector3 hitNormal)
         {
             Attacker = attacker;
             Damage = damage;
-            Weakness = weakness;
             HitPoint = hitPoint;
             HitNormal = hitNormal;
         }

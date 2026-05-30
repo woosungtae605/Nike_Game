@@ -6,7 +6,7 @@ namespace Agents.Players.Gun.GunData
     public class RocketLauncherData : GunData
     {
 
-        public override void Shot(Gun gunOwner)
+        public override void Shot(PlayerGun playerGunOwner)
         {
             
         }

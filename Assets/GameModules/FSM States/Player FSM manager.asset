@@ -15,4 +15,5 @@ MonoBehaviour:
   enumName: PlayerStates
   states:
   - {fileID: 11400000, guid: 17284ada1131b0b47b9f31c595dc0ece, type: 2}
+  - {fileID: 11400000, guid: 9b767df8a8ee82b41b51449191383651, type: 2}
   - {fileID: 11400000, guid: ae10b773d0b4a7b4b93bfa56b90e4f60, type: 2}

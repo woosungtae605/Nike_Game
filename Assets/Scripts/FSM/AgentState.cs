@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace FSM
 {
-    public abstract class AgentState : MonoBehaviour
+    public abstract class AgentState
     {
         protected Agent _owner;
         protected int _clipHash;
@@ -17,7 +17,7 @@ namespace FSM
         {
             _owner = owner;
             _clipHash = stateParam.ParamHash;
-            _renderer = GetComponent<IRenderer>();
+            _renderer = owner.GetModule<IRenderer>();
         }
 
         public virtual void Update()

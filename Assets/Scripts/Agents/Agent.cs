@@ -24,7 +24,6 @@ namespace Agents
                 ActionData.HitNormal = damageData.HitNormal;
                 ActionData.HitPoint = damageData.HitPoint;
                 ActionData.Attacker = damageData.Attacker;
-                ActionData.Weakness = damageData.Weakness;
             }
             HealthModule.ApplyDamage(damageData.Damage);
         }

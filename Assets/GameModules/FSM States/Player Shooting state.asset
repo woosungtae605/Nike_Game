@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: SHOOTING
   className: Agents.Players.States.PlayerShootingState
-  stateIndex: 1
-  stateParam: {fileID: 0}
+  stateIndex: 2
+  stateParam: {fileID: 11400000, guid: 9ea3c8ff6e147b54dbc60f1688cec1ac, type: 2}

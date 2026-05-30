@@ -17,14 +17,12 @@ namespace Camera
         {
             Bus<CameraRecoilEvent>.OnEvent += cameraRecoil.HandleCameraRecoil;
             playerInput.OnMouseDeltaPos += cameraPivot.HandleMouseDeltaPos;
-            playerInput.OnLeftMousePressedStart += cameraRecoil.HandleCameraRecoil;
         }
 
         private void OnDestroy()
         {
             Bus<CameraRecoilEvent>.OnEvent -= cameraRecoil.HandleCameraRecoil;
             playerInput.OnMouseDeltaPos -= cameraPivot.HandleMouseDeltaPos;
-            playerInput.OnLeftMousePressedStart -= cameraRecoil.HandleCameraRecoil;
         }
     }
 }

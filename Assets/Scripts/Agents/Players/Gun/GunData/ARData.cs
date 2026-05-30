@@ -9,7 +9,7 @@ namespace Agents.Players.Gun.GunData
         [Header("ARData")]
         [SerializeField] public float ar;
 
-        public override void Shot(Gun gunOwner)
+        public override void Shot(PlayerGun playerGunOwner)
         {
             
         }

@@ -45,7 +45,7 @@ namespace Camera
                         .Bind(z => transform.localPosition = new Vector3(_baseLocalPos.x, _baseLocalPos.y, _baseLocalPos.z - z));
             }
         }
-        [ContextMenu("ez")]
+        [ContextMenu("test")]
         public void HandleCameraRecoil()
         {
             Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(0.5f,0.5f, true, true));

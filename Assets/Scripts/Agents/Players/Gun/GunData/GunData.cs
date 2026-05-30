@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Agents.Players.Gun.GunData
 {
+    public enum CastType
+    {
+        Ray, Sphere, Box
+    }
     [Serializable]
     public abstract class GunData
     {
@@ -13,6 +17,7 @@ namespace Agents.Players.Gun.GunData
         [SerializeField] private float reloadTime = 1.5f;
         [SerializeField] private float maxDistance = 20f;
         [SerializeField] private LayerMask hitMask;
+        [SerializeField] private CastType castType;
         
         [Header("Camera")]
         [SerializeField] private float cameraShakePower = 0.1f;
@@ -26,7 +31,8 @@ namespace Agents.Players.Gun.GunData
         public LayerMask HitMask => hitMask;
         public float CameraShakePower => cameraShakePower;
         public float CameraShakeDuration => cameraShakeDuration;
+        public CastType CastType => castType;
 
-        public abstract void Shot(Gun gunOwner);
+        public abstract void Shot(PlayerGun playerGunOwner);
     }
 }

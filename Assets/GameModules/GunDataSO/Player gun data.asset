@@ -28,7 +28,7 @@ MonoBehaviour:
         maxDistance: 20
         hitMask:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 64
         cameraShakePower: 0.1
         cameraShakeDuration: 0.08
         ar: 0
