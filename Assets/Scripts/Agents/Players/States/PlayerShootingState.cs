@@ -19,7 +19,6 @@ namespace Agents.Players.States
         public override void Update()
         {
             base.Update();
-            Debug.Log("슈팅 들어옴");
             Player.PlayerGunCompo.TryFire();
         }
 

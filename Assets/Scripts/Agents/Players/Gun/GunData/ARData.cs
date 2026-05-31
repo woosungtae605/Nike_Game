@@ -12,11 +12,11 @@ namespace Agents.Players.Gun.GunData
 
         public override void Shot(PlayerGun playerGunOwner)
         {
-            playerGunOwner.RayDamageCaster.RayCastDamage(playerGunOwner.Owner.transform.position, playerGunOwner.Owner.transform.forward, new DamageData
+            if (playerGunOwner.RayDamageCaster.RayCastDamage(playerGunOwner.Owner.transform.position,
+                    playerGunOwner.Owner.transform.forward, new DamageData{ Damage = Damage, Attacker = playerGunOwner.Owner }))
             {
-                Damage = Damage,
-                Attacker = playerGunOwner.Owner
-            });
+                playerGunOwner.ShotSuccess();
+            }
         }
     }
 }

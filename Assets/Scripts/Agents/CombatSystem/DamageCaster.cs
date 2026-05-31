@@ -1,5 +1,7 @@
 ﻿using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
+using CoreSystem;
+using GameEvents;
 using UnityEngine;
 
 namespace Agents.CombatSystem
@@ -18,12 +20,13 @@ namespace Agents.CombatSystem
             _gunData = playerGun.PlayerGunData.GunData;
         }
         
-        public override void RayCastDamage(Vector3 position, Vector3 direction, DamageData damageData)
+        public override bool RayCastDamage(Vector3 position, Vector3 direction, DamageData damageData)
         {
             if (!Physics.Raycast(position, direction, out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
-                return;
+                return false;
             
             ApplyDamage(hitInfo, damageData);
+            return true;
         }
 
         public override void SphereCastDamage(Vector3 position, Vector3 direction, DamageData damageData, float radius)
@@ -58,6 +61,22 @@ namespace Agents.CombatSystem
                 return;
             
             damageable.ApplyDamage(damageData);
+            Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(_gunData.CameraShakePower, _gunData.CameraShakeDuration, false, true));
+        }
+        
+        private void OnDrawGizmos()
+        {
+            if (_gunData == null)
+                return;
+
+            Vector3 start = transform.position;
+            Vector3 direction = transform.forward;
+            Vector3 end = start + direction * _gunData.MaxDistance;
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(start, end);
+
+            Gizmos.DrawWireSphere(start, 0.1f);
         }
     }
 }

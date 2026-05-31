@@ -31,11 +31,20 @@ namespace Agents.Players.Gun
         {
             if (_currentAmmo <= 0) return false;
             if (Time.time < _lastFireTime + PlayerGunData.GunData.FireInterval) return false;
-
-            _lastFireTime = Time.time;
-            _currentAmmo--;
+            
             PlayerGunData.GunData.Shot(this);
             return true;
+        }
+
+        public void ShotSuccess()
+        {
+            _lastFireTime = Time.time;
+            _currentAmmo--;
+        }
+
+        public void Reload()
+        {
+            _currentAmmo = PlayerGunData.GunData.MaxAmmo;
         }
     }
 }
