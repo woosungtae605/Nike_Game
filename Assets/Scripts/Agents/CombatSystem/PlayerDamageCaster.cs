@@ -1,4 +1,6 @@
-﻿using Agents.Players.Gun;
+﻿using System;
+using Agents.Players;
+using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
 using CoreSystem;
 using GameEvents;
@@ -6,23 +8,50 @@ using UnityEngine;
 
 namespace Agents.CombatSystem
 {
-    public class DamageCaster : AbstractDamageCaster
+    public class PlayerDamageCaster : AbstractDamageCaster
     {
+        [SerializeField] private UnityEngine.Camera mainCamera;
         private GunData _gunData;
+        private Player _player;
+        
+        private Vector2 _mousePosition;
         
         public override void InitCaster(Agent owner)
         {
             base.InitCaster(owner);
+            _player = owner as Player;
+            Debug.Assert(_player != null, "_player is null");
             
             PlayerGun playerGun = owner.GetModule<PlayerGun>();
             Debug.Assert(playerGun != null, "playerGun don't have as module");
             
+            _player.PlayerInput.OnMousePos += HandleMousePos;
+            
             _gunData = playerGun.PlayerGunData.GunData;
+            
+            if (mainCamera == null)
+                mainCamera = UnityEngine.Camera.main;
         }
-        
-        public override bool RayCastDamage(Vector3 position, Vector3 direction, DamageData damageData)
+
+        private void OnDisable()
         {
-            if (!Physics.Raycast(position, direction, out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
+            if (_player != null && _player.PlayerInput != null)
+                _player.PlayerInput.OnMousePos -= HandleMousePos;
+        }
+
+        private void HandleMousePos(Vector2 obj)
+        {
+            _mousePosition = obj;
+        }
+
+        public override bool RayCastDamage(Vector3 positionOffset, Vector3 directionOffset, DamageData damageData) // 초기값은 Vector3 positionOffset, Vector3 directionOffset이거 2개 Vector3.zero하면 된다.
+        {
+            Ray ray = mainCamera.ScreenPointToRay(_mousePosition);
+            
+            Vector3 origin = ray.origin + positionOffset;
+            Vector3 direction = (ray.direction + directionOffset).normalized;
+            
+            if (!Physics.Raycast(origin, direction , out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
                 return false;
             
             ApplyDamage(hitInfo, damageData);
@@ -66,17 +95,18 @@ namespace Agents.CombatSystem
         
         private void OnDrawGizmos()
         {
-            if (_gunData == null)
+            if (_gunData == null || mainCamera == null)
                 return;
 
-            Vector3 start = transform.position;
-            Vector3 direction = transform.forward;
-            Vector3 end = start + direction * _gunData.MaxDistance;
+            Ray ray = mainCamera.ScreenPointToRay(_mousePosition);
+
+            Vector3 origin = ray.origin;
+            Vector3 direction = ray.direction.normalized;
+            Vector3 end = origin + direction * _gunData.MaxDistance;
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(start, end);
-
-            Gizmos.DrawWireSphere(start, 0.1f);
+            Gizmos.DrawLine(origin, end);
+            Gizmos.DrawWireSphere(origin, 0.1f);
         }
     }
 }

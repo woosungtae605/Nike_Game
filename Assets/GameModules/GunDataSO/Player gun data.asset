@@ -29,6 +29,6 @@ MonoBehaviour:
         hitMask:
           serializedVersion: 2
           m_Bits: 64
-        cameraShakePower: 0.1
-        cameraShakeDuration: 0.08
+        cameraShakePower: 0.3
+        cameraShakeDuration: 0.1
         ar: 0

@@ -11,7 +11,8 @@ namespace Systems
         public event Action OnLeftMousePressedStart;
         public event Action OnLeftMousePressedEnd;
         public event Action<Vector2> OnMouseDeltaPos;
-        
+        public event Action<Vector2> OnMousePos;
+
         private Controller _inputSo;
         private void OnEnable()
         {
@@ -47,6 +48,12 @@ namespace Systems
         {
             Vector2 delta = context.ReadValue<Vector2>();
             OnMouseDeltaPos?.Invoke(delta);
+        }
+
+        public void OnMousePosition(InputAction.CallbackContext context)
+        {
+            Vector2 mousePosition = context.ReadValue<Vector2>();
+            OnMousePos?.Invoke(mousePosition);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Agents.Players.Gun;
+using Agents.Players.States;
 using FSM;
 using Systems;
 using UnityEngine;
@@ -20,6 +21,25 @@ namespace Agents.Players
             base.InitializeComponents();
             _stateMachine = new AgentStateMachine(this, playerStates.states);
             PlayerGunCompo = GetModule<PlayerGun>();
+        }
+
+        protected override void AfterInitComponents()
+        {
+            base.AfterInitComponents();
+            PlayerInput.OnLeftMousePressedStart += HandleLeftMousePressedStart;
+        }
+
+        private void OnDestroy()
+        {
+            PlayerInput.OnLeftMousePressedStart -= HandleLeftMousePressedStart;
+        }
+
+        private void HandleLeftMousePressedStart()
+        {
+            if (_stateMachine.CurrentState is ICanAttack)
+            {
+                ChangeState(PlayerStates.SHOOTING);
+            }
         }
 
         private void Start()

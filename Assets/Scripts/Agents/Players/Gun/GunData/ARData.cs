@@ -12,8 +12,8 @@ namespace Agents.Players.Gun.GunData
 
         public override void Shot(PlayerGun playerGunOwner)
         {
-            if (playerGunOwner.RayDamageCaster.RayCastDamage(playerGunOwner.Owner.transform.position,
-                    playerGunOwner.Owner.transform.forward, new DamageData{ Damage = Damage, Attacker = playerGunOwner.Owner }))
+            if (playerGunOwner.RayDamageCaster.RayCastDamage(Vector3.zero,
+                    Vector3.zero, new DamageData{ Damage = Damage, Attacker = playerGunOwner.Owner }))
             {
                 playerGunOwner.ShotSuccess();
             }
