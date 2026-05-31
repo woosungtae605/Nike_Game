@@ -1,5 +1,6 @@
-﻿using Agents.FSM;
+﻿using FSM;
 using Systems.AnimationSystems;
+using UnityEngine;
 
 namespace Agents.Players.States
 {
@@ -18,6 +19,7 @@ namespace Agents.Players.States
         public override void Update()
         {
             base.Update();
+            Debug.Log("슈팅 들어옴");
             Player.PlayerGunCompo.TryFire();
         }
 

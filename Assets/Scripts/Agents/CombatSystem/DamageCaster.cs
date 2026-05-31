@@ -1,6 +1,5 @@
 ﻿using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
-using Module;
 using UnityEngine;
 
 namespace Agents.CombatSystem
@@ -53,6 +52,7 @@ namespace Agents.CombatSystem
         {
             damageData.HitPoint = hitInfo.point;
             damageData.HitNormal = hitInfo.normal;
+            damageData.HitDistance = hitInfo.distance;
 
             if (!hitInfo.collider.TryGetComponent(out IDamageable damageable))
                 return;

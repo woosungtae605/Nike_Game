@@ -1,5 +1,4 @@
-﻿using Agents.FSM;
-using FSM;
+﻿using FSM;
 using Systems.AnimationSystems;
 
 namespace Agents.Players.States

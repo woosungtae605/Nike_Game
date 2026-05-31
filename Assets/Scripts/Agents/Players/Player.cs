@@ -1,5 +1,4 @@
 ﻿using System;
-using Agents.FSM;
 using Agents.Players.Gun;
 using FSM;
 using Systems;

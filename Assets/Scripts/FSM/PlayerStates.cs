@@ -1,4 +1,4 @@
-namespace Agents.FSM
+namespace FSM
 {
     public enum PlayerStates
     {

@@ -20,7 +20,7 @@ namespace FSM
                 Type type = Type.GetType(state.className);
                 Debug.Assert(type != null, $"state class not found: {state.className}");
 
-                AgentState agentState = Activator.CreateInstance(type, owner, state) as AgentState;
+                AgentState agentState = Activator.CreateInstance(type, owner, state.stateParam) as AgentState;
                 
                 _stateDict.Add(state.stateIndex, agentState);
             }

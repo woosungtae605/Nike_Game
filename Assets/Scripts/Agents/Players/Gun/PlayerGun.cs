@@ -10,6 +10,8 @@ namespace Agents.Players.Gun
         
         private Agent _owner;
         
+        public Agent Owner => _owner;
+        
         private int _currentAmmo;
         private float _lastFireTime;
         

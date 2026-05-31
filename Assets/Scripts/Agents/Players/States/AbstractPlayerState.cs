@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Agents.Players.States
 {
-    public class AbstractPlayerState : AgentState
+    public abstract class AbstractPlayerState : AgentState
     {
         protected Player Player;
         public AbstractPlayerState(Agent owner, AnimParamSO stateParam) : base(owner, stateParam)

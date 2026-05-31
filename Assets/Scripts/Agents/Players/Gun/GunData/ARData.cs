@@ -1,4 +1,5 @@
 ﻿using System;
+using Agents.CombatSystem;
 using UnityEngine;
 
 namespace Agents.Players.Gun.GunData
@@ -11,7 +12,11 @@ namespace Agents.Players.Gun.GunData
 
         public override void Shot(PlayerGun playerGunOwner)
         {
-            
+            playerGunOwner.RayDamageCaster.RayCastDamage(playerGunOwner.Owner.transform.position, playerGunOwner.Owner.transform.forward, new DamageData
+            {
+                Damage = Damage,
+                Attacker = playerGunOwner.Owner
+            });
         }
     }
 }
