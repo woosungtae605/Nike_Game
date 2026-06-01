@@ -16,6 +16,7 @@ namespace Agents.Players.States
             {
                 Player.ChangeState(PlayerStates.RELOAD);
             }
+            Player.CoverModule.SetHide(true);
         }
     }
 }

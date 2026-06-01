@@ -14,6 +14,7 @@ namespace Agents.Players.States
         {
             base.Enter();
             Player.PlayerInputSo.OnLeftMousePressedEnd += HandleMousePressedEnd;
+            Player.CoverModule.SetHide(false);
         }
 
         public override void Update()
@@ -25,6 +26,7 @@ namespace Agents.Players.States
         public override void Exit()
         {
             Player.PlayerInputSo.OnLeftMousePressedEnd -= HandleMousePressedEnd;
+            Player.CoverModule.SetHide(true);
             base.Exit();
         }
 
