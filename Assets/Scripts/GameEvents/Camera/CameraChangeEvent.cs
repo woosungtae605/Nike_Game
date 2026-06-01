@@ -1,12 +1,12 @@
 ﻿using CoreSystem.BusSystem;
 using UnityEngine;
 
-namespace GameEvents.UI
+namespace GameEvents.Camera
 {
-    public struct NikkeUIClickEvent : IEvent
+    public struct CameraChangeEvent : IEvent
     {
         public readonly Transform TargetTransform;
-        public NikkeUIClickEvent(Transform targetTransform)
+        public CameraChangeEvent(Transform targetTransform)
         {
             TargetTransform = targetTransform;
         }

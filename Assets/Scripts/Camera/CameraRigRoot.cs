@@ -1,6 +1,7 @@
 ﻿using CoreSystem;
 using CoreSystem.BusSystem;
 using GameEvents;
+using GameEvents.Camera;
 using Reflex.Attributes;
 using Systems;
 using UnityEngine;

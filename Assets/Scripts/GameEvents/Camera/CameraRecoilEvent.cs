@@ -1,7 +1,6 @@
-﻿using CoreSystem;
-using CoreSystem.BusSystem;
+﻿using CoreSystem.BusSystem;
 
-namespace GameEvents
+namespace GameEvents.Camera
 {
     public struct CameraRecoilEvent : IEvent
     {

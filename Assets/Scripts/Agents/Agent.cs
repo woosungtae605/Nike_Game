@@ -17,7 +17,7 @@ namespace Agents
             ActionData = GetModule<ActionDataModule>();
         }
         
-        public void ApplyDamage(DamageData damageData)
+        public virtual void ApplyDamage(DamageData damageData)
         {
             if (ActionData != null)
             {

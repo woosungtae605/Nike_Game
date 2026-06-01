@@ -2,6 +2,7 @@
 using CoreSystem;
 using CoreSystem.BusSystem;
 using GameEvents;
+using GameEvents.Camera;
 using LitMotion;
 using UnityEngine;
 
