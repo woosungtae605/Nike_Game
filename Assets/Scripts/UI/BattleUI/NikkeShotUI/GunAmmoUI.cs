@@ -1,9 +1,11 @@
 ﻿using CoreSystem;
+using CoreSystem.BusSystem;
 using GameEvents;
+using GameEvents.UI;
 using TMPro;
 using UnityEngine;
 
-namespace UI.BattleUI.NikkeShotCountUI
+namespace UI.BattleUI.NikkeShotUI
 {
     public class GunAmmoUI : MonoBehaviour, IUIElement<(int currentAmmo, int maxAmmo)>
     {

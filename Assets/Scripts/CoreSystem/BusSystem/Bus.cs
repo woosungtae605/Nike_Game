@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoreSystem
+namespace CoreSystem.BusSystem
 {
     public static class Bus<T> where T : IEvent
     {

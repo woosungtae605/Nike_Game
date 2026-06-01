@@ -1,4 +1,5 @@
 ﻿using CoreSystem;
+using CoreSystem.BusSystem;
 
 namespace GameEvents
 {

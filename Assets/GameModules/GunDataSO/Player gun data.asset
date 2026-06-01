@@ -31,4 +31,5 @@ MonoBehaviour:
           m_Bits: 64
         cameraShakePower: 0.3
         cameraShakeDuration: 0.1
+        cursorSprite: {fileID: 82424148, guid: 84d3aa70ee3acbe4c830a6bd0cf5ec8b, type: 3}
         ar: 0

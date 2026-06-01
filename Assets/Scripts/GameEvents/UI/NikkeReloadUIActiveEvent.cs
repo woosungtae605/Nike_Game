@@ -1,6 +1,6 @@
-﻿using CoreSystem;
+﻿using CoreSystem.BusSystem;
 
-namespace GameEvents
+namespace GameEvents.UI
 {
     public struct NikkeReloadUIActiveEvent : IEvent
     {

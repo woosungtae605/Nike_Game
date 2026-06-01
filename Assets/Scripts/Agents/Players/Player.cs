@@ -9,7 +9,8 @@ namespace Agents.Players
 {
     public class Player : Agent
     {
-        [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
+        [field: SerializeField] public PlayerInputSO PlayerInputSo { get; private set; }
+        [field: SerializeField] public PlayerDataSO PlayerData { get; private set; }
         [SerializeField] private StateListSO playerStates;
         
         public PlayerGun PlayerGunCompo { get; private set; }
@@ -21,17 +22,18 @@ namespace Agents.Players
             base.InitializeComponents();
             _stateMachine = new AgentStateMachine(this, playerStates.states);
             PlayerGunCompo = GetModule<PlayerGun>();
+            HealthModule.ChangeHealth(PlayerData.NikkeHp);
         }
 
         protected override void AfterInitComponents()
         {
             base.AfterInitComponents();
-            PlayerInput.OnLeftMousePressedStart += HandleLeftMousePressedStart;
+            PlayerInputSo.OnLeftMousePressedStart += HandleLeftMousePressedStart;
         }
 
         private void OnDestroy()
         {
-            PlayerInput.OnLeftMousePressedStart -= HandleLeftMousePressedStart;
+            PlayerInputSo.OnLeftMousePressedStart -= HandleLeftMousePressedStart;
         }
 
         private void HandleLeftMousePressedStart()

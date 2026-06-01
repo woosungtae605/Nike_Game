@@ -3,6 +3,7 @@ using Agents.Players;
 using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
 using CoreSystem;
+using CoreSystem.BusSystem;
 using GameEvents;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace Agents.CombatSystem
             PlayerGun playerGun = owner.GetModule<PlayerGun>();
             Debug.Assert(playerGun != null, "playerGun don't have as module");
             
-            _player.PlayerInput.OnMousePos += HandleMousePos;
+            _player.PlayerInputSo.OnMousePos += HandleMousePos;
             
             _gunData = playerGun.PlayerGunData.GunData;
             
@@ -35,8 +36,8 @@ namespace Agents.CombatSystem
 
         private void OnDisable()
         {
-            if (_player != null && _player.PlayerInput != null)
-                _player.PlayerInput.OnMousePos -= HandleMousePos;
+            if (_player != null && _player.PlayerInputSo != null)
+                _player.PlayerInputSo.OnMousePos -= HandleMousePos;
         }
 
         private void HandleMousePos(Vector2 obj)

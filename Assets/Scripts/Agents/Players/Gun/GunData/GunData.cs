@@ -18,6 +18,9 @@ namespace Agents.Players.Gun.GunData
         [SerializeField] private float cameraShakePower = 0.1f;
         [SerializeField] private float cameraShakeDuration = 0.08f;
         
+        [Header("Texture")]
+        [SerializeField] private Sprite cursorSprite;
+        
         public int Damage => damage;
         public float FireInterval => fireInterval;
         public int MaxAmmo => maxAmmo;

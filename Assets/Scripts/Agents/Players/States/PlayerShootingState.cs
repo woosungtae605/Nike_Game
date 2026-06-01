@@ -13,7 +13,7 @@ namespace Agents.Players.States
         public override void Enter()
         {
             base.Enter();
-            Player.PlayerInput.OnLeftMousePressedEnd += HandleMousePressedEnd;
+            Player.PlayerInputSo.OnLeftMousePressedEnd += HandleMousePressedEnd;
         }
 
         public override void Update()
@@ -24,7 +24,7 @@ namespace Agents.Players.States
 
         public override void Exit()
         {
-            Player.PlayerInput.OnLeftMousePressedEnd -= HandleMousePressedEnd;
+            Player.PlayerInputSo.OnLeftMousePressedEnd -= HandleMousePressedEnd;
             base.Exit();
         }
 

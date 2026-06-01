@@ -6,8 +6,8 @@ namespace Agents.Module
 {
     public class HealthModule : MonoBehaviour, IModule
     {
-        [SerializeField] private float maxHealth;
-        [SerializeField] private float currentHealth;
+        [SerializeField] private int maxHealth;
+        [SerializeField] private int currentHealth;
         
         private ModuleOwner _owner;
 
@@ -19,7 +19,13 @@ namespace Agents.Module
             currentHealth = maxHealth; 
         }
 
-        public void ApplyDamage(float damageAmount)
+        public void ChangeHealth(int amount)
+        {
+            maxHealth = amount;
+            currentHealth = maxHealth;
+        }
+
+        public void ApplyDamage(int damageAmount)
         {
             currentHealth -= damageAmount;
             if (currentHealth <= 0)

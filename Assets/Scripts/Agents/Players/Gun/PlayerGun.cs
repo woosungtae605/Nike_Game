@@ -6,7 +6,7 @@ namespace Agents.Players.Gun
 {
     public class PlayerGun : MonoBehaviour, IModule
     {
-        [field: SerializeField] public PlayerGunDataSO PlayerGunData { get; private set; }
+        public PlayerGunDataSO PlayerGunData { get; private set; }
 
         public GunData.GunData GunData => PlayerGunData.GunData;
         
@@ -24,6 +24,9 @@ namespace Agents.Players.Gun
         public void Initialize(ModuleOwner owner)
         {
             _owner = owner as Player;
+            Debug.Assert(_owner != null, "owner is not Player");
+
+            PlayerGunData = _owner.PlayerData.PlayerGunData;
             Debug.Assert(PlayerGunData != null, "PlayerGunData is null");
             _currentAmmo = PlayerGunData.GunData.MaxAmmo;
 

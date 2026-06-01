@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Systems
 {
     [CreateAssetMenu(fileName = "inputSystem", menuName = "SO/inputSystem", order = 0)]
-    public class PlayerInput : ScriptableObject, Controller.IPlayerActions
+    public class PlayerInputSO : ScriptableObject, Controller.IPlayerActions
     {
         public event Action<Vector2> OnMovementPressed;
         public event Action OnLeftMousePressedStart;
