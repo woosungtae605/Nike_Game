@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoreSystem.BusSystem;
+using FSM;
 using GameEvents.Camera;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ namespace Agents.Players
         [SerializeField] private List<Player> playerList;
         public Player CurrentPlayer { get; private set; }
         
-        private void Awake()
+        private void Start()
         {
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
             ChangePlayer(0);
@@ -37,8 +38,11 @@ namespace Agents.Players
                 Debug.LogError($"Player index {index} is out of range");
                 return;   
             }
+            if(CurrentPlayer != null)
+                CurrentPlayer.ChangeState(PlayerStates.IDLE);
             
             CurrentPlayer = playerList[index];
+            CurrentPlayer.ChangeState(PlayerStates.IDLE);
             Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(playerList[index].CameraTransform));
         }
     }
