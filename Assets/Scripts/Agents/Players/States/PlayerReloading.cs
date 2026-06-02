@@ -1,7 +1,5 @@
-﻿using CoreSystem;
-using CoreSystem.BusSystem;
+﻿using CoreSystem.BusSystem;
 using FSM;
-using GameEvents;
 using GameEvents.UI;
 using Systems.AnimationSystems;
 using UnityEngine;
@@ -19,7 +17,10 @@ namespace Agents.Players.States
         {
             base.Enter();
             _enterTime = Time.time;
-            Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(Player.PlayerGunCompo.GunData.ReloadTime, true));
+            if(Player.IsControl)
+                Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(Player.PlayerGunCompo.GunData.ReloadTime, true));
+            
+            Player.CoverModule.SetHide(true);
         }
 
         public override void Update()
@@ -28,13 +29,15 @@ namespace Agents.Players.States
             if (Player.PlayerGunCompo.GunData.ReloadTime + _enterTime < Time.time)
             {
                 Player.PlayerGunCompo.Reload();
-                Player.ChangeState(PlayerStates.IDLE);
+                
+                Player.ChangeState(Player.IsControl ? PlayerStates.IDLE : PlayerStates.AIIDLE);
             }
         }
 
         public override void Exit()
         {
-            Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
+            if(Player.IsControl)
+                Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
             base.Exit();
         }
     }

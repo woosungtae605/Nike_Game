@@ -39,10 +39,10 @@ namespace Agents.Players
                 return;   
             }
             if(CurrentPlayer != null)
-                CurrentPlayer.ChangeState(PlayerStates.IDLE);
+                CurrentPlayer.PlayerNotControl();
             
             CurrentPlayer = playerList[index];
-            CurrentPlayer.ChangeState(PlayerStates.IDLE);
+            CurrentPlayer.PlayerControl();
             Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(playerList[index].CameraTransform));
         }
     }

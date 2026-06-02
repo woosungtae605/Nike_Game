@@ -1,6 +1,5 @@
 ﻿using FSM;
 using Systems.AnimationSystems;
-using UnityEngine;
 
 namespace Agents.Players.States
 {
