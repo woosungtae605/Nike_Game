@@ -11,27 +11,25 @@ namespace Agents
         private Agent _agent;
         private IBar _bar;
         private Vector3 _originFillScale;
-
-        public void Initialize(ModuleOwner owner)
-        {
-            _agent = owner as Agent;
-        }
         
-        private void OnDestroy()
+        private void Awake()
         {
-            if (_bar != null)
-                _bar.OnChanged -= HandleBarChanged;
+            if (fill != null)
+                _originFillScale = fill.transform.localScale;
         }
 
-        private void HandleBarChanged(int currentHealth, int maxHealth)
+        public void SetValue(int currentValue, int maxValue)
         {
-            if (fill == null || maxHealth <= 0)
+            if (fill == null || maxValue <= 0)
                 return;
-            
-            float ratio = (float)currentHealth / maxHealth;
-            ratio = Mathf.Clamp01(ratio);
 
-            fill.transform.localScale = new Vector3(_originFillScale.x * ratio, _originFillScale.y, _originFillScale.z);
+            float ratio = Mathf.Clamp01((float)currentValue / maxValue);
+
+            fill.transform.localScale = new Vector3(
+                _originFillScale.x * ratio,
+                _originFillScale.y,
+                _originFillScale.z
+            );
         }
     }
 }
