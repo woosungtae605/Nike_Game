@@ -1,5 +1,4 @@
-﻿using System;
-using Agents.Players;
+﻿using Agents.Players;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using LitMotion;
@@ -9,11 +8,11 @@ using Systems;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.BattleUI.NikkeShotUI
+namespace Agents.Module
 {
-    public class GunCursorImageModule : MonoBehaviour, IModule
+    public class GunCursorImage : MonoBehaviour
     {
-        [Inject] private PlayerInputSO _playerInputSO;
+        private PlayerInputSO _playerInputSO;
 
         [Header("Scale Motion")]
         [SerializeField] private float scalePower = 1.2f;
@@ -23,40 +22,57 @@ namespace UI.BattleUI.NikkeShotUI
         private Vector3 _originScale;
         private MotionHandle _scaleHandle;
 
-        private Player _player;
-
-        private void Awake()
+        public void Init(PlayerInputSO playerInputSO)
         {
+            _playerInputSO = playerInputSO;
             if(_cursorImage == null)
                 _cursorImage = GetComponent<Image>();
 
             _originScale = transform.localScale;
-
-            _playerInputSO.OnMousePos += HandleMousePos;
-            Bus<CursorImageChangeEvent>.OnEvent += HandleCursorImageChange;
+            
+            SubscribeMousePos();
         }
 
-        private void HandleCursorImageChange(CursorImageChangeEvent obj)
+        public void SetActiveFalse()
         {
-            ChangeCursorImage(obj.CursorSprite);
+            _scaleHandle.TryCancel();
+            
+            UnsubscribeMousePos();
+            gameObject.SetActive(false);
         }
 
+        public void ActiveTrue()
+        {
+            _cursorImage.transform.position = _playerInputSO.CurrentMousePosition;
+            _playerInputSO.OnMousePos -= HandleMousePos;
+            _playerInputSO.OnMousePos += HandleMousePos;
+        }
         private void OnDestroy()
         {
             _scaleHandle.TryCancel();
+            UnsubscribeMousePos();
+        }
+        
+        private void SubscribeMousePos()
+        {
+            if (_playerInputSO == null)
+                return;
 
             _playerInputSO.OnMousePos -= HandleMousePos;
-            Bus<CursorImageChangeEvent>.OnEvent -= HandleCursorImageChange;
+            _playerInputSO.OnMousePos += HandleMousePos;
+        }
+        
+        private void UnsubscribeMousePos()
+        {
+            if (_playerInputSO == null)
+                return;
+
+            _playerInputSO.OnMousePos -= HandleMousePos;
         }
 
         private void HandleMousePos(Vector2 obj)
         {
             _cursorImage.transform.position = obj;
-        }
-
-        public void ChangeCursorImage(Sprite cursorSprite)
-        {
-            _cursorImage.sprite = cursorSprite;
         }
 
         public void PlayScaleMotion()
@@ -68,11 +84,6 @@ namespace UI.BattleUI.NikkeShotUI
                 .WithEase(Ease.OutCubic)
                 .WithLoops(2, LoopType.Yoyo)
                 .Bind(scale => transform.localScale = _originScale * scale);
-        }
-
-        public void Initialize(ModuleOwner owner)
-        {
-            _player = owner as Player;
         }
     }
 }

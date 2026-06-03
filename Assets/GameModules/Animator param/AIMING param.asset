@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
-  m_Name: RELOAD param
+  m_Name: AIMING param
   m_EditorClassIdentifier: 
-  <ParamName>k__BackingField: RELOADING
-  <ParamHash>k__BackingField: 781821959
+  <ParamName>k__BackingField: AIMING
+  <ParamHash>k__BackingField: -1336753595

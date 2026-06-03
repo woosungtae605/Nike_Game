@@ -8,9 +8,11 @@ namespace Gamelib.ObjectPool.Runtime
         private readonly Stack<IPoolable> _pool;
         private readonly Transform _parent;
         private readonly GameObject _prefab;
+        private readonly PoolItemSo _poolItemSo;
 
         public Pool(PoolItemSo poolItemSo, Transform parent, int initCount)
         {
+            _poolItemSo = poolItemSo;
             _parent = parent;
             _prefab = poolItemSo.prefab;
             _pool = new Stack<IPoolable>(initCount);
@@ -19,8 +21,11 @@ namespace Gamelib.ObjectPool.Runtime
             {
                 GameObject obj = Object.Instantiate(_prefab, _parent);
                 obj.SetActive(false);
+                
                 IPoolable poolable = obj.GetComponent<IPoolable>();
                 Debug.Assert(poolable != null, $"Poolable component is missing on prefab {_prefab.name}");
+                
+                poolable.PoolItem = _poolItemSo;
                 
                 _pool.Push(poolable);
             }
@@ -29,16 +34,22 @@ namespace Gamelib.ObjectPool.Runtime
         public IPoolable Pop()
         {
             IPoolable item;
+            
             if (_pool.Count == 0)
             {
                 GameObject obj = Object.Instantiate(_prefab, _parent);
                 item = obj.GetComponent<IPoolable>();
+                Debug.Assert(item != null, $"Poolable component is missing on prefab {_prefab.name}");
+
+                item.PoolItem = _poolItemSo;
             }
             else
             {
                 item = _pool.Pop();
+                item.PoolItem = _poolItemSo;
                 item.GameObject.SetActive(true);
             }
+            
             item.ResetItem();
             return item;
         }

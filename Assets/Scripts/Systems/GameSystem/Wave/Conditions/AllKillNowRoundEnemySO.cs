@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Systems.GameSystem.Wave.Conditions
 {
-    [CreateAssetMenu(fileName = "EnemyCount", menuName = "Wave/Condition/AllKillNowRoundEnemy", order = 0)]
+    [CreateAssetMenu(fileName = "AllKillNowRoundEnemy", menuName = "Wave/Condition/AllKillNowRoundEnemy", order = 0)]
     public class AllKillNowRoundEnemySO : SpawnConditionSO
     {
         public override bool GoToNext()

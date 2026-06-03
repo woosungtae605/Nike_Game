@@ -1,5 +1,6 @@
 ﻿using System;
 using Agents.CombatSystem;
+using Agents.FSM;
 using Agents.Module;
 using Agents.Players.Gun;
 using Agents.Players.States;
@@ -21,6 +22,7 @@ namespace Agents.Players
         
         public PlayerGun PlayerGunCompo { get; private set; }
         public CoverModule CoverModule { get; private set; }
+        public GunCursorModule GunCursorModule { get; private set; }
         
         private AgentStateMachine _stateMachine;
 
@@ -33,6 +35,7 @@ namespace Agents.Players
             _stateMachine = new AgentStateMachine(this, playerStates.states);
             PlayerGunCompo = GetModule<PlayerGun>();
             CoverModule = GetModule<CoverModule>();
+            GunCursorModule = GetModule<GunCursorModule>();
             
             HealthModule.ChangeHealth(PlayerData.MaxHp);
             
@@ -42,19 +45,19 @@ namespace Agents.Players
         protected override void AfterInitComponents()
         {
             base.AfterInitComponents();
-            PlayerInputSo.OnLeftMousePressedStart += HandleLeftMousePressedStart;
+            PlayerInputSo.OnRightMousePressedStart += HandleRightMousePressedStart;
         }
 
         private void OnDestroy()
         {
-            PlayerInputSo.OnLeftMousePressedStart -= HandleLeftMousePressedStart;
+            PlayerInputSo.OnRightMousePressedStart -= HandleRightMousePressedStart;
         }
 
-        private void HandleLeftMousePressedStart()
+        private void HandleRightMousePressedStart()
         {
-            if (_stateMachine.CurrentState is ICanAttack && IsControl)
+            if (_stateMachine.CurrentState is ICanAiming && IsControl)
             {
-                ChangeState(PlayerStates.SHOOTING);
+                ChangeState(PlayerStates.AIMING);
             }
         }
 
@@ -73,6 +76,7 @@ namespace Agents.Players
         {
             IsControl = false;
             Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
+            GunCursorModule.UnActive();
             ChangeState(PlayerStates.AIIDLE);
         }
 

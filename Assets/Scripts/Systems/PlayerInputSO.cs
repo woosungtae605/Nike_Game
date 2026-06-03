@@ -10,8 +10,12 @@ namespace Systems
         public event Action<Vector2> OnMovementPressed;
         public event Action OnLeftMousePressedStart;
         public event Action OnLeftMousePressedEnd;
+        public event Action OnRightMousePressedStart;
+        public event Action OnRightMousePressedEnd;
         public event Action<Vector2> OnMouseDeltaPos;
         public event Action<Vector2> OnMousePos;
+        
+        public Vector2 CurrentMousePosition { get; private set; }
 
         private Controller _inputSo;
         private void OnEnable()
@@ -53,7 +57,16 @@ namespace Systems
         public void OnMousePosition(InputAction.CallbackContext context)
         {
             Vector2 mousePosition = context.ReadValue<Vector2>();
+            CurrentMousePosition = mousePosition;
             OnMousePos?.Invoke(mousePosition);
+        }
+
+        public void OnRightMouseClick(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnRightMousePressedStart?.Invoke();
+            if (context.canceled)
+                OnRightMousePressedEnd?.Invoke();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using FSM;
+﻿using Agents.FSM;
 using Systems.AnimationSystems;
 
 namespace Agents.Players.States
@@ -14,7 +14,7 @@ namespace Agents.Players.States
             base.Enter();
             if (Player.PlayerGunCompo.CurrentAmmo <= 0)
             {
-                Player.ChangeState(PlayerStates.RELOAD);
+                Player.ChangeState(PlayerStates.RELOADING);
             }
             Player.CoverModule.SetHide(true);
         }

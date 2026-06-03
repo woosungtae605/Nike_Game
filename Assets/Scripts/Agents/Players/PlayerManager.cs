@@ -17,7 +17,16 @@ namespace Agents.Players
         {
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
         }
-        
+
+        public void Init()
+        {
+            foreach (Player player in playerList)
+            {
+                player.PlayerNotControl();
+            }
+            ChangePlayer(0);
+        }
+
         private void Update()
         {
             if (Keyboard.current[Key.Digit1].wasPressedThisFrame)

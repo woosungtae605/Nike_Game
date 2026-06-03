@@ -1,4 +1,5 @@
-﻿using CoreSystem.BusSystem;
+﻿using Agents.FSM;
+using CoreSystem.BusSystem;
 using FSM;
 using GameEvents.UI;
 using Systems.AnimationSystems;
@@ -6,10 +7,10 @@ using UnityEngine;
 
 namespace Agents.Players.States
 {
-    public class PlayerReloading : AbstractPlayerState, ICanAttack
+    public class PlayerReloadingState : AbstractPlayerState
     {
         private float _enterTime;
-        public PlayerReloading(Agent owner, AnimParamSO stateParam) : base(owner, stateParam)
+        public PlayerReloadingState(Agent owner, AnimParamSO stateParam) : base(owner, stateParam)
         {
         }
 
@@ -21,6 +22,13 @@ namespace Agents.Players.States
                 Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(Player.PlayerGunCompo.GunData.ReloadTime, true));
             
             Player.CoverModule.SetHide(true);
+            if(Player.PlayerGunCompo.CurrentAmmo > 0)
+                Player.PlayerInputSo.OnRightMousePressedStart += HandleRightMousePressedStart;
+        }
+
+        private void HandleRightMousePressedStart()
+        {
+            Player.ChangeState(PlayerStates.AIMING);
         }
 
         public override void Update()
@@ -30,14 +38,14 @@ namespace Agents.Players.States
             {
                 Player.PlayerGunCompo.Reload();
                 
-                Player.ChangeState(Player.IsControl ? PlayerStates.IDLE : PlayerStates.AIIDLE);
+                Player.ChangeState(PlayerStates.IDLE);
             }
         }
 
         public override void Exit()
         {
-            if(Player.IsControl)
-                Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
+            Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
+            Player.PlayerInputSo.OnRightMousePressedStart -= HandleRightMousePressedStart;
             base.Exit();
         }
     }

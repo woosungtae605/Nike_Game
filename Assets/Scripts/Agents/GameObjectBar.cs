@@ -7,9 +7,6 @@ namespace Agents
     public class GameObjectBar : MonoBehaviour
     {
         [SerializeField] private GameObject fill;
-        
-        private Agent _agent;
-        private IBar _bar;
         private Vector3 _originFillScale;
         
         private void Awake()

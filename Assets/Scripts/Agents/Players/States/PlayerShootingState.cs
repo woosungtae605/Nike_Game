@@ -1,4 +1,5 @@
-﻿using FSM;
+﻿using Agents.FSM;
+using FSM;
 using Systems.AnimationSystems;
 
 namespace Agents.Players.States
@@ -13,6 +14,7 @@ namespace Agents.Players.States
         {
             base.Enter();
             Player.PlayerInputSo.OnLeftMousePressedEnd += HandleMousePressedEnd;
+            Player.PlayerInputSo.OnRightMousePressedEnd += HandleRightMousePressedEnd;
             Player.CoverModule.SetHide(false);
         }
 
@@ -20,18 +22,30 @@ namespace Agents.Players.States
         {
             base.Update();
             Player.PlayerGunCompo.TryFire();
+            if (Player.PlayerGunCompo.CurrentAmmo <= 0)
+            {
+                Player.ChangeState(PlayerStates.RELOADING);
+                Player.GunCursorModule.UnActive();
+            }
         }
 
         public override void Exit()
         {
             Player.PlayerInputSo.OnLeftMousePressedEnd -= HandleMousePressedEnd;
+            Player.PlayerInputSo.OnRightMousePressedEnd += HandleRightMousePressedEnd;
             Player.CoverModule.SetHide(true);
             base.Exit();
         }
 
-        private void HandleMousePressedEnd()
+        private void HandleRightMousePressedEnd()
         {
             Player.ChangeState(PlayerStates.IDLE);
+            Player.GunCursorModule.UnActive();
+        }
+
+        private void HandleMousePressedEnd()
+        {
+            Player.ChangeState(PlayerStates.AIMING);
         }
     }
 }

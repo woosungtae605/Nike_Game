@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
-  m_Name: RELOAD param
+  m_Script: {fileID: 11500000, guid: 33ea2f5198704372835eadaff084cbea, type: 3}
+  m_Name: Player Aiming state
   m_EditorClassIdentifier: 
-  <ParamName>k__BackingField: RELOADING
-  <ParamHash>k__BackingField: 781821959
+  stateName: AIMING
+  className: Agents.Players.States.PlayerAimingState
+  stateIndex: 5
+  stateParam: {fileID: 11400000, guid: d103f1d0ed3af264aa77e4388a207ff9, type: 2}

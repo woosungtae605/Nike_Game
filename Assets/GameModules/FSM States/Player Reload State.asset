@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ea2f5198704372835eadaff084cbea, type: 3}
   m_Name: Player Reload State
   m_EditorClassIdentifier: 
-  stateName: RELOAD
-  className: Agents.Players.States.PlayerReloading
+  stateName: RELOADING
+  className: Agents.Players.States.PlayerReloadingState
   stateIndex: 1
   stateParam: {fileID: 11400000, guid: 71178ad655671ad46a4f74b1bbc2bb93, type: 2}
