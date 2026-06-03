@@ -34,7 +34,7 @@ namespace Agents.Players
             PlayerGunCompo = GetModule<PlayerGun>();
             CoverModule = GetModule<CoverModule>();
             
-            HealthModule.ChangeHealth(PlayerData.NikkeHp);
+            HealthModule.ChangeHealth(PlayerData.MaxHp);
             
             ChangeState(PlayerStates.IDLE);
         }

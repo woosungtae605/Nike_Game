@@ -10,6 +10,6 @@ namespace Agents.Players
         [field: SerializeField] public int NikkeID { get; private set; }
         [field: SerializeField] public PlayerGunDataSO PlayerGunData { get; private set; }
         [field: SerializeField] public Sprite NikkeSprite { get; private set; }
-        [field: SerializeField] public int NikkeHp { get; private set; }
+        [field: SerializeField] public int MaxHp { get; private set; }
     }
 }

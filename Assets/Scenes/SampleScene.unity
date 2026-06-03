@@ -1869,6 +1869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb4fda0e974633b692f6eefa56f61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
+  enemyRegisterSo: {fileID: 11400000, guid: 132a60d5dff67af438d838d29fc1afb5, type: 2}
 --- !u!1 &1687233501
 GameObject:
   m_ObjectHideFlags: 0

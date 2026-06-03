@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a001ef296bf4df2a224a27e90d904eb, type: 3}
-  m_Name: PoolManager
+  m_Script: {fileID: 11500000, guid: 6f808eaf5876411c971c6cfd51d25487, type: 3}
+  m_Name: Pool Item
   m_EditorClassIdentifier: 
-  itemList: []
+  poolingName: Enemy
+  prefab: {fileID: 569903759422558003, guid: 73e57292d3d04264fa56d02b656b5290, type: 3}
+  initCount: 5
