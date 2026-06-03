@@ -16,7 +16,7 @@ namespace Systems.GameSystem.Wave.Conditions
 
         public override bool GoToNext()
         {
-            return enemyCount <= enemyRegisterSo.EnemyCount;
+            return enemyRegisterSo.EnemyCount <= enemyCount;
         }
     }
 }

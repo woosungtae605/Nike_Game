@@ -1217,6 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f249f68cb2d4284bc98c02fa7b54814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveData: {fileID: 11400000, guid: 63a58841b9677df44a3f88dad98470a6, type: 2}
 --- !u!1 &665320604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1817,7 @@ Transform:
   m_GameObject: {fileID: 1523818486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.9, y: 0, z: 24.1}
+  m_LocalPosition: {x: 8.9, y: 2, z: 24.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2270,7 +2271,7 @@ Transform:
   m_GameObject: {fileID: 2007454738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.76, y: 0, z: 18.29}
+  m_LocalPosition: {x: -2.76, y: 2.2, z: 18.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

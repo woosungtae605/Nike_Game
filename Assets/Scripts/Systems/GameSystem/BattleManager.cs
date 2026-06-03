@@ -25,6 +25,7 @@ namespace Systems.GameSystem
             
             //Wave 초기화
             waveManager.SetEnemyManager(enemyManager);
+            waveManager.StartWave();
         }
     }
 }
