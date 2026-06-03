@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Agents.Enemies;
 using Reflex.Attributes;
+using Systems.GameSystem.Wave.Conditions;
 using UnityEngine;
 
 namespace Systems.GameSystem.Wave
@@ -34,12 +36,14 @@ namespace Systems.GameSystem.Wave
          {
              foreach (SpawnDataSo spawnData in waveData.SpawnDataSos)
              {
-                 Spawn(spawnData);
+                 List<Enemy> spawnedEnemies = Spawn(spawnData);
 
                  if (spawnData.SpawnConditionSo == null)
                      continue;
+                 
+                 SpawnConditionContext context = new SpawnConditionContext(_enemyManager.EnemyRegister, spawnedEnemies);
 
-                 spawnData.SpawnConditionSo.Initialize();
+                 spawnData.SpawnConditionSo.Initialize(context);
 
                  while (!spawnData.SpawnConditionSo.GoToNext())
                  {
@@ -50,15 +54,19 @@ namespace Systems.GameSystem.Wave
              OnClear?.Invoke();
          }
          
-         private void Spawn(SpawnDataSo spawnData)
+         private List<Enemy> Spawn(SpawnDataSo spawnData)
          {
+             List<Enemy> spawnedEnemies = new();
+             
              foreach (EnemySpawnData enemySpawnData in spawnData.EnemySpawnDatas)
              {
-                 SpawnEnemyData(enemySpawnData);
+                 SpawnEnemyData(enemySpawnData, spawnedEnemies);
              }
+             
+             return spawnedEnemies;
          }
          
-         private void SpawnEnemyData(EnemySpawnData spawnData)
+         private void SpawnEnemyData(EnemySpawnData spawnData, List<Enemy> spawnedEnemies)
          {
              if (spawnData.spawnPos < 0 || spawnData.spawnPos >= _spawnPoints.Length)
              {
@@ -70,7 +78,10 @@ namespace Systems.GameSystem.Wave
 
              for (int i = 0; i < spawnData.amount; i++)
              {
-                 _enemyManager.SpawnEnemy(spawnData.enemyDataSos, spawnPoint.position);
+                 Enemy enemy = _enemyManager.SpawnEnemy(spawnData.enemyDataSos, spawnPoint.position);
+
+                 if (enemy != null)
+                     spawnedEnemies.Add(enemy);
              }
          }
     }

@@ -7,9 +7,10 @@ namespace Systems.GameSystem.Wave.Conditions
     {
         [SerializeField] private float delay;
         private float _enterTime;
-        
-        public override void Initialize()
+
+        public override void Initialize(SpawnConditionContext context)
         {
+            base.Initialize(context);
             _enterTime = Time.time;
         }
 
