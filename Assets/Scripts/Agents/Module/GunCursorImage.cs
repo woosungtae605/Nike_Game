@@ -44,8 +44,7 @@ namespace Agents.Module
         public void ActiveTrue()
         {
             _cursorImage.transform.position = _playerInputSO.CurrentMousePosition;
-            _playerInputSO.OnMousePos -= HandleMousePos;
-            _playerInputSO.OnMousePos += HandleMousePos;
+            SubscribeMousePos();
         }
         private void OnDestroy()
         {

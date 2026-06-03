@@ -21,7 +21,7 @@ namespace Systems.GameSystem
             enemyManager.ClearEnemies();
             
             //player 초기화
-            playerManager.Init();
+            playerManager.Init(enemyManager.EnemyRegister);
             
             //Wave 초기화
             waveManager.SetEnemyManager(enemyManager);

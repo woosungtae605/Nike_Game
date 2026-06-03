@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Agents.Enemies;
 using CoreSystem.BusSystem;
 using FSM;
 using GameEvents.Camera;
@@ -13,15 +14,19 @@ namespace Agents.Players
         [SerializeField] private List<Player> playerList;
         public Player CurrentPlayer { get; private set; }
 
+        private EnemyRegisterSo _enemyRegisterSo;
+
         private void Awake()
         {
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
         }
 
-        public void Init()
+        public void Init(EnemyRegisterSo enemyRegisterSo)
         {
+            _enemyRegisterSo = enemyRegisterSo;
             foreach (Player player in playerList)
             {
+                player.SetEnemyRegister(_enemyRegisterSo);
                 player.PlayerNotControl();
             }
             ChangePlayer(0);

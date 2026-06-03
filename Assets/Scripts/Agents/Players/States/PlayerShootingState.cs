@@ -32,7 +32,7 @@ namespace Agents.Players.States
         public override void Exit()
         {
             Player.PlayerInputSo.OnLeftMousePressedEnd -= HandleMousePressedEnd;
-            Player.PlayerInputSo.OnRightMousePressedEnd += HandleRightMousePressedEnd;
+            Player.PlayerInputSo.OnRightMousePressedEnd -= HandleRightMousePressedEnd;
             Player.CoverModule.SetHide(true);
             base.Exit();
         }

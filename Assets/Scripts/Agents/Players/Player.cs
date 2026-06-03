@@ -1,5 +1,6 @@
 ﻿using System;
 using Agents.CombatSystem;
+using Agents.Enemies;
 using Agents.FSM;
 using Agents.Module;
 using Agents.Players.Gun;
@@ -27,6 +28,8 @@ namespace Agents.Players
         private AgentStateMachine _stateMachine;
 
         public bool IsControl { get; private set; }
+        
+        public EnemyRegisterSo EnemyRegisterSo { get; private set; }
 
         protected override void InitializeComponents()
         {
@@ -38,8 +41,6 @@ namespace Agents.Players
             GunCursorModule = GetModule<GunCursorModule>();
             
             HealthModule.ChangeHealth(PlayerData.MaxHp);
-            
-            ChangeState(PlayerStates.IDLE);
         }
 
         protected override void AfterInitComponents()
@@ -51,6 +52,11 @@ namespace Agents.Players
         private void OnDestroy()
         {
             PlayerInputSo.OnRightMousePressedStart -= HandleRightMousePressedStart;
+        }
+
+        public void SetEnemyRegister(EnemyRegisterSo enemyRegisterSo)
+        {
+            EnemyRegisterSo = enemyRegisterSo;
         }
 
         private void HandleRightMousePressedStart()
@@ -69,6 +75,7 @@ namespace Agents.Players
         public void PlayerControl()
         {
             IsControl = true;
+            GunCursorModule.UnActive();
             ChangeState(PlayerStates.IDLE);
         }
 
