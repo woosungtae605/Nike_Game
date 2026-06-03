@@ -1,4 +1,5 @@
 ﻿using System;
+using Agents.Enemies;
 using UnityEngine;
 
 namespace Agents.Players.Gun.GunData
@@ -31,5 +32,6 @@ namespace Agents.Players.Gun.GunData
         public float CameraShakeDuration => cameraShakeDuration;
 
         public abstract void Shot(PlayerGun playerGunOwner);
+        public abstract Enemy AIShot(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
     }
 }

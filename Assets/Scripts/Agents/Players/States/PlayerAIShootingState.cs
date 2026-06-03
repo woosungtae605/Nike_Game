@@ -7,5 +7,7 @@ namespace Agents.Players.States
         public PlayerAIShootingState(Agent owner, AnimParamSO stateParam) : base(owner, stateParam)
         {
         }
+        
+        
     }
 }

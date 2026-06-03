@@ -1,5 +1,6 @@
 ﻿using System;
 using Agents.CombatSystem;
+using Agents.Enemies;
 using Agents.Module;
 using UI.BattleUI.NikkeShotUI;
 using UnityEngine;
@@ -18,6 +19,11 @@ namespace Agents.Players.Gun.GunData
                 new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner });
             playerGunOwner.Owner.GetModule<GunCursorModule>().PlayScaleMotion();
             playerGunOwner.ShotSuccess();
+        }
+
+        public override Enemy AIShot(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
+        {
+            return enemyRegisterSo.ClosestEnemy(myTransform);
         }
     }
 }
