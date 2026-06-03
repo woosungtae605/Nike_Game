@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Agents.Enemies
@@ -7,6 +8,12 @@ namespace Agents.Enemies
     public class EnemyRegisterSo : ScriptableObject
     {
         private readonly List<Enemy> _enemies = new();
+
+
+        public void Clear()
+        {
+            _enemies.Clear();
+        }
 
         public void Register(Enemy enemy)
         {

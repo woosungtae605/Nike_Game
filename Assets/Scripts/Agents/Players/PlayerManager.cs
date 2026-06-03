@@ -12,13 +12,12 @@ namespace Agents.Players
     {
         [SerializeField] private List<Player> playerList;
         public Player CurrentPlayer { get; private set; }
-        
-        private void Start()
+
+        private void Awake()
         {
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
-            ChangePlayer(0);
         }
-
+        
         private void Update()
         {
             if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
