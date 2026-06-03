@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 802afc1a07ab4b26bf4eb5c0b8b5fdf1, type: 3}
-  m_Name: SpawnData
+  m_Name: SpawnData4
   m_EditorClassIdentifier: 
-  <EnemyDataSos>k__BackingField: []
-  <NextSpawnTime>k__BackingField: 0
+  <EnemySpawnDatas>k__BackingField:
+  - enemyDataSos: {fileID: 11400000, guid: 4daa84b72d3ec1547bfac891834ddac6, type: 2}
+    spawnPos: 1
+    amount: 2
+  <SpawnConditionSo>k__BackingField: {fileID: 11400000, guid: e7202e3320f92b54cab5d516a2011ba3, type: 2}

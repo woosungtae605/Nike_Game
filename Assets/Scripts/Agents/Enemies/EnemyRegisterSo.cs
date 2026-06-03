@@ -8,7 +8,8 @@ namespace Agents.Enemies
     public class EnemyRegisterSo : ScriptableObject
     {
         private readonly List<Enemy> _enemies = new();
-
+        
+        public int EnemyCount => _enemies.Count;
 
         public void Clear()
         {

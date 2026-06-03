@@ -7,6 +7,8 @@ namespace Systems.GameSystem.Wave
     public class WaveManager : MonoBehaviour
     {
          [Inject] private Transform[] _spawnPoints;
+         
+         [SerializeField] private WaveDataSo waveData;
 
          private EnemyManager _enemyManager;
          
