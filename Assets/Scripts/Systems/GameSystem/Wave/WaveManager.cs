@@ -2,7 +2,7 @@
 using Reflex.Attributes;
 using UnityEngine;
 
-namespace Systems.GameSystem
+namespace Systems.GameSystem.Wave
 {
     public class WaveManager : MonoBehaviour
     {
