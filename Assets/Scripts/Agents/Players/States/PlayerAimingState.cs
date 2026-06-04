@@ -18,11 +18,12 @@ namespace Agents.Players.States
             Player.CoverModule.SetHide(false);
             Player.PlayerInputSo.OnLeftMousePressedStart += HandleLeftMousePressedStart;
             Player.PlayerInputSo.OnRightMousePressedEnd += HandleRightMousePressedEnd;
-            Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(10, true));
+            Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(5, true));
         }
 
         public override void Exit()
         {
+            Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(0, false));
             Player.PlayerInputSo.OnLeftMousePressedStart -= HandleLeftMousePressedStart;
             Player.PlayerInputSo.OnRightMousePressedEnd -= HandleRightMousePressedEnd;
             base.Exit();
@@ -32,7 +33,6 @@ namespace Agents.Players.States
         {
             Player.GunCursorModule.UnActive();
             Player.ChangeState(PlayerStates.IDLE);
-            Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(10, false));
         }
 
         private void HandleLeftMousePressedStart()
