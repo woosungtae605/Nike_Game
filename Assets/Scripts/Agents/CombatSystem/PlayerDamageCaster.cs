@@ -46,16 +46,11 @@ namespace Agents.CombatSystem
             _mousePosition = obj;
         }
 
-        public override bool RayCastDamage(Vector3 positionOffset, Vector3 directionOffset, DamageData damageData) // 초기값은 Vector3 positionOffset, Vector3 directionOffset이거 2개 Vector3.zero하면 된다.
+        public override bool RayCastDamage(Vector3 origin, Vector3 direction, DamageData damageData) // 초기값은 Vector3 positionOffset, Vector3 directionOffset이거 2개 Vector3.zero하면 된다.
         {
-            Ray ray = mainCamera.ScreenPointToRay(_mousePosition);
-            
-            Vector3 origin = ray.origin + positionOffset;
-            Vector3 direction = (ray.direction + directionOffset).normalized;
-            
-            if (!Physics.Raycast(origin, direction , out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
+            if (!Physics.Raycast(origin, direction.normalized, out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
                 return false;
-            
+
             ApplyDamage(hitInfo, damageData);
             return true;
         }

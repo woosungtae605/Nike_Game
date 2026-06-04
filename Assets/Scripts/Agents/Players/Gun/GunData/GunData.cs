@@ -32,6 +32,6 @@ namespace Agents.Players.Gun.GunData
         public float CameraShakeDuration => cameraShakeDuration;
 
         public abstract void Shot(PlayerGun playerGunOwner);
-        public abstract Enemy AIShot(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
+        public abstract Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
     }
 }

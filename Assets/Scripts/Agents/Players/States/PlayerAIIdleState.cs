@@ -26,7 +26,7 @@ namespace Agents.Players.States
         public override void Update()
         {
             base.Update();
-            if (_enterTime + _enterTime < Time.time)
+            if (_enterTime + _exitTime < Time.time)
             {
                 Player.ChangeState(PlayerStates.AISHOOTING);
             }

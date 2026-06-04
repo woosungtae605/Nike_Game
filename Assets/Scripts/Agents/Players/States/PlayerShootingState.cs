@@ -21,7 +21,7 @@ namespace Agents.Players.States
         public override void Update()
         {
             base.Update();
-            Player.PlayerGunCompo.TryFire();
+            Player.PlayerGunCompo.TryFirePlayer();
             if (Player.PlayerGunCompo.CurrentAmmo <= 0)
             {
                 Player.ChangeState(PlayerStates.RELOADING);

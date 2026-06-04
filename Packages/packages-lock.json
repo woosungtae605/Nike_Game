@@ -9,7 +9,7 @@
         "com.unity.collections": "1.5.1",
         "com.unity.mathematics": "1.0.1"
       },
-      "hash": "6cae9f18a49de0259904268ca76cf12cb89d1fc5"
+      "hash": "2053ef5c23f2ae755dd85d5865b698c542c351b6"
     },
     "com.annulusgames.lit-motion.animation": {
       "version": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion.Animation",
@@ -19,6 +19,16 @@
         "com.annulusgames.lit-motion": "2.0.0"
       },
       "hash": "6cae9f18a49de0259904268ca76cf12cb89d1fc5"
+    },
+    "com.coplaydev.unity-mcp": {
+      "version": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.unity.test-framework": "1.1.31"
+      },
+      "hash": "78ee5418415953b79c358bfe6355fcc3fde7912b"
     },
     "com.gustavopsantos.reflex": {
       "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#14.3.0",

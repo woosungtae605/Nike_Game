@@ -13,7 +13,7 @@ namespace Agents.Players.Gun.GunData
             
         }
 
-        public override Enemy AIShot(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
+        public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
         {
             return null;
         }

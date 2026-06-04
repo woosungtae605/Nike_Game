@@ -13,8 +13,9 @@ namespace Agents.CombatSystem
             CasterOwner = owner;
         }
  
-        public abstract bool RayCastDamage(Vector3 position, Vector3 direction, DamageData damageData);
+        public abstract bool RayCastDamage(Vector3 origin, Vector3 direction, DamageData damageData);
         public abstract void SphereCastDamage(Vector3 position, Vector3 direction, DamageData damageData, float radius);
         public abstract void BoxCastDamage(Vector3 position, Vector3 direction, DamageData damageData, Vector3 halfExtents);
+        
     }
 }

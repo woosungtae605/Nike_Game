@@ -15,13 +15,16 @@ namespace Agents.Players.Gun.GunData
 
         public override void Shot(PlayerGun playerGunOwner)
         {
-            playerGunOwner.RayDamageCaster.RayCastDamage(Vector3.zero, Vector3.zero,
-                new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner });
+            Ray ray = playerGunOwner.AimModule.GetAimRay();
+
+            playerGunOwner.RayDamageCaster.RayCastDamage( ray.origin, ray.direction, 
+                new DamageData {Damage = Damage, Attacker = playerGunOwner.Owner});
+
             playerGunOwner.Owner.GetModule<GunCursorModule>().PlayScaleMotion();
             playerGunOwner.ShotSuccess();
         }
 
-        public override Enemy AIShot(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
+        public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
         {
             return enemyRegisterSo.ClosestEnemy(myTransform);
         }

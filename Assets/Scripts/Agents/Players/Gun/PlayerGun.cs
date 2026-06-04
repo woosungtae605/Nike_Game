@@ -1,10 +1,12 @@
 ﻿using Agents.CombatSystem;
+using Agents.Enemies;
+using Agents.Module;
 using Module;
 using UnityEngine;
 
 namespace Agents.Players.Gun
 {
-    public class PlayerGun : MonoBehaviour, IModule
+    public class PlayerGun : MonoBehaviour, IModule, IAfterInitModule
     {
         public PlayerGunDataSO PlayerGunData { get; private set; }
 
@@ -19,6 +21,7 @@ namespace Agents.Players.Gun
         
         private float _lastFireTime;
         
+        public PlayerAimModule AimModule { get; private set; }
         public AbstractDamageCaster RayDamageCaster { get; private set; }
         
         public void Initialize(ModuleOwner owner)
@@ -34,12 +37,46 @@ namespace Agents.Players.Gun
             Debug.Assert(RayDamageCaster != null, "Don't have AbstractDamageCaster as children");
             RayDamageCaster.InitCaster(_owner);
         }
-        public bool TryFire()
+        
+        public void AfterInit()
+        {
+            AimModule = _owner.GetModule<PlayerAimModule>();
+        }
+        
+        public bool TryFirePlayer()
         {
             if (_currentAmmo <= 0) return false;
             if (Time.time < _lastFireTime + PlayerGunData.GunData.FireInterval) return false;
             
             PlayerGunData.GunData.Shot(this);
+            return true;
+        }
+        
+        public bool TryFireAI(EnemyRegisterSo enemyRegisterSo)
+        {
+            if (_currentAmmo <= 0) return false;
+            if (Time.time < _lastFireTime + GunData.FireInterval) return false;
+
+            Enemy target = GunData.SelectAITarget(enemyRegisterSo, Owner.transform);
+            if (target == null || !target.gameObject.activeSelf)
+                return false;
+
+            Vector3 origin = Owner.transform.position;
+            Vector3 direction = (target.transform.position - origin).normalized;
+
+            bool hit = RayDamageCaster.RayCastDamage(
+                origin,
+                direction,
+                new DamageData
+                {
+                    Damage = GunData.Damage,
+                    Attacker = Owner
+                });
+
+            if (!hit)
+                return false;
+
+            ShotSuccess();
             return true;
         }
 
