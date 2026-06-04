@@ -68,7 +68,6 @@ namespace Agents.CombatSystem
                 return;
             
             damageable.ApplyDamage(damageData);
-            Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(_gunData.CameraShakePower, _gunData.CameraShakeDuration, false, true));
         }
     }
 }

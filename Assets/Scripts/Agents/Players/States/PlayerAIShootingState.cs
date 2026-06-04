@@ -1,5 +1,7 @@
 ﻿using Agents.Enemies;
 using Agents.FSM;
+using CoreSystem.BusSystem;
+using GameEvents.Camera;
 using Systems.AnimationSystems;
 
 namespace Agents.Players.States
@@ -31,16 +33,15 @@ namespace Agents.Players.States
                 Player.ChangeState(PlayerStates.AIIDLE);
                 return;
             }
-
-            Enemy target = Player.PlayerGunCompo.GetAITarget(Player.EnemyRegisterSo);
             
-            if (target == null || !target.gameObject.activeSelf)
+            if (Player.CurrentTarget == null || !Player.CurrentTarget.gameObject.activeSelf)
             {
+                Player.ClearTarget();
                 Player.ChangeState(PlayerStates.AIIDLE);
                 return;
             }
             
-            Player.PlayerGunCompo.TryFireAI(target);
+            Player.PlayerGunCompo.TryFireAI(Player.CurrentTarget);
         }
         
         public override void Exit()

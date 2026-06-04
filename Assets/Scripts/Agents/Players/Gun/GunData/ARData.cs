@@ -2,6 +2,8 @@
 using Agents.CombatSystem;
 using Agents.Enemies;
 using Agents.Module;
+using CoreSystem.BusSystem;
+using GameEvents.Camera;
 using UI.BattleUI.NikkeShotUI;
 using UnityEngine;
 
@@ -19,6 +21,8 @@ namespace Agents.Players.Gun.GunData
 
             playerGunOwner.RayDamageCaster.RayCastDamage( ray.origin, ray.direction, 
                 new DamageData {Damage = Damage, Attacker = playerGunOwner.Owner});
+            
+            Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(CameraShakePower, CameraShakeDuration, false, true));
         }
 
         public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)

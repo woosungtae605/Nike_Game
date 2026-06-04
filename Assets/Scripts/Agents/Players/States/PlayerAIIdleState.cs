@@ -1,4 +1,5 @@
-﻿using Agents.FSM;
+﻿using Agents.Enemies;
+using Agents.FSM;
 using Systems.AnimationSystems;
 using UnityEngine;
 
@@ -28,6 +29,12 @@ namespace Agents.Players.States
             base.Update();
             if (_enterTime + ExitTime < Time.time)
             {
+                Enemy target = Player.PlayerGunCompo.GetAITarget(Player.EnemyRegisterSo);
+
+                if (target == null || !target.gameObject.activeSelf)
+                    return;
+                
+                Player.SetTarget(target);
                 Player.ChangeState(PlayerStates.AISHOOTING);
             }
         }

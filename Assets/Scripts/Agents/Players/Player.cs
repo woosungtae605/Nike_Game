@@ -30,6 +30,7 @@ namespace Agents.Players
         public bool IsControl { get; private set; }
         
         public EnemyRegisterSo EnemyRegisterSo { get; private set; }
+        public Enemy CurrentTarget { get; private set; }
 
         protected override void InitializeComponents()
         {
@@ -57,6 +58,14 @@ namespace Agents.Players
         public void SetEnemyRegister(EnemyRegisterSo enemyRegisterSo)
         {
             EnemyRegisterSo = enemyRegisterSo;
+        }
+        public void SetTarget(Enemy target)
+        {
+            CurrentTarget = target;
+        }
+        public void ClearTarget()
+        {
+            CurrentTarget = null;
         }
 
         private void HandleRightMousePressedStart()

@@ -1,5 +1,7 @@
 ﻿using Agents.FSM;
+using CoreSystem.BusSystem;
 using FSM;
+using GameEvents.Camera;
 using Systems.AnimationSystems;
 
 namespace Agents.Players.States
@@ -40,6 +42,7 @@ namespace Agents.Players.States
         private void HandleRightMousePressedEnd()
         {
             Player.ChangeState(PlayerStates.IDLE);
+            Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(10, false));
             Player.GunCursorModule.UnActive();
         }
 
