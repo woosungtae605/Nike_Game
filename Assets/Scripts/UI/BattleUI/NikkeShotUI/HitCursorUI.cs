@@ -22,6 +22,8 @@ namespace UI.BattleUI.NikkeShotUI
         {
             _myRectTransform = GetComponent<RectTransform>();
             _originScale = _myRectTransform.localScale;
+            SetAlpha(0f);
+            gameObject.SetActive(false);
         }
 
         private void OnDestroy()
@@ -29,7 +31,7 @@ namespace UI.BattleUI.NikkeShotUI
             _motionHandle.TryCancel();
         }
 
-public void UIMotion(bool isCritical)
+        public void UIMotion(bool isCritical)
         {
             _motionHandle.TryCancel();
 
@@ -41,7 +43,11 @@ public void UIMotion(bool isCritical)
             _motionHandle = LMotion.Create(0f, 1f, motionDuration)
                 .WithDelay(waitDuration)
                 .WithEase(motionEase)
-                .WithOnComplete(() => gameObject.SetActive(false))
+                .WithOnComplete(() =>
+                {
+                    SetAlpha(0f);
+                    gameObject.SetActive(false);
+                })
                 .Bind(t =>
                 {
                     _myRectTransform.localScale = Vector3.Lerp(_originScale, _originScale * scalePower, t);
@@ -66,7 +72,7 @@ public void UIMotion(bool isCritical)
         }
     
 
-private void SetColor(Color color)
+        private void SetColor(Color color)
         {
             if (hitCursorImages == null)
                 return;
@@ -83,5 +89,5 @@ private void SetColor(Color color)
                 image.color = currentColor;
             }
         }
-}
+    }
 }

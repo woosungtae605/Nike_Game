@@ -16,6 +16,7 @@ namespace UI.BattleUI.NikkeShotUI
         private void Awake()
         {
             _hitCursorUI = GetComponentInChildren<HitCursorUI>(true);
+            _hitCursorUI.gameObject.SetActive(false);
             Bus<HitCursorUIEvent>.OnEvent += HandleHitCursorUI;
             _playerInputSO.OnMousePos += HandleMousePos;
         }
@@ -26,7 +27,7 @@ namespace UI.BattleUI.NikkeShotUI
             _playerInputSO.OnMousePos -= HandleMousePos;
         }
         
-private void HandleMousePos(Vector2 obj)
+        private void HandleMousePos(Vector2 obj)
         {
             _currentMousePosition = obj;
 
@@ -36,12 +37,11 @@ private void HandleMousePos(Vector2 obj)
             _hitCursorUI.transform.position = obj;
         }
         
-private void HandleHitCursorUI(HitCursorUIEvent obj)
+        private void HandleHitCursorUI(HitCursorUIEvent obj)
         {
             if (_hitCursorUI == null)
                 return;
 
-            _hitCursorUI.gameObject.SetActive(true);
             _hitCursorUI.transform.position = _currentMousePosition;
             _hitCursorUI.UIMotion(obj.IsCritical);
         }
