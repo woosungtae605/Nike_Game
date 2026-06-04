@@ -4,6 +4,7 @@ using Agents.Enemies;
 using Agents.Module;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
+using GameEvents.UI;
 using UI.BattleUI.NikkeShotUI;
 using UnityEngine;
 
@@ -19,9 +20,11 @@ namespace Agents.Players.Gun.GunData
         {
             Ray ray = playerGunOwner.AimModule.GetAimRay();
 
-            playerGunOwner.RayDamageCaster.RayCastDamage( ray.origin, ray.direction, 
-                new DamageData {Damage = Damage, Attacker = playerGunOwner.Owner});
-            
+            if (playerGunOwner.RayDamageCaster.RayCastDamage(ray.origin, ray.direction,
+                    new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner }))
+            {
+                Bus<HitCursorUIEvent>.Raise(new HitCursorUIEvent(false));   
+            }
             Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(CameraShakePower, CameraShakeDuration, false, true));
         }
 
