@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Agents.Players;
 using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
@@ -58,16 +58,20 @@ namespace Agents.CombatSystem
             }
         }
 
-        private void ApplyDamage(RaycastHit hitInfo, DamageData damageData)
+private void ApplyDamage(RaycastHit hitInfo, DamageData damageData)
         {
             damageData.HitPoint = hitInfo.point;
             damageData.HitNormal = hitInfo.normal;
             damageData.HitDistance = hitInfo.distance;
 
-            if (!hitInfo.collider.TryGetComponent(out IDamageable damageable))
+            if (hitInfo.collider.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.ApplyDamage(damageData);
                 return;
-            
-            damageable.ApplyDamage(damageData);
+            }
+
+            damageable = hitInfo.collider.GetComponentInParent<IDamageable>();
+            damageable?.ApplyDamage(damageData);
         }
     }
 }

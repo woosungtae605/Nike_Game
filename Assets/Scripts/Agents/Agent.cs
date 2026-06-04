@@ -1,4 +1,4 @@
-﻿using Agents.CombatSystem;
+using Agents.CombatSystem;
 using Agents.Module;
 using Module;
 

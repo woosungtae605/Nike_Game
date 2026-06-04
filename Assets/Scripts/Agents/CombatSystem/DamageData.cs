@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Agents.CombatSystem
 {
@@ -9,6 +9,9 @@ namespace Agents.CombatSystem
         public Vector3 HitPoint;
         public Vector3 HitNormal;
         public float HitDistance;
+        public bool IsCritical;
+        public float DamageMultiplier;
+
 
         public DamageData(Agent attacker, int damage,  Vector3 hitPoint, Vector3 hitNormal, float hitDistance)
         {
@@ -17,6 +20,9 @@ namespace Agents.CombatSystem
             HitPoint = hitPoint;
             HitNormal = hitNormal;
             HitDistance = hitDistance;
+            IsCritical = false;
+            DamageMultiplier = 1f;
+
         }
     }
 }

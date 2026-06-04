@@ -1,4 +1,4 @@
-﻿using CoreSystem.BusSystem;
+using CoreSystem.BusSystem;
 using GameEvents.UI;
 using LitMotion;
 using UnityEngine;
@@ -29,31 +29,19 @@ namespace UI.BattleUI.NikkeShotUI
             _motionHandle.TryCancel();
         }
 
-        public void UIMotion(bool isCritical)
+public void UIMotion(bool isCritical)
         {
-            if (isCritical)
-            {
-                foreach (Image image in hitCursorImages)
-                {
-                    image.color = Color.red;
-                }
-            }
-            else
-            {
-                foreach (Image image in hitCursorImages)
-                {
-                    image.color = Color.white;
-                }
-            }
-            
             _motionHandle.TryCancel();
 
+            gameObject.SetActive(true);
             _myRectTransform.localScale = _originScale;
+            SetColor(isCritical ? Color.red : Color.white);
             SetAlpha(1f);
 
             _motionHandle = LMotion.Create(0f, 1f, motionDuration)
                 .WithDelay(waitDuration)
                 .WithEase(motionEase)
+                .WithOnComplete(() => gameObject.SetActive(false))
                 .Bind(t =>
                 {
                     _myRectTransform.localScale = Vector3.Lerp(_originScale, _originScale * scalePower, t);
@@ -76,5 +64,24 @@ namespace UI.BattleUI.NikkeShotUI
                 image.color = color;
             }
         }
-    }
+    
+
+private void SetColor(Color color)
+        {
+            if (hitCursorImages == null)
+                return;
+
+            foreach (Image image in hitCursorImages)
+            {
+                if (image == null)
+                    continue;
+
+                Color currentColor = image.color;
+                currentColor.r = color.r;
+                currentColor.g = color.g;
+                currentColor.b = color.b;
+                image.color = currentColor;
+            }
+        }
+}
 }

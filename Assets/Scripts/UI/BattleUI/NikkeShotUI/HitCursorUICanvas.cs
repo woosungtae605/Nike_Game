@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using Reflex.Attributes;
@@ -11,6 +11,8 @@ namespace UI.BattleUI.NikkeShotUI
     {
         [Inject] private PlayerInputSO _playerInputSO;
         private HitCursorUI _hitCursorUI;
+        private Vector2 _currentMousePosition;
+
         private void Awake()
         {
             _hitCursorUI = GetComponentInChildren<HitCursorUI>(true);
@@ -24,14 +26,23 @@ namespace UI.BattleUI.NikkeShotUI
             _playerInputSO.OnMousePos -= HandleMousePos;
         }
         
-        private void HandleMousePos(Vector2 obj)
+private void HandleMousePos(Vector2 obj)
         {
-            _hitCursorUI.gameObject.transform.position = obj;
+            _currentMousePosition = obj;
+
+            if (_hitCursorUI == null)
+                return;
+
+            _hitCursorUI.transform.position = obj;
         }
         
-        private void HandleHitCursorUI(HitCursorUIEvent obj)
+private void HandleHitCursorUI(HitCursorUIEvent obj)
         {
+            if (_hitCursorUI == null)
+                return;
+
             _hitCursorUI.gameObject.SetActive(true);
+            _hitCursorUI.transform.position = _currentMousePosition;
             _hitCursorUI.UIMotion(obj.IsCritical);
         }
     }
