@@ -7,7 +7,7 @@ namespace Agents.Players.States
     public class PlayerAIIdleState : AbstractPlayerState
     {
         private float _enterTime;
-        private float _exitTime = 0.5f;
+        private const float ExitTime = 0.5f;
         public PlayerAIIdleState(Agent owner, AnimParamSO stateParam) : base(owner, stateParam)
         {
         }
@@ -18,7 +18,7 @@ namespace Agents.Players.States
             base.Enter();
             if (Player.PlayerGunCompo.CurrentAmmo <= 0)
             {
-                Player.ChangeState(PlayerStates.RELOADING);
+                Player.ChangeState(PlayerStates.AIRELOADING);
             }
             Player.CoverModule.SetHide(true);
         }
@@ -26,7 +26,7 @@ namespace Agents.Players.States
         public override void Update()
         {
             base.Update();
-            if (_enterTime + _exitTime < Time.time)
+            if (_enterTime + ExitTime < Time.time)
             {
                 Player.ChangeState(PlayerStates.AISHOOTING);
             }

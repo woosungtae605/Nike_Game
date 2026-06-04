@@ -19,9 +19,6 @@ namespace Agents.Players.Gun.GunData
 
             playerGunOwner.RayDamageCaster.RayCastDamage( ray.origin, ray.direction, 
                 new DamageData {Damage = Damage, Attacker = playerGunOwner.Owner});
-
-            playerGunOwner.Owner.GetModule<GunCursorModule>().PlayScaleMotion();
-            playerGunOwner.ShotSuccess();
         }
 
         public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)

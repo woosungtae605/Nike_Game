@@ -12,11 +12,8 @@ namespace Agents.CombatSystem
 {
     public class PlayerDamageCaster : AbstractDamageCaster
     {
-        [SerializeField] private UnityEngine.Camera mainCamera;
         private GunData _gunData;
         private Player _player;
-        
-        private Vector2 _mousePosition;
         
         public override void InitCaster(Agent owner)
         {
@@ -27,23 +24,7 @@ namespace Agents.CombatSystem
             PlayerGun playerGun = owner.GetModule<PlayerGun>();
             Debug.Assert(playerGun != null, "playerGun don't have as module");
             
-            _player.PlayerInputSo.OnMousePos += HandleMousePos;
-            
             _gunData = playerGun.PlayerGunData.GunData;
-            
-            if (mainCamera == null)
-                mainCamera = UnityEngine.Camera.main;
-        }
-
-        private void OnDisable()
-        {
-            if (_player != null && _player.PlayerInputSo != null)
-                _player.PlayerInputSo.OnMousePos -= HandleMousePos;
-        }
-
-        private void HandleMousePos(Vector2 obj)
-        {
-            _mousePosition = obj;
         }
 
         public override bool RayCastDamage(Vector3 origin, Vector3 direction, DamageData damageData) // 초기값은 Vector3 positionOffset, Vector3 directionOffset이거 2개 Vector3.zero하면 된다.
@@ -88,22 +69,6 @@ namespace Agents.CombatSystem
             
             damageable.ApplyDamage(damageData);
             Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(_gunData.CameraShakePower, _gunData.CameraShakeDuration, false, true));
-        }
-        
-        private void OnDrawGizmos()
-        {
-            if (_gunData == null || mainCamera == null)
-                return;
-
-            Ray ray = mainCamera.ScreenPointToRay(_mousePosition);
-
-            Vector3 origin = ray.origin;
-            Vector3 direction = ray.direction.normalized;
-            Vector3 end = origin + direction * _gunData.MaxDistance;
-
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(origin, end);
-            Gizmos.DrawWireSphere(origin, 0.1f);
         }
     }
 }

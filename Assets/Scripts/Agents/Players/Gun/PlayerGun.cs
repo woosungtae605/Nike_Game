@@ -49,35 +49,34 @@ namespace Agents.Players.Gun
             if (Time.time < _lastFireTime + PlayerGunData.GunData.FireInterval) return false;
             
             PlayerGunData.GunData.Shot(this);
+            Owner.GetModule<GunCursorModule>().PlayScaleMotion();
+            ShotSuccess();
+            
             return true;
         }
         
-        public bool TryFireAI(EnemyRegisterSo enemyRegisterSo)
+        public bool TryFireAI(Enemy target)
         {
             if (_currentAmmo <= 0) return false;
             if (Time.time < _lastFireTime + GunData.FireInterval) return false;
-
-            Enemy target = GunData.SelectAITarget(enemyRegisterSo, Owner.transform);
+            
             if (target == null || !target.gameObject.activeSelf)
                 return false;
 
             Vector3 origin = Owner.transform.position;
             Vector3 direction = (target.transform.position - origin).normalized;
 
-            bool hit = RayDamageCaster.RayCastDamage(
-                origin,
-                direction,
-                new DamageData
-                {
-                    Damage = GunData.Damage,
-                    Attacker = Owner
-                });
-
-            if (!hit)
-                return false;
-
+            RayDamageCaster.RayCastDamage(origin, direction, new DamageData { Damage = GunData.Damage, Attacker = Owner });
             ShotSuccess();
             return true;
+        }
+        
+        public Enemy GetAITarget(EnemyRegisterSo enemyRegisterSo)
+        {
+            if (enemyRegisterSo == null)
+                return null;
+
+            return GunData.SelectAITarget(enemyRegisterSo, Owner.transform);
         }
 
         public void ShotSuccess()
