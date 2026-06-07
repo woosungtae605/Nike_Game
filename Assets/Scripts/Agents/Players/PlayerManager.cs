@@ -12,6 +12,7 @@ namespace Agents.Players
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private List<Player> playerList;
+        public IReadOnlyList<Player> Players => playerList;
         public Player CurrentPlayer { get; private set; }
 
         private EnemyRegisterSo _enemyRegisterSo;
