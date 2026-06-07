@@ -1,3 +1,4 @@
+using Agents.Players;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using UnityEngine;
@@ -25,7 +26,12 @@ namespace Agents.CombatSystem
             damageData.Damage = finalDamage;
 
             owner.ApplyDamage(damageData);
-            Bus<HitCursorUIEvent>.Raise(new HitCursorUIEvent(isCritical));  
+            
+            Player player = damageData.Attacker as Player;
+            Debug.Assert(player != null, "attacker is not a player");
+            
+            if(player.IsControl)
+                Bus<HitCursorUIEvent>.Raise(new HitCursorUIEvent(isCritical));  
         }
     }
 }

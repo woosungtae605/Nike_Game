@@ -8,9 +8,9 @@ namespace Agents.Players.Gun.GunData
     public class RocketLauncherData : GunData
     {
 
-        public override void Shot(PlayerGun playerGunOwner)
+        public override bool Shot(PlayerGun playerGunOwner)
         {
-            
+            return true;
         }
 
         public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)

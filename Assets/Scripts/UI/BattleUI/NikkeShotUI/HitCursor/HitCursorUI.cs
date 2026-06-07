@@ -1,10 +1,8 @@
-using CoreSystem.BusSystem;
-using GameEvents.UI;
 using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.BattleUI.NikkeShotUI
+namespace UI.BattleUI.NikkeShotUI.HitCursor
 {
     public class HitCursorUI : MonoBehaviour
     {

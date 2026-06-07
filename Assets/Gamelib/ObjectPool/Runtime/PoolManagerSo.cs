@@ -32,7 +32,7 @@ namespace Gamelib.ObjectPool.Runtime
             
             if (_pools.TryGetValue(type, out Pool pool))
             {
-                return (T)pool.Pop();
+                return(T)pool.Pop(); 
             }
             return default;
         }

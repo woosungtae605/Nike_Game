@@ -20,6 +20,7 @@ namespace Agents.Players.Gun
         public int CurrentAmmo => _currentAmmo;
         
         private float _lastFireTime;
+        public float LastFireTime => _lastFireTime;
         
         public PlayerAimModule AimModule { get; private set; }
         public AbstractDamageCaster RayDamageCaster { get; private set; }
@@ -45,12 +46,8 @@ namespace Agents.Players.Gun
         
         public bool TryFirePlayer()
         {
-            if (_currentAmmo <= 0) return false;
-            if (Time.time < _lastFireTime + PlayerGunData.GunData.FireInterval) return false;
-            
-            PlayerGunData.GunData.Shot(this);
-            Owner.GetModule<GunCursorModule>().PlayScaleMotion();
-            ShotSuccess();
+            if (!PlayerGunData.GunData.Shot(this))
+                return false;
             
             return true;
         }

@@ -1,11 +1,10 @@
-using System;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using Reflex.Attributes;
 using Systems;
 using UnityEngine;
 
-namespace UI.BattleUI.NikkeShotUI
+namespace UI.BattleUI.NikkeShotUI.HitCursor
 {
     public class HitCursorUICanvas : MonoBehaviour
     {
