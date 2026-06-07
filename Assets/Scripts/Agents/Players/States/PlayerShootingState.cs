@@ -1,7 +1,7 @@
 ﻿using Agents.FSM;
 using CoreSystem.BusSystem;
-using FSM;
 using GameEvents.Camera;
+using GameEvents.UI;
 using Systems.AnimationSystems;
 
 namespace Agents.Players.States
@@ -38,6 +38,7 @@ namespace Agents.Players.States
             Player.PlayerInputSo.OnRightMousePressedEnd -= HandleRightMousePressedEnd;
             Player.CoverModule.SetHide(true);
             Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(0, false));
+            Bus<GunAmmoUIActiveEvent>.Raise(new GunAmmoUIActiveEvent(0, 0, false));
             base.Exit();
         }
 

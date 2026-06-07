@@ -1,6 +1,8 @@
 ﻿using Agents.CombatSystem;
 using Agents.Enemies;
 using Agents.Module;
+using CoreSystem.BusSystem;
+using GameEvents.UI;
 using Module;
 using UnityEngine;
 
@@ -80,6 +82,9 @@ namespace Agents.Players.Gun
         {
             _lastFireTime = Time.time;
             _currentAmmo--;
+            
+            if(_owner.IsControl)
+                Bus<GunAmmoUIActiveEvent>.Raise(new GunAmmoUIActiveEvent(CurrentAmmo, GunData.MaxAmmo, true));
         }
 
         public void Reload()

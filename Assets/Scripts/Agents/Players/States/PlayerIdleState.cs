@@ -4,7 +4,7 @@ using Systems.AnimationSystems;
 
 namespace Agents.Players.States
 {
-    public class PlayerIdleState : AbstractPlayerState, ICanAiming
+    public class PlayerIdleState : AbstractPlayerState
     {
         public PlayerIdleState(Agent owner, AnimParamSO stateParam) : base(owner, stateParam)
         {
@@ -18,6 +18,18 @@ namespace Agents.Players.States
                 Player.ChangeState(PlayerStates.RELOADING);
             }
             Player.CoverModule.SetHide(true);
+            Player.PlayerInputSo.OnRightMousePressedStart += HandleRightMousePressedStart;
+        }
+
+        public override void Exit()
+        {
+            Player.PlayerInputSo.OnRightMousePressedStart -= HandleRightMousePressedStart;
+            base.Exit();
+        }
+
+        private void HandleRightMousePressedStart()
+        {
+            Player.ChangeState(PlayerStates.AIMING);
         }
     }
 }

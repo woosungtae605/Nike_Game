@@ -5,6 +5,7 @@ using LitMotion;
 using Module;
 using Reflex.Attributes;
 using Systems;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,68 +13,37 @@ namespace Agents.Module
 {
     public class GunCursorImage : MonoBehaviour
     {
-        private PlayerInputSO _playerInputSO;
-
         [Header("Scale Motion")]
         [SerializeField] private float scalePower = 1.2f;
         [SerializeField] private float scaleDuration = 0.08f;
 
         private Image _cursorImage;
+        private UIFollowMouse _uiFollowMouse;
         private Vector3 _originScale;
         private MotionHandle _scaleHandle;
 
-        public void Init(PlayerInputSO playerInputSO)
+        public void Init()
         {
-            _playerInputSO = playerInputSO;
-            if(_cursorImage == null)
-                _cursorImage = GetComponent<Image>();
-
+            _cursorImage = GetComponent<Image>();
+            _uiFollowMouse = GetComponent<UIFollowMouse>();
             _originScale = transform.localScale;
-            
-            SubscribeMousePos();
         }
 
         public void SetActiveFalse()
         {
             _scaleHandle.TryCancel();
-            
-            UnsubscribeMousePos();
             gameObject.SetActive(false);
         }
 
         public void ActiveTrue()
         {
-            _cursorImage.transform.position = _playerInputSO.CurrentMousePosition;
-            SubscribeMousePos();
+            gameObject.SetActive(true);
+            _uiFollowMouse?.SnapToCurrentMousePosition();
         }
         private void OnDestroy()
         {
             _scaleHandle.TryCancel();
-            UnsubscribeMousePos();
         }
-        
-        private void SubscribeMousePos()
-        {
-            if (_playerInputSO == null)
-                return;
-
-            _playerInputSO.OnMousePos -= HandleMousePos;
-            _playerInputSO.OnMousePos += HandleMousePos;
-        }
-        
-        private void UnsubscribeMousePos()
-        {
-            if (_playerInputSO == null)
-                return;
-
-            _playerInputSO.OnMousePos -= HandleMousePos;
-        }
-
-        private void HandleMousePos(Vector2 obj)
-        {
-            _cursorImage.transform.position = obj;
-        }
-
         public void PlayScaleMotion()
         {
             _scaleHandle.TryCancel();

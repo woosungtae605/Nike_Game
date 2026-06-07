@@ -44,17 +44,6 @@ namespace Agents.Players
             HealthModule.ChangeHealth(PlayerData.MaxHp);
         }
 
-        protected override void AfterInitComponents()
-        {
-            base.AfterInitComponents();
-            PlayerInputSo.OnRightMousePressedStart += HandleRightMousePressedStart;
-        }
-
-        private void OnDestroy()
-        {
-            PlayerInputSo.OnRightMousePressedStart -= HandleRightMousePressedStart;
-        }
-
         public void SetEnemyRegister(EnemyRegisterSo enemyRegisterSo)
         {
             EnemyRegisterSo = enemyRegisterSo;
@@ -66,14 +55,6 @@ namespace Agents.Players
         public void ClearTarget()
         {
             CurrentTarget = null;
-        }
-
-        private void HandleRightMousePressedStart()
-        {
-            if (_stateMachine.CurrentState is ICanAiming && IsControl)
-            {
-                ChangeState(PlayerStates.AIMING);
-            }
         }
 
         private void Update()
