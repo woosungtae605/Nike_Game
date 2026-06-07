@@ -1,10 +1,4 @@
-﻿using Agents.Players;
-using CoreSystem.BusSystem;
-using GameEvents.UI;
-using LitMotion;
-using Module;
-using Reflex.Attributes;
-using Systems;
+﻿using LitMotion;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +31,6 @@ namespace Agents.Module
 
         public void ActiveTrue()
         {
-            gameObject.SetActive(true);
             _uiFollowMouse?.SnapToCurrentMousePosition();
         }
         private void OnDestroy()

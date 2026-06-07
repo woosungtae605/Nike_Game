@@ -1,4 +1,4 @@
-﻿using Agents.FSM;
+using Agents.FSM;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
 using GameEvents.UI;
@@ -34,12 +34,18 @@ namespace Agents.Players.States
 
         private void HandleRightMousePressedEnd()
         {
+            if (!Player.IsControl)
+                return;
+
             Player.GunCursorModule.UnActive();
             Player.ChangeState(PlayerStates.IDLE);
         }
 
         private void HandleLeftMousePressedStart()
         {
+            if (!Player.IsControl)
+                return;
+
             Player.ChangeState(PlayerStates.SHOOTING);
         }
     }

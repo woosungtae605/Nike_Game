@@ -1,6 +1,5 @@
 ﻿using System;
 using Module;
-using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Agents.Module

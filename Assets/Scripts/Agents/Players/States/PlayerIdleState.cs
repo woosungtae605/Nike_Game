@@ -1,4 +1,4 @@
-﻿using Agents.FSM;
+using Agents.FSM;
 using FSM;
 using Systems.AnimationSystems;
 
@@ -29,6 +29,9 @@ namespace Agents.Players.States
 
         private void HandleRightMousePressedStart()
         {
+            if (!Player.IsControl)
+                return;
+
             Player.ChangeState(PlayerStates.AIMING);
         }
     }

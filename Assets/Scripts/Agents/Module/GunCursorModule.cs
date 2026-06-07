@@ -1,4 +1,4 @@
-﻿using Agents.Players;
+using Agents.Players;
 using Module;
 using UnityEngine;
 
@@ -17,6 +17,7 @@ namespace Agents.Module
             _gunCursor = GetComponentInChildren<GunCursorImage>(true);
             Debug.Assert(_gunCursor != null, "not found GunCursorImage in children");
             _gunCursor.Init();
+            _gunCursor.SetActiveFalse();
         }
 
         public void UnActive()

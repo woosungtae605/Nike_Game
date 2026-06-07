@@ -1,4 +1,4 @@
-﻿using Agents.CombatSystem;
+using Agents.CombatSystem;
 using Agents.Enemies;
 using Agents.Module;
 using CoreSystem.BusSystem;
@@ -48,6 +48,9 @@ namespace Agents.Players.Gun
         
         public bool TryFirePlayer()
         {
+            if (!_owner.IsControl)
+                return false;
+
             if (!PlayerGunData.GunData.Shot(this))
                 return false;
             
