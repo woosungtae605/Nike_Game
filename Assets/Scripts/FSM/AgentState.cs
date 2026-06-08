@@ -27,7 +27,7 @@ namespace FSM
         
         public virtual void Enter()
         {
-            _renderer.PlayClip(_clipHash);
+            _renderer.PlayClip(_clipHash, 0.2f);
             _isTriggerCall = false;
         }
         

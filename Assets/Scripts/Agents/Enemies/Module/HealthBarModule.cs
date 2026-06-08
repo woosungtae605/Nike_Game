@@ -1,9 +1,8 @@
-﻿using System;
-using Agents.Module;
+﻿using Agents.Module;
 using Module;
 using UnityEngine;
 
-namespace Agents.Enemies
+namespace Agents.Enemies.Module
 {
     public class HealthBarModule : MonoBehaviour, IModule, IAfterInitModule
     {

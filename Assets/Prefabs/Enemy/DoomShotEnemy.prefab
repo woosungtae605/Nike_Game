@@ -265,6 +265,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4024053255010728523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8571212791823442487}
+  - component: {fileID: 4845489814917099550}
+  m_Layer: 0
+  m_Name: NavMoverModule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8571212791823442487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024053255010728523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2154606536154493534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4845489814917099550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024053255010728523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33748406482400682baf6781eee674b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4095255136453526924
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +348,7 @@ Transform:
   - {fileID: 5159575091329752974}
   - {fileID: 5305800517086377400}
   - {fileID: 5974300370917178913}
+  - {fileID: 8571212791823442487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &3483632495403269806
@@ -1208,6 +1253,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6611812047490822060, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6333160465174530530}
+    - targetCorrespondingSourceObject: {fileID: 6611812047490822060, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3128867156960471954}
     - targetCorrespondingSourceObject: {fileID: 5647900340387249641, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5241994271849505837}
@@ -1561,6 +1609,22 @@ MonoBehaviour:
   - m_Rig: {fileID: 9190279665530384386}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &3128867156960471954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506474561747187954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c05d7f15dc495ba2506c9a89db7411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateRotationByNavAgent: 1
+  updatePositionByNavAgent: 0
+  forceRotation: 1
+  forceRotationSpeed: 80
 --- !u!4 &4738490911217586874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2632730954172089828, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}

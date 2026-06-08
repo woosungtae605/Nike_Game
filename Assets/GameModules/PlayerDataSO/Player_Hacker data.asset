@@ -15,4 +15,4 @@ MonoBehaviour:
   <NikkeID>k__BackingField: 1
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 37e9672757678e94b9e8a50fe932c1b7, type: 2}
   <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
-  <MaxHp>k__BackingField: 100
+  <MaxHp>k__BackingField: 150

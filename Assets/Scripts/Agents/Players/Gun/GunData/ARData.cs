@@ -43,7 +43,7 @@ namespace Agents.Players.Gun.GunData
             if (target == null || !target.gameObject.activeSelf) return false;
 
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
-            Vector3 direction = (target.hitPos.position - lineStartPosition).normalized;
+            Vector3 direction = GetSpreadDirection((target.hitPos.position - lineStartPosition).normalized, AIRandomSpreadAngle);
 
             bool isHit = playerGunOwner.RayDamageCaster.RayCastDamage(lineStartPosition, direction,
                 new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner });
@@ -62,5 +62,8 @@ namespace Agents.Players.Gun.GunData
         {
             return enemyRegisterSo.ClosestEnemy(myTransform);
         }
-    }
+    
+
+
+}
 }

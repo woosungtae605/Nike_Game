@@ -26,6 +26,7 @@ MonoBehaviour:
         maxAmmo: 7
         reloadTime: 2
         maxDistance: 100
+        aiRandomSpreadAngle: 7
         hitMask:
           serializedVersion: 2
           m_Bits: 64
@@ -33,4 +34,3 @@ MonoBehaviour:
         cameraShakeDuration: 0.2
         lineEffectDuration: 0.2
         shotgunShootAmmoCount: 6
-        spreadAngle: 6

@@ -13,6 +13,7 @@ namespace Agents.Players.Gun.GunData
         [SerializeField] private int maxAmmo = 30;
         [SerializeField] private float reloadTime = 1.5f;
         [SerializeField] private float maxDistance = 20f;
+        [SerializeField] private float aiRandomSpreadAngle = 1f;
         [SerializeField] private LayerMask hitMask;
         
         [Header("Camera")]
@@ -27,6 +28,7 @@ namespace Agents.Players.Gun.GunData
         public int MaxAmmo => maxAmmo;
         public float ReloadTime => reloadTime;
         public float MaxDistance => maxDistance;
+        public float AIRandomSpreadAngle => aiRandomSpreadAngle;
         public LayerMask HitMask => hitMask;
         public float CameraShakePower => cameraShakePower;
         public float CameraShakeDuration => cameraShakeDuration;
@@ -36,5 +38,13 @@ namespace Agents.Players.Gun.GunData
         public abstract bool ShotAI(PlayerGun playerGunOwner, Enemy target);
 
         public abstract Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
-    }
+    
+
+        protected Vector3 GetSpreadDirection(Vector3 baseDirection, float angle)
+        {
+            float halfAngle = angle * 0.5f;
+            Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-halfAngle, halfAngle), UnityEngine.Random.Range(-halfAngle, halfAngle), 0f);
+            return Quaternion.Euler(randomOffset) * baseDirection;
+        }
+}
 }

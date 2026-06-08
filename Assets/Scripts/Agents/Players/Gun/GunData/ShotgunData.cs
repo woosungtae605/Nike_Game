@@ -12,9 +12,7 @@ namespace Agents.Players.Gun.GunData
     public class ShotgunData : GunData
     {
         [Header("ShotgunData")] 
-        [SerializeField] private int shotgunShootAmmoCount;
-        [SerializeField] private float spreadAngle;
-        
+        [SerializeField] private int shotgunShootAmmoCount;        
         public override bool Shot(PlayerGun playerGunOwner)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
@@ -24,7 +22,7 @@ namespace Agents.Players.Gun.GunData
             
             for (int i = 0; i < shotgunShootAmmoCount; i++)
             {
-                Vector3 spreadDirection = GetSpreadDirection(ray.direction, spreadAngle);
+                Vector3 spreadDirection = GetSpreadDirection(ray.direction, AIRandomSpreadAngle);
                 bool isHit = playerGunOwner.RayDamageCaster.RayCastDamage(ray.origin, spreadDirection,
                     new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner });
                 
@@ -52,7 +50,7 @@ namespace Agents.Players.Gun.GunData
 
             for (int i = 0; i < shotgunShootAmmoCount; i++)
             {
-                Vector3 spreadDirection = GetSpreadDirection(baseDirection, spreadAngle);
+                Vector3 spreadDirection = GetSpreadDirection(baseDirection, AIRandomSpreadAngle);
                 bool isHit = playerGunOwner.RayDamageCaster.RayCastDamage(lineStartPosition, spreadDirection,
                     new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner });
 
@@ -73,11 +71,6 @@ namespace Agents.Players.Gun.GunData
             return enemyRegisterSo.ClosestEnemy(myTransform);
         }
         
-        private Vector3 GetSpreadDirection(Vector3 baseDirection, float angle)
-        {
-            float halfAngle = angle * 0.5f;
-            Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-halfAngle, halfAngle), UnityEngine.Random.Range(-halfAngle, halfAngle), 0f);
-            return Quaternion.Euler(randomOffset) * baseDirection;
-        }
+
     }
 }

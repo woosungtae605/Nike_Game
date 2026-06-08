@@ -2,7 +2,7 @@
 {
     public interface IRenderer
     {
-        void PlayClip(int clipHash, int layer = -1, float normalizedTime = 0);
+        void PlayClip(int clipHash, float crossFadeDuration, float normalizedTime = 0, int layerIndex = 0);
         void SetBool(AnimParamSO param, bool value);
         void SetFloat(AnimParamSO param, float value);
         void SetInt(AnimParamSO param, int value);

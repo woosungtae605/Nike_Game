@@ -8,25 +8,27 @@ namespace Agents.Module
     [RequireComponent(typeof(Animator))]
     public class RendererModule : MonoBehaviour, IModule, IRenderer
     {
-        private Agent _owner;
-        private Animator _animator;
+        protected Agent _owner;
+        public Animator Animator { get; private set; }
         
-        public void Initialize(ModuleOwner owner)
+        public virtual void Initialize(ModuleOwner owner)
         {
             _owner = owner as Agent;
-            _animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
         }
-        
-        public void PlayClip(int clipHash, int layer = -1, float normalizedTime = 0)
-            => _animator.Play(clipHash, layer, normalizedTime);
+
+        public void PlayClip(int clipHash, float crossFadeDuration, float normalizedTime = 0, int layerIndex = 0)
+        {
+            Animator.CrossFadeInFixedTime(clipHash, crossFadeDuration, layerIndex, normalizedTime);
+        }
 
         public void SetBool(AnimParamSO param, bool value)
-            => _animator.SetBool(param.ParamHash, value);
+            => Animator.SetBool(param.ParamHash, value);
         public void SetFloat(AnimParamSO param, float value)
-            => _animator.SetFloat(param.ParamHash, value);
+            => Animator.SetFloat(param.ParamHash, value);
         public void SetInt(AnimParamSO param, int value)
-            => _animator.SetInteger(param.ParamHash, value);
+            => Animator.SetInteger(param.ParamHash, value);
         public void SetTrigger(AnimParamSO param)
-            => _animator.SetTrigger(param.ParamHash);
+            => Animator.SetTrigger(param.ParamHash);
     }
 }
