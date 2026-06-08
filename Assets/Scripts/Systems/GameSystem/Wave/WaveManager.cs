@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Agents.Enemies;
@@ -17,7 +17,10 @@ namespace Systems.GameSystem.Wave
          private EnemyManager _enemyManager;
          private Coroutine _waveRoutine;
 
-         public Action OnClear;
+         public Action OnClear;         
+         public Action<int, int> OnWaveStarted;
+         public int WaveCount => waveData == null || waveData.SpawnDataSos == null ? 0 : waveData.SpawnDataSos.Length;
+
          
          public void SetEnemyManager(EnemyManager enemyManager)
          {
@@ -34,8 +37,11 @@ namespace Systems.GameSystem.Wave
 
          private IEnumerator WaveRoutine()
          {
-             foreach (SpawnDataSo spawnData in waveData.SpawnDataSos)
+             int waveCount = WaveCount;
+             for (int i = 0; i < waveCount; i++)
              {
+                 SpawnDataSo spawnData = waveData.SpawnDataSos[i];
+                 OnWaveStarted?.Invoke(i + 1, waveCount);
                  List<Enemy> spawnedEnemies = Spawn(spawnData);
 
                  if (spawnData.SpawnConditionSo == null)
