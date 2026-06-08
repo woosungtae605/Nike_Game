@@ -13,6 +13,11 @@ namespace Agents.Players.Gun.GunData
             return true;
         }
 
+        public override bool ShotAI(PlayerGun playerGunOwner, Enemy target)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
         {
             return null;

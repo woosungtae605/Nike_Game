@@ -40,7 +40,7 @@ namespace UI.BattleUI.CharactorInfo
             gameObject.SetActive(false);
         }
 
-public void Refresh(Player currentPlayer)
+        public void Refresh(Player currentPlayer)
         {
             bool hasPlayer = _player != null;
             bool selected = hasPlayer && _player == currentPlayer;
@@ -61,7 +61,7 @@ public void Refresh(Player currentPlayer)
 
             UpdatePortrait();
             UpdateAmmo();
-                    UpdateBar(hpFill, _player.HealthModule);
+            UpdateBar(hpFill, _player.HealthModule);
             UpdateBar(coverFill, _player.CoverModule);
         }
 
@@ -99,7 +99,7 @@ private void SetSlotContentActive(bool value)
             ammoText.SetText("{0}/{1}", _player.PlayerGunCompo.CurrentAmmo, _player.PlayerGunCompo.GunData.MaxAmmo);
         }
 
-        private static Component GetBarRoot(RectTransform fill)
+        private Component GetBarRoot(RectTransform fill)
                 {
             if (fill == null)
                 return null;
@@ -107,7 +107,7 @@ private void SetSlotContentActive(bool value)
             return fill.parent != null ? fill.parent : fill;
         }
 
-        private static void UpdateBar(RectTransform fill, IBar bar)
+        private void UpdateBar(RectTransform fill, IBar bar)
         {
             if (fill == null)
                 return;

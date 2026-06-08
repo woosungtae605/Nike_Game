@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e27e82988834ae2bd94a862c03fba0a, type: 3}
-  m_Name: Player data
+  m_Name: Player_Cat data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 1
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: c46f195d8adb7e94f9a1b0e1991ff117, type: 2}
   <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
-  <NikkeHp>k__BackingField: 100
+  <MaxHp>k__BackingField: 100

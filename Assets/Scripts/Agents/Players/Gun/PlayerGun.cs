@@ -26,6 +26,8 @@ namespace Agents.Players.Gun
         
         public PlayerAimModule AimModule { get; private set; }
         public AbstractDamageCaster RayDamageCaster { get; private set; }
+        public GunLineEffectModule  LineEffectModule { get; private set; }
+        public ActionDataModule  ActionDataModule { get; private set; }
         
         public void Initialize(ModuleOwner owner)
         {
@@ -43,7 +45,9 @@ namespace Agents.Players.Gun
         
         public void AfterInit()
         {
-            AimModule = _owner.GetModule<PlayerAimModule>();
+            AimModule = Owner.GetModule<PlayerAimModule>();
+            LineEffectModule = Owner.GetModule<GunLineEffectModule>();
+            ActionDataModule = Owner.GetModule<ActionDataModule>();
         }
         
         public bool TryFirePlayer()
@@ -59,18 +63,7 @@ namespace Agents.Players.Gun
         
         public bool TryFireAI(Enemy target)
         {
-            if (_currentAmmo <= 0) return false;
-            if (Time.time < _lastFireTime + GunData.FireInterval) return false;
-            
-            if (target == null || !target.gameObject.activeSelf)
-                return false;
-
-            Vector3 origin = Owner.transform.position;
-            Vector3 direction = (target.transform.position - origin).normalized;
-
-            RayDamageCaster.RayCastDamage(origin, direction, new DamageData { Damage = GunData.Damage, Attacker = Owner });
-            ShotSuccess();
-            return true;
+            return PlayerGunData.GunData.ShotAI(this, target);
         }
         
         public Enemy GetAITarget(EnemyRegisterSo enemyRegisterSo)

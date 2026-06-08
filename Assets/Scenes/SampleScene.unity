@@ -620,6 +620,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4971754313276446864, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6596142229336309865, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
       propertyPath: m_Name
       value: NikkeSlot_1 (3)
@@ -1942,6 +1946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4971754313276446864, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6596142229336309865, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
       propertyPath: m_Name
       value: NikkeSlot_1 (4)
@@ -3217,6 +3225,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4971754313276446864, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6596142229336309865, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
       propertyPath: m_Name
       value: NikkeSlot_1 (1)
@@ -3943,7 +3955,7 @@ Transform:
   m_GameObject: {fileID: 1523818486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.9, y: 3.35, z: 24.1}
+  m_LocalPosition: {x: 8.88, y: 1.39, z: 6.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4122,6 +4134,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1687233502}
     m_Modifications:
+    - target: {fileID: 1980901830142180334, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+      propertyPath: <PlayerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 02fa5d103419a8145b1ed198b87ecf7c, type: 2}
     - target: {fileID: 3715982063727399575, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
       propertyPath: m_Type
       value: 1
@@ -4956,6 +4972,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4971754313276446864, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5525397662888028603, guid: bd4279c48c6e6264b9f5f08af00e55d1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5191,7 +5211,7 @@ Transform:
   m_GameObject: {fileID: 2007454738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.76, y: 3.61, z: 18.29}
+  m_LocalPosition: {x: 1.17, y: 3.61, z: 16.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

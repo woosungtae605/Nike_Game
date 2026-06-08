@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Agents.Enemies;
 using UnityEngine;
 
@@ -19,8 +19,8 @@ namespace Agents.Players.Gun.GunData
         [SerializeField] private float cameraShakePower = 0.1f;
         [SerializeField] private float cameraShakeDuration = 0.08f;
         
-        [Header("Texture")]
-        [SerializeField] private Sprite cursorSprite;
+        [Header("Effects")]
+        [SerializeField] private float lineEffectDuration = 0.05f;
         
         public int Damage => damage;
         public float FireInterval => fireInterval;
@@ -30,8 +30,11 @@ namespace Agents.Players.Gun.GunData
         public LayerMask HitMask => hitMask;
         public float CameraShakePower => cameraShakePower;
         public float CameraShakeDuration => cameraShakeDuration;
+        public float LineEffectDuration => lineEffectDuration;
 
-        public abstract bool Shot(PlayerGun playerGunOwner);
+        public abstract bool Shot(PlayerGun playerGunOwner);        
+        public abstract bool ShotAI(PlayerGun playerGunOwner, Enemy target);
+
         public abstract Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
     }
 }

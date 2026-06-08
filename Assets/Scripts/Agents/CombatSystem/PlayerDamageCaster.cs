@@ -1,4 +1,5 @@
 using System;
+using Agents.Module;
 using Agents.Players;
 using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
@@ -13,7 +14,8 @@ namespace Agents.CombatSystem
     public class PlayerDamageCaster : AbstractDamageCaster
     {
         private GunData _gunData;
-        private Player _player;
+        private Player _player;        private ActionDataModule _actionDataModule;
+
         
         public override void InitCaster(Agent owner)
         {
@@ -58,11 +60,22 @@ namespace Agents.CombatSystem
             }
         }
 
-private void ApplyDamage(RaycastHit hitInfo, DamageData damageData)
+        private void ApplyDamage(RaycastHit hitInfo, DamageData damageData)
         {
             damageData.HitPoint = hitInfo.point;
             damageData.HitNormal = hitInfo.normal;
             damageData.HitDistance = hitInfo.distance;
+
+            if (_actionDataModule == null)
+                _actionDataModule = _player.GetModule<ActionDataModule>();
+
+            if (_actionDataModule != null)
+            {
+                _actionDataModule.HitPoint = damageData.HitPoint;
+                _actionDataModule.HitNormal = damageData.HitNormal;
+                _actionDataModule.HitDistance = damageData.HitDistance;
+                _actionDataModule.Attacker = damageData.Attacker;
+            }
 
             if (hitInfo.collider.TryGetComponent(out IDamageable damageable))
             {
