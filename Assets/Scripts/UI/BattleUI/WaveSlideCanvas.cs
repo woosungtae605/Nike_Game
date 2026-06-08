@@ -66,6 +66,8 @@ namespace UI.BattleUI
 
             if (slider != null)
                 slider.value = 0f;
+            
+            gameObject.SetActive(false);
         }
 
         private void MoveSlider(float targetValue)

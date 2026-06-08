@@ -11,6 +11,7 @@ namespace Agents.Enemies
     public class Enemy : Agent, IPoolable
     {
         [field: SerializeField] public EnemyDataSO EnemyDataSo { get; private set; }
+        [field: SerializeField] public Transform hitPos;
         
         public PoolItemSo PoolItem { get; set; }
         

@@ -48,7 +48,7 @@ namespace Agents.Players.Gun.GunData
             if (target == null || !target.gameObject.activeSelf) return false;
 
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
-            Vector3 baseDirection = (target.transform.position - lineStartPosition).normalized;
+            Vector3 baseDirection = (target.hitPos.position - lineStartPosition).normalized;
 
             for (int i = 0; i < shotgunShootAmmoCount; i++)
             {

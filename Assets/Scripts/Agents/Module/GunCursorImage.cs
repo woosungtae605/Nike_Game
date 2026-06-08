@@ -10,15 +10,13 @@ namespace Agents.Module
         [Header("Scale Motion")]
         [SerializeField] private float scalePower = 1.2f;
         [SerializeField] private float scaleDuration = 0.08f;
-
-        private Image _cursorImage;
+        
         private UIFollowMouse _uiFollowMouse;
         private Vector3 _originScale;
         private MotionHandle _scaleHandle;
 
         public void Init()
         {
-            _cursorImage = GetComponent<Image>();
             _uiFollowMouse = GetComponent<UIFollowMouse>();
             _originScale = transform.localScale;
         }

@@ -6,6 +6,7 @@
     "com.gustavopsantos.reflex": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#14.3.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.9",
+    "com.unity.animation.rigging": "1.3.1",
     "com.unity.behavior": "1.0.15",
     "com.unity.cinemachine": "3.1.6",
     "com.unity.collab-proxy": "2.10.0",

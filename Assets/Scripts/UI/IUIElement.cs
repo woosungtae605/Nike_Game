@@ -1,8 +1,12 @@
-﻿namespace UI
+namespace UI
 {
-    public interface IUIElement<in T1>
+    public interface IUIElement
+    {
+        public void Hide();
+    }
+
+    public interface IUIElement<in T1> : IUIElement
     {
         public void Show(T1 item);
-        public void Hide();
     }
 }
