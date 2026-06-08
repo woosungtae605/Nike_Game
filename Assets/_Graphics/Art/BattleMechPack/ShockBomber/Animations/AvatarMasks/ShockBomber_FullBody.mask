@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShockBomber_FullBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: geo
+    m_Weight: 1
+  - m_Path: geo/Bottom_Blocks
+    m_Weight: 1
+  - m_Path: geo/Machine_Gun
+    m_Weight: 1
+  - m_Path: geo/Middle_Blocks
+    m_Weight: 1
+  - m_Path: geo/Rocket_Launcher
+    m_Weight: 1
+  - m_Path: geo/Rocket_Telescope
+    m_Weight: 1
+  - m_Path: geo/Top_Blocks
+    m_Weight: 1
+  - m_Path: geo/Top_Inside
+    m_Weight: 1
+  - m_Path: geo/Tracks
+    m_Weight: 1
+  - m_Path: geo/Tracks_Armor
+    m_Weight: 1
+  - m_Path: geo/Tracks_Armor_Top
+    m_Weight: 1
+  - m_Path: geo/Wheels
+    m_Weight: 1
+  - m_Path: root
+    m_Weight: 1
+  - m_Path: root/center_01
+    m_Weight: 1
+  - m_Path: root/center_01/center_02
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_l_01
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_l_01/machineGun_l_02
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_l_01/machineGun_l_02/machineGun_l_03_bottom
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_l_01/machineGun_l_02/machineGun_l_03_top
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_r_01
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_r_01/machineGun_r_02
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_r_01/machineGun_r_02/machineGun_r_03_bottom
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/machineGun_r_01/machineGun_r_02/machineGun_r_03_top
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/rocketLauncher_01
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/rocketLauncher_01/rocketLauncher_02
+    m_Weight: 1
+  - m_Path: root/center_01/center_02/rocketLauncher_01/rocketLauncher_03
+    m_Weight: 1
+  - m_Path: root/trackBase_l
+    m_Weight: 1
+  - m_Path: root/trackBase_l/gear_l_01
+    m_Weight: 1
+  - m_Path: root/trackBase_l/gear_l_02
+    m_Weight: 1
+  - m_Path: root/trackBase_l/gear_l_03
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_01
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_02
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_03
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_04
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_05
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_06
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_07
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_08
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_09
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_10
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_11
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_12
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_13
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_14
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_15
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_16
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_17
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_18
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_19
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_20
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_21
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_22
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_23
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_24
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_25
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_26
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_27
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_28
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_29
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_30
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_31
+    m_Weight: 1
+  - m_Path: root/trackBase_l/track_l_32
+    m_Weight: 1
+  - m_Path: root/trackBase_l/wheel_l_01
+    m_Weight: 1
+  - m_Path: root/trackBase_l/wheel_l_02
+    m_Weight: 1
+  - m_Path: root/trackBase_l/wheel_l_03
+    m_Weight: 1
+  - m_Path: root/trackBase_l/wheel_l_04
+    m_Weight: 1
+  - m_Path: root/trackBase_r
+    m_Weight: 1
+  - m_Path: root/trackBase_r/gear_r_01
+    m_Weight: 1
+  - m_Path: root/trackBase_r/gear_r_02
+    m_Weight: 1
+  - m_Path: root/trackBase_r/gear_r_03
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_01
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_02
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_03
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_04
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_05
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_06
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_07
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_08
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_09
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_10
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_11
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_12
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_13
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_14
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_15
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_16
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_17
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_18
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_19
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_20
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_21
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_22
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_23
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_24
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_25
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_26
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_27
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_28
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_29
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_30
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_31
+    m_Weight: 1
+  - m_Path: root/trackBase_r/track_r_32
+    m_Weight: 1
+  - m_Path: root/trackBase_r/wheel_r_01
+    m_Weight: 1
+  - m_Path: root/trackBase_r/wheel_r_02
+    m_Weight: 1
+  - m_Path: root/trackBase_r/wheel_r_03
+    m_Weight: 1
+  - m_Path: root/trackBase_r/wheel_r_04
+    m_Weight: 1
