@@ -411,14 +411,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Graph: {fileID: 0}
-  m_BlackboardVariableOverridesList: []
+  m_Graph: {fileID: -4858014876204007369, guid: 93dd4c7d88256aa40b4b296ef2324185, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 5427449090259025920
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5427449090259025920
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 4095255136453526924}
 --- !u!195 &720124597280248537
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1241,6 +1250,7 @@ PrefabInstance:
     - {fileID: 462213241995210583, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
     - {fileID: 462213241995210601, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
     - {fileID: 462213241995210600, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
+    - {fileID: 462213241995210603, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5803504577175549206, guid: cac1872203c3c144b9033013b8e5ba97, type: 3}
