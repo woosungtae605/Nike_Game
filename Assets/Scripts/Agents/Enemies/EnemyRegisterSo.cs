@@ -7,7 +7,7 @@ namespace Agents.Enemies
     [CreateAssetMenu(fileName = "EnemyRegister", menuName = "SO/Enemy/Register", order = 0)]
     public class EnemyRegisterSo : ScriptableObject
     {
-        private readonly List<Enemy> _enemies = new();
+        private readonly List<AbstractEnemy> _enemies = new();
         
         public int EnemyCount => _enemies.Count;
 
@@ -16,69 +16,69 @@ namespace Agents.Enemies
             _enemies.Clear();
         }
 
-        public void Register(Enemy enemy)
+        public void Register(AbstractEnemy abstractEnemy)
         {
-            if(!_enemies.Contains(enemy))
-                _enemies.Add(enemy);
+            if(!_enemies.Contains(abstractEnemy))
+                _enemies.Add(abstractEnemy);
         }
 
-        public void UnRegister(Enemy enemy)
+        public void UnRegister(AbstractEnemy abstractEnemy)
         {
-            _enemies.Remove(enemy);
+            _enemies.Remove(abstractEnemy);
         }
 
-        public Enemy ClosestEnemy(Transform myPos)
+        public AbstractEnemy ClosestEnemy(Transform myPos)
         {
-            Enemy closestEnemy = null;
+            AbstractEnemy closestAbstractEnemy = null;
             float closestDistance = float.MaxValue;
 
             for (int i = _enemies.Count - 1; i >= 0; i--)
             {
-                Enemy enemy = _enemies[i];
+                AbstractEnemy abstractEnemy = _enemies[i];
 
-                if (enemy == null)
+                if (abstractEnemy == null)
                 {
                     _enemies.RemoveAt(i);
                     continue;
                 }
 
-                float distance = (enemy.transform.position - myPos.position).sqrMagnitude;
+                float distance = (abstractEnemy.transform.position - myPos.position).sqrMagnitude;
 
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    closestEnemy = enemy;
+                    closestAbstractEnemy = abstractEnemy;
                 }
             }
 
-            return closestEnemy;
+            return closestAbstractEnemy;
         }
 
-        public Enemy FurthestEnemy(Transform myPos)
+        public AbstractEnemy FurthestEnemy(Transform myPos)
         {
-            Enemy furthestEnemy = null;
+            AbstractEnemy furthestAbstractEnemy = null;
             float furthestDistance = float.MinValue;
 
             for (int i = _enemies.Count - 1; i >= 0; i--)
             {
-                Enemy enemy = _enemies[i];
+                AbstractEnemy abstractEnemy = _enemies[i];
 
-                if (enemy == null)
+                if (abstractEnemy == null)
                 {
                     _enemies.RemoveAt(i);
                     continue;
                 }
 
-                float distance = (enemy.transform.position - myPos.position).sqrMagnitude;
+                float distance = (abstractEnemy.transform.position - myPos.position).sqrMagnitude;
 
                 if (distance > furthestDistance)
                 {
                     furthestDistance = distance;
-                    furthestEnemy = enemy;
+                    furthestAbstractEnemy = abstractEnemy;
                 }
             }
 
-            return furthestEnemy;
+            return furthestAbstractEnemy;
         }
     }
 }

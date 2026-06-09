@@ -36,7 +36,7 @@ namespace Agents.Players.Gun.GunData
             return true;
         }
 
-        public override bool ShotAI(PlayerGun playerGunOwner, Enemy target)
+        public override bool ShotAI(PlayerGun playerGunOwner, AbstractEnemy target)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
             if (Time.time < playerGunOwner.LastFireTime + FireInterval) return false;
@@ -58,7 +58,7 @@ namespace Agents.Players.Gun.GunData
         }
 
 
-        public override Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
+        public override AbstractEnemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
         {
             return enemyRegisterSo.ClosestEnemy(myTransform);
         }

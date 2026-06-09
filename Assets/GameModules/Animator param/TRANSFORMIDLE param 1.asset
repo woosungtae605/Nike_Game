@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f808eaf5876411c971c6cfd51d25487, type: 3}
-  m_Name: DoomShotEnemy
+  m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
+  m_Name: TRANSFORMIDLE param 1
   m_EditorClassIdentifier: 
-  poolingName: Enemy
-  prefab: {fileID: 3929802729235312353, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
-  initCount: 10
+  <ParamName>k__BackingField: TRANSFORMIDLE
+  <ParamHash>k__BackingField: -1123274950

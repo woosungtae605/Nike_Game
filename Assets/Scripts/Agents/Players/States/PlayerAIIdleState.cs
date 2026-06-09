@@ -29,7 +29,7 @@ namespace Agents.Players.States
             base.Update();
             if (_enterTime + ExitTime < Time.time)
             {
-                Enemy target = Player.PlayerGunCompo.GetAITarget(Player.EnemyRegisterSo);
+                AbstractEnemy target = Player.PlayerGunCompo.GetAITarget(Player.EnemyRegisterSo);
 
                 if (target == null || !target.gameObject.activeSelf)
                     return;

@@ -61,12 +61,12 @@ namespace Agents.Players.Gun
             return true;
         }
         
-        public bool TryFireAI(Enemy target)
+        public bool TryFireAI(AbstractEnemy target)
         {
             return PlayerGunData.GunData.ShotAI(this, target);
         }
         
-        public Enemy GetAITarget(EnemyRegisterSo enemyRegisterSo)
+        public AbstractEnemy GetAITarget(EnemyRegisterSo enemyRegisterSo)
         {
             if (enemyRegisterSo == null)
                 return null;

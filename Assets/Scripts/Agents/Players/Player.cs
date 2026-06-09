@@ -30,7 +30,7 @@ namespace Agents.Players
         public bool IsControl { get; private set; }
         
         public EnemyRegisterSo EnemyRegisterSo { get; private set; }
-        public Enemy CurrentTarget { get; private set; }
+        public AbstractEnemy CurrentTarget { get; private set; }
 
         protected override void InitializeComponents()
         {
@@ -48,7 +48,7 @@ namespace Agents.Players
         {
             EnemyRegisterSo = enemyRegisterSo;
         }
-        public void SetTarget(Enemy target)
+        public void SetTarget(AbstractEnemy target)
         {
             CurrentTarget = target;
         }

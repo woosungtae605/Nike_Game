@@ -35,9 +35,9 @@ namespace Agents.Players.Gun.GunData
         public float LineEffectDuration => lineEffectDuration;
 
         public abstract bool Shot(PlayerGun playerGunOwner);        
-        public abstract bool ShotAI(PlayerGun playerGunOwner, Enemy target);
+        public abstract bool ShotAI(PlayerGun playerGunOwner, AbstractEnemy target);
 
-        public abstract Enemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
+        public abstract AbstractEnemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform);
     
 
         protected Vector3 GetSpreadDirection(Vector3 baseDirection, float angle)

@@ -15,35 +15,35 @@ namespace Agents.Enemies
             enemyRegisterSo.Clear();
         }
         
-        public Enemy SpawnEnemy(PoolItemSo enemyType, Vector3 spawnPosition)
+        public AbstractEnemy SpawnEnemy(PoolItemSo enemyType, Vector3 spawnPosition)
         {
-            Enemy enemy = poolManagerSo.Pop<Enemy>(enemyType);
+            AbstractEnemy abstractEnemy = poolManagerSo.Pop<AbstractEnemy>(enemyType);
 
-            if (enemy == null)
+            if (abstractEnemy == null)
                 return null;
 
-            enemy.SetManager(this);
-            enemy.transform.position  = spawnPosition;
-            enemyRegisterSo.Register(enemy);
+            abstractEnemy.SetManager(this);
+            abstractEnemy.transform.position  = spawnPosition;
+            enemyRegisterSo.Register(abstractEnemy);
             
-            return enemy;
+            return abstractEnemy;
         }
         
-        public void PushEnemy(Enemy enemy)
+        public void PushEnemy(AbstractEnemy abstractEnemy)
         {
-            if (enemy == null)
+            if (abstractEnemy == null)
                 return;
 
-            poolManagerSo.Push(enemy);
+            poolManagerSo.Push(abstractEnemy);
         }
         
-        public void NotifyEnemyDead(Enemy enemy)
+        public void NotifyEnemyDead(AbstractEnemy abstractEnemy)
         {
-            if (enemy == null)
+            if (abstractEnemy == null)
                 return;
             
-            enemyRegisterSo.UnRegister(enemy);
-            poolManagerSo.Push(enemy);
+            enemyRegisterSo.UnRegister(abstractEnemy);
+            poolManagerSo.Push(abstractEnemy);
         }
     }
 }

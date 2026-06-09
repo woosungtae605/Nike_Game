@@ -8,7 +8,7 @@ namespace Systems.GameSystem.Wave.Conditions
     {
         public override bool GoToNext()
         {
-            foreach (Enemy enemy in Context.SpawnedEnemies)
+            foreach (AbstractEnemy enemy in Context.SpawnedEnemies)
             {
                 if (enemy != null && enemy.gameObject.activeSelf)
                     return false;

@@ -42,7 +42,7 @@ namespace Systems.GameSystem.Wave
              {
                  SpawnDataSo spawnData = waveData.SpawnDataSos[i];
                  OnWaveStarted?.Invoke(i + 1, waveCount);
-                 List<Enemy> spawnedEnemies = Spawn(spawnData);
+                 List<AbstractEnemy> spawnedEnemies = Spawn(spawnData);
 
                  if (spawnData.SpawnConditionSo == null)
                      continue;
@@ -60,9 +60,9 @@ namespace Systems.GameSystem.Wave
              OnClear?.Invoke();
          }
          
-         private List<Enemy> Spawn(SpawnDataSo spawnData)
+         private List<AbstractEnemy> Spawn(SpawnDataSo spawnData)
          {
-             List<Enemy> spawnedEnemies = new();
+             List<AbstractEnemy> spawnedEnemies = new();
              
              foreach (EnemySpawnData enemySpawnData in spawnData.EnemySpawnDatas)
              {
@@ -72,7 +72,7 @@ namespace Systems.GameSystem.Wave
              return spawnedEnemies;
          }
          
-         private void SpawnEnemyData(EnemySpawnData spawnData, List<Enemy> spawnedEnemies)
+         private void SpawnEnemyData(EnemySpawnData spawnData, List<AbstractEnemy> spawnedEnemies)
          {
              if (spawnData.spawnPos < 0 || spawnData.spawnPos >= _spawnPoints.Length)
              {
@@ -84,10 +84,10 @@ namespace Systems.GameSystem.Wave
 
              for (int i = 0; i < spawnData.amount; i++)
              {
-                 Enemy enemy = _enemyManager.SpawnEnemy(spawnData.enemyDataSos, spawnPoint.position);
+                 AbstractEnemy abstractEnemy = _enemyManager.SpawnEnemy(spawnData.enemyDataSos, spawnPoint.position);
 
-                 if (enemy != null)
-                     spawnedEnemies.Add(enemy);
+                 if (abstractEnemy != null)
+                     spawnedEnemies.Add(abstractEnemy);
              }
          }
     }

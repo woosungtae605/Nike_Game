@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f808eaf5876411c971c6cfd51d25487, type: 3}
-  m_Name: BaseEnemy
+  m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
+  m_Name: TRANSFORMATTACK param
   m_EditorClassIdentifier: 
-  poolingName: Enemy
-  prefab: {fileID: 5812344605130878151, guid: 73e57292d3d04264fa56d02b656b5290, type: 3}
-  initCount: 5
+  <ParamName>k__BackingField: TRANSFORMATTACK
+  <ParamHash>k__BackingField: -336852402

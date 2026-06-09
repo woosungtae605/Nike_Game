@@ -29,7 +29,7 @@ namespace Agents.Enemies.Module
                 updateRotationByNavAgent = !value;
                 if (_navAgent != null)
                 {
-                    _navAgent.updateRotation = updatePositionByNavAgent;
+                    _navAgent.updateRotation = updateRotationByNavAgent;
                 }
             }
         }
