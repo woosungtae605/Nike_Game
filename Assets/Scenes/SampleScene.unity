@@ -3904,6 +3904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoomShotEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3929802729235312353, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4656674415122455182, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

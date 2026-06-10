@@ -13,7 +13,6 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
         private EnemyDamageCaster _damageCaster;
         
         [SerializeField] private AnimParamSO skillAnimParam;
-        [SerializeField] private float crossFadeDuration = 0.15f;
         [SerializeField] private float aimSpeed = 10f;
         [SerializeField] private float fallbackDamageDelay = 0.35f;
         [SerializeField] private float fallbackEndDelay = 1.2f;
@@ -100,7 +99,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
                 yield break;
             }
             
-            _renderer.PlayClip(skillAnimParam.ParamHash, 0, crossFadeDuration);
+            _renderer.PlayClip(skillAnimParam.ParamHash, 0, 0);
             if (_trigger != null)
             {
                 _trigger.OnAnimationEnd -= StopSkill;
@@ -116,7 +115,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             _attackCoroutine = null;
         }
 
-        public void CastDamage()
+        private void CastDamage()
         {
             if (_target == null)
                 return;

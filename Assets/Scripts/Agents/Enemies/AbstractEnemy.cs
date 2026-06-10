@@ -12,7 +12,7 @@
         public abstract class AbstractEnemy : Agent, IPoolable
         {
             [field: SerializeField] public EnemyDataSO EnemyDataSo { get; private set; }
-            [field: SerializeField] public Transform hitPos;
+            [field: SerializeField] public Transform HitPos { get; private set; }
             
             public PoolItemSo PoolItem { get; set; }
             
