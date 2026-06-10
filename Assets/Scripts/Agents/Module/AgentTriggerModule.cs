@@ -14,7 +14,7 @@ namespace Agents.Module
             //여기서는 안한다.    
         }
         
-        private void AnimationEndTrigger() => OnAnimationEnd?.Invoke();
-        private void DamageCastTrigger() => OnDamageCast?.Invoke();
+        public void AnimationEndTrigger() => OnAnimationEnd?.Invoke();
+        public void DamageCastTrigger() => OnDamageCast?.Invoke();
     }
 }

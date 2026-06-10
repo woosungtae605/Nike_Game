@@ -15,9 +15,13 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
         [SerializeField] private AnimParamSO skillAnimParam;
         [SerializeField] private float crossFadeDuration = 0.15f;
         [SerializeField] private float aimSpeed = 10f;
+        [SerializeField] private float fallbackDamageDelay = 0.35f;
+        [SerializeField] private float fallbackEndDelay = 1.2f;
 
         private GameObject _target;
         private Coroutine _attackCoroutine;
+        private Coroutine _fallbackCoroutine;
+        private bool _hasCastedDamage;
         
         private AgentTriggerModule _trigger;
 
@@ -44,6 +48,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
 
             base.UseSkill(target);
             _target = target;
+            _hasCastedDamage = false;
 
             if (_attackCoroutine != null)
                 StopCoroutine(_attackCoroutine);
@@ -57,6 +62,13 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
                 StopCoroutine(_attackCoroutine);
                 _attackCoroutine = null;
             }
+            
+            if (_fallbackCoroutine != null)
+            {
+                StopCoroutine(_fallbackCoroutine);
+                _fallbackCoroutine = null;
+            }
+            
             _target = null;
             if (_trigger != null)
             {
@@ -83,6 +95,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
 
             if (_target == null || _renderer == null || skillAnimParam == null)
             {
+                Debug.LogWarning($"{nameof(DoomShotSkill)} attack canceled. Target:{_target != null}, Renderer:{_renderer != null}, SkillAnim:{skillAnimParam != null}", this);
                 _attackCoroutine = null;
                 yield break;
             }
@@ -90,24 +103,50 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             _renderer.PlayClip(skillAnimParam.ParamHash, 0, crossFadeDuration);
             if (_trigger != null)
             {
+                _trigger.OnAnimationEnd -= StopSkill;
+                _trigger.OnDamageCast -= CastDamage;
                 _trigger.OnAnimationEnd += StopSkill;
                 _trigger.OnDamageCast += CastDamage;
             }
-            else
-            {
-                CastDamage();
-                StopSkill();
-            }
+            
+            if (_fallbackCoroutine != null)
+                StopCoroutine(_fallbackCoroutine);
+            _fallbackCoroutine = StartCoroutine(FallbackDamageRoutine());
 
             _attackCoroutine = null;
         }
 
         public void CastDamage()
         {
-            if (_target != null)
-                CastDamage(_target);
+            if (_target == null)
+                return;
+            
+            if (_hasCastedDamage)
+                return;
+            
+            _hasCastedDamage = true;
+            CastDamage(_target);
         }
         
+        private IEnumerator FallbackDamageRoutine()
+        {
+            yield return new WaitForSeconds(fallbackDamageDelay);
+
+            if (IsUsing && !_hasCastedDamage)
+                CastDamage();
+
+            float endDelay = Mathf.Max(0f, fallbackEndDelay - fallbackDamageDelay);
+            yield return new WaitForSeconds(endDelay);
+
+            if (IsUsing)
+            {
+                _fallbackCoroutine = null;
+                StopSkill();
+                yield break;
+            }
+            
+            _fallbackCoroutine = null;
+        }
         
         private void CastDamage(GameObject target)
         {
@@ -118,8 +157,8 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             Vector3 targetPoint = GetTargetPoint(target);
             Vector3 direction = targetPoint - origin;
 
-            _enemy.GunLineEffectModule.Shot(0.1f, origin, targetPoint);
-            Debug.Log("샷 실행");
+            Debug.Log("Shot cast");
+            _enemy.GunLineEffectModule?.Shot(0.1f, origin, targetPoint);
             _damageCaster.RayCastDamage(origin, direction,
                 new DamageData { Attacker = _enemy, Damage = SkillData.damage },
                 SkillData.maxDistance, SkillData.hitMask);
