@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Agents.Module
 {
-    public class AgentTriggerModule : MonoBehaviour
+    public class AgentTriggerModule : MonoBehaviour, IModule
     {
         public event Action OnAnimationEnd;
         public event Action OnDamageCast;

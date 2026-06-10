@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Agents.Enemies.DoomShotEnemies.Skills
 {
-    public class BasicEnemySkill : AbstractEnemySkill
+    public class DoomShotSkill : AbstractEnemySkill
     {
         private Transform _aimTarget;
         private Transform _firePoint;
@@ -58,8 +58,11 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
                 _attackCoroutine = null;
             }
             _target = null;
-            _trigger.OnAnimationEnd -= StopSkill;
-            _trigger.OnDamageCast -= CastDamage;
+            if (_trigger != null)
+            {
+                _trigger.OnAnimationEnd -= StopSkill;
+                _trigger.OnDamageCast -= CastDamage;
+            }
             base.StopSkill();
         }
 
@@ -68,20 +71,33 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             if (_target == null)
                 yield break;
             
-            yield return new WaitForSeconds(aimSpeed);
-
-            while (true)
+            while (_target != null && _aimTarget != null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, aimSpeed * Time.deltaTime);
-                if (Vector3.Distance(transform.position, _target.transform.position) <= 0.1f)
+                Vector3 targetPoint = GetTargetPoint(_target);
+                _aimTarget.position = Vector3.MoveTowards(_aimTarget.position, targetPoint, aimSpeed * Time.deltaTime);
+                if (Vector3.Distance(_aimTarget.position, targetPoint) <= 0.1f)
                     break;
                 
                 yield return null;
             }
+
+            if (_target == null || _renderer == null || skillAnimParam == null)
+            {
+                _attackCoroutine = null;
+                yield break;
+            }
             
             _renderer.PlayClip(skillAnimParam.ParamHash, 0, crossFadeDuration);
-            _trigger.OnAnimationEnd += StopSkill;
-            _trigger.OnDamageCast += CastDamage;
+            if (_trigger != null)
+            {
+                _trigger.OnAnimationEnd += StopSkill;
+                _trigger.OnDamageCast += CastDamage;
+            }
+            else
+            {
+                CastDamage();
+                StopSkill();
+            }
 
             _attackCoroutine = null;
         }
@@ -102,6 +118,8 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             Vector3 targetPoint = GetTargetPoint(target);
             Vector3 direction = targetPoint - origin;
 
+            _enemy.GunLineEffectModule.Shot(0.1f, origin, targetPoint);
+            Debug.Log("샷 실행");
             _damageCaster.RayCastDamage(origin, direction,
                 new DamageData { Attacker = _enemy, Damage = SkillData.damage },
                 SkillData.maxDistance, SkillData.hitMask);

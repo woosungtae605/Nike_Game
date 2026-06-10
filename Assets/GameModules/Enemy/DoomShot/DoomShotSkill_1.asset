@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.CombatSystem.SkillDataSO
   skillIndex: 0
   skillName: DoomshotBlaster
-  cooldown: 7
+  cooldown: 10
   damage: 10
   maxDistance: 60
   hitMask:

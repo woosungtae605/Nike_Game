@@ -24,6 +24,7 @@
             public BehaviorGraphAgent BTAgent { get; private set; }
             public AgentTriggerModule Trigger { get; private set; }
             public EnemySkillModule EnemySkillModule { get; private set; }
+            public GunLineEffectModule GunLineEffectModule { get; private set; }
             
             public StateChannel StateChannel { get; private set; }
             
@@ -40,6 +41,7 @@
                 SkillModule = GetModule<ISkillModule>();
                 Trigger = GetModule<AgentTriggerModule>();
                 EnemySkillModule = GetModule<EnemySkillModule>();
+                GunLineEffectModule = GetModule<GunLineEffectModule>();
             }
 
             public void SetManager(EnemyManager enemyManager)

@@ -8,13 +8,13 @@ namespace Agents.Module
     [RequireComponent(typeof(LineRenderer))]
     public class GunLineEffectModule : MonoBehaviour, IModule
     {
-        private Player _player;
+        private Agent _agent;
         private LineRenderer _lineRenderer;
         
         private Coroutine _coroutine;
         public void Initialize(ModuleOwner owner)
         {
-            _player = owner as Player;
+            _agent = owner as Agent;
             _lineRenderer = GetComponent<LineRenderer>();
         }
 
