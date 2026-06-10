@@ -1,4 +1,5 @@
-﻿using Gamelib.ObjectPool.Runtime;
+using Agents.Players;
+using Gamelib.ObjectPool.Runtime;
 using UnityEngine;
 
 namespace Agents.Enemies
@@ -7,6 +8,7 @@ namespace Agents.Enemies
     {
         [SerializeField] private PoolManagerSo poolManagerSo;
         [SerializeField] private EnemyRegisterSo enemyRegisterSo;
+        [SerializeField] private PlayerManager playerManager;
 
         public EnemyRegisterSo EnemyRegister => enemyRegisterSo;
         
@@ -23,7 +25,9 @@ namespace Agents.Enemies
                 return null;
 
             abstractEnemy.SetManager(this);
-            abstractEnemy.transform.position  = spawnPosition;
+            abstractEnemy.transform.position = spawnPosition;
+            abstractEnemy.SetVariableValue("PlayerManager", playerManager);
+            abstractEnemy.SetVariableValue("Enemy", abstractEnemy);
             enemyRegisterSo.Register(abstractEnemy);
             
             return abstractEnemy;

@@ -8,6 +8,11 @@ namespace Agents.Enemies
 
         private void OnTriggerEnter(Collider other)
         {
+            SetDirection(other);
+        }
+
+        private void SetDirection(Collider other)
+        {
             AbstractEnemy enemy = other.GetComponentInParent<AbstractEnemy>();
             if (enemy != null)
                 enemy.SetGotoLeft(gotoLeft);

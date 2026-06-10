@@ -1,8 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
 using Agents.Enemies;
 using CoreSystem.BusSystem;
-using FSM;
 using GameEvents.Camera;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,13 +31,34 @@ namespace Agents.Players
             ChangePlayer(0);
         }
 
+        public Player GetClosestPlayer(Vector3 origin)
+        {
+            Player closestPlayer = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (Player player in playerList)
+            {
+                if (player == null || !player.gameObject.activeInHierarchy)
+                    continue;
+
+                float distance = (player.transform.position - origin).sqrMagnitude;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPlayer = player;
+                }
+            }
+
+            return closestPlayer;
+        }
+
         private void Update()
         {
             if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
             {
                 ChangePlayer(0);
             }
-            else if(Keyboard.current[Key.Digit2].wasPressedThisFrame)
+            else if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
             {
                 ChangePlayer(1);
             }
@@ -50,9 +69,9 @@ namespace Agents.Players
             if (index < 0 || index >= playerList.Count)
             {
                 Debug.LogError($"Player index {index} is out of range");
-                return;   
+                return;
             }
-            if(CurrentPlayer != null)
+            if (CurrentPlayer != null)
                 CurrentPlayer.PlayerNotControl();
             
             CurrentPlayer = playerList[index];
