@@ -3,10 +3,6 @@ using Agents.Module;
 using Agents.Players;
 using Agents.Players.Gun;
 using Agents.Players.Gun.GunData;
-using CoreSystem;
-using CoreSystem.BusSystem;
-using GameEvents;
-using GameEvents.Camera;
 using UnityEngine;
 
 namespace Agents.CombatSystem

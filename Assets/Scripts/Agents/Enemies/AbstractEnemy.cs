@@ -1,4 +1,7 @@
+    using Agents.CombatSystem;
     using Agents.Enemies.DoomShotEnemies.Events;
+    using Agents.Enemies.Module;
+    using Agents.Module;
     using Gamelib.ObjectPool.Runtime;
     using Systems.AnimationSystems;
     using Unity.Behavior;
@@ -17,7 +20,10 @@
 
             public IRenderer Renderer { get; private set; }
             public INavMovement NavMovement { get; private set; }
+            public ISkillModule SkillModule { get; private set; }
             public BehaviorGraphAgent BTAgent { get; private set; }
+            public AgentTriggerModule Trigger { get; private set; }
+            public EnemySkillModule EnemySkillModule { get; private set; }
             
             public StateChannel StateChannel { get; private set; }
             
@@ -31,6 +37,9 @@
                 Renderer = GetModule<IRenderer>();
                 NavMovement = GetModule<INavMovement>();
                 BTAgent = GetComponent<BehaviorGraphAgent>();
+                SkillModule = GetModule<ISkillModule>();
+                Trigger = GetModule<AgentTriggerModule>();
+                EnemySkillModule = GetModule<EnemySkillModule>();
             }
 
             public void SetManager(EnemyManager enemyManager)

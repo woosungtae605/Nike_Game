@@ -14,6 +14,8 @@ namespace Agents.Enemies.Module
         public event System.Action OnCurrentSkillEnd;
 
         private Dictionary<int, ISkill> _skillDict;
+        
+        public Dictionary<int, ISkill> SkillDict => _skillDict;
         private ISkill _currentSkill;
         
         public void Initialize(ModuleOwner owner)
@@ -56,10 +58,16 @@ namespace Agents.Enemies.Module
                 skill.UseSkill(target);
             }
         }
+
+        public void StopCurrentSkill()
+        {
+            _currentSkill?.StopSkill();
+        }
         
         private void HandleCurrentSkillEnd()
         {
             _currentSkill.OnSkillEnd -= HandleCurrentSkillEnd;
+            _currentSkill = null;
             InvokeSkillEnd();
         }
 
