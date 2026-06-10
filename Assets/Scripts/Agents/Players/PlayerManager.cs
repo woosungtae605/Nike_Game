@@ -45,7 +45,7 @@ namespace Agents.Players
             }
         }
 
-        public void ChangePlayer(int index)
+        private void ChangePlayer(int index)
         {
             if (index < 0 || index >= playerList.Count)
             {

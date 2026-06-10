@@ -28,6 +28,8 @@ namespace Agents.Enemies
         
         private EnemyManager _enemyManager;
 
+        public bool GotoLeft { get; private set; } = false;
+
         protected override void InitializeComponents()
         {
             base.InitializeComponents();
@@ -36,18 +38,14 @@ namespace Agents.Enemies
             BTAgent = GetComponent<BehaviorGraphAgent>();
         }
 
-        protected virtual void Start()
-        {
-            if (GetVariable("StateChannel", out BlackboardVariable<StateChannel> channel))
-            {
-                StateChannel = channel.Value;
-            }
-            SetVariableValue("Enemy", this);
-        }
-
         public void SetManager(EnemyManager enemyManager)
         {
             _enemyManager = enemyManager;
+        }
+        
+        public void SetGotoLeft(bool value)
+        {
+            GotoLeft = value;
         }
         
         public void SetVariableValue<T>(string variableName, T value)
@@ -68,10 +66,17 @@ namespace Agents.Enemies
 
         public void ResetItem()
         {
+            GotoLeft = false;
             HealthModule.ChangeHealth(EnemyDataSo.MaxHp);
             
             HealthModule.OnDeath -= HandleDeath;
             HealthModule.OnDeath += HandleDeath;
+            
+            if (GetVariable("StateChannel", out BlackboardVariable<StateChannel> channel))
+            {
+                StateChannel = channel.Value;
+            }
+            SetVariableValue("Enemy", this);
         }
         
         private void HandleDeath()

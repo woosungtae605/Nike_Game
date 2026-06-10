@@ -14,7 +14,8 @@ namespace Agents.CombatSystem
     public class PlayerDamageCaster : AbstractDamageCaster
     {
         private GunData _gunData;
-        private Player _player;        private ActionDataModule _actionDataModule;
+        private Player _player;
+        private ActionDataModule _actionDataModule;
 
         
         public override void InitCaster(Agent owner)
@@ -31,11 +32,19 @@ namespace Agents.CombatSystem
 
         public override bool RayCastDamage(Vector3 origin, Vector3 direction, DamageData damageData) // 초기값은 Vector3 positionOffset, Vector3 directionOffset이거 2개 Vector3.zero하면 된다.
         {
-            if (!Physics.Raycast(origin, direction.normalized, out RaycastHit hitInfo, _gunData.MaxDistance, _gunData.HitMask))
+            RaycastHit[] hits = Physics.RaycastAll(origin, direction.normalized, _gunData.MaxDistance, _gunData.HitMask);
+            if (hits.Length == 0)
                 return false;
 
-            ApplyDamage(hitInfo, damageData);
-            return true;
+            Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+            foreach (RaycastHit hitInfo in hits)
+            {
+                if (ApplyDamage(hitInfo, damageData))
+                    return true;
+            }
+
+            return false;
         }
 
         public override void SphereCastDamage(Vector3 position, Vector3 direction, DamageData damageData, float radius)
@@ -60,7 +69,7 @@ namespace Agents.CombatSystem
             }
         }
 
-        private void ApplyDamage(RaycastHit hitInfo, DamageData damageData)
+        private bool ApplyDamage(RaycastHit hitInfo, DamageData damageData)
         {
             damageData.HitPoint = hitInfo.point;
             damageData.HitNormal = hitInfo.normal;
@@ -80,11 +89,15 @@ namespace Agents.CombatSystem
             if (hitInfo.collider.TryGetComponent(out IDamageable damageable))
             {
                 damageable.ApplyDamage(damageData);
-                return;
+                return true;
             }
 
             damageable = hitInfo.collider.GetComponentInParent<IDamageable>();
-            damageable?.ApplyDamage(damageData);
+            if (damageable == null)
+                return false;
+
+            damageable.ApplyDamage(damageData);
+            return true;
         }
     }
 }
