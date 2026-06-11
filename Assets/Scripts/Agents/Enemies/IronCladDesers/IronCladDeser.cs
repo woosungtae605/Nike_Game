@@ -13,9 +13,15 @@ namespace Agents.Enemies.IronCladDesers
             FirstRun = true;
         }
 
+        public void SetFIrstRun(bool value)
+        {
+            FirstRun = value;
+        }
+
         private void Start()
         {
             NavMovement.Speed = EnemyDataSo.Speed;
+            NavMovement.NavAgent.updateRotation = false;
         }
     }
 }

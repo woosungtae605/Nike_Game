@@ -1,4 +1,4 @@
-﻿using Agents.Module;
+using Agents.Module;
 using Module;
 using Systems.AnimationSystems;
 using UnityEngine;
@@ -15,6 +15,10 @@ namespace Agents.Enemies.Module
         [Header("강제 회전 코드")] 
         [SerializeField] private bool forceRotation;
         [SerializeField] private float forceRotationSpeed;
+
+        [Header("Animator Params")]
+        [SerializeField] private AnimParamSO speedParam;
+        [SerializeField] private float speedDampTime = 0.1f;
         
         private INavMovement _navMovement;
         private NavMeshAgent _navAgent;
@@ -98,6 +102,12 @@ namespace Agents.Enemies.Module
             if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
             {
                 _velocity = Vector2.Lerp(Vector2.zero, _velocity, _navAgent.remainingDistance / _navAgent.stoppingDistance);
+            }
+
+            if (speedParam != null)
+            {
+                float speed = _navMovement.IsArrived ? 0f : _velocity.magnitude;
+                SetFloat(speedParam, speed, speedDampTime, Time.deltaTime);
             }
             
             float deltaMagnitude = worldDeltaPosition.magnitude;

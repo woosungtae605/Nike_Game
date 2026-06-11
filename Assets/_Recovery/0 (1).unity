@@ -3515,6 +3515,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3809082974094868109, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
   m_PrefabInstance: {fileID: 1649805793}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &993615903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1980901830142180334, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+  m_PrefabInstance: {fileID: 1649805793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3b481e7fed4256b481b1e2727ff7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995740347
 GameObject:
   m_ObjectHideFlags: 0
@@ -4334,10 +4345,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3313416021909306261, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
-      propertyPath: speedParam
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c3fb31e0d4367f4db9a9e6ea63f5906, type: 2}
     - target: {fileID: 3929802729235312353, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
       propertyPath: m_Name
       value: DoomShotEnemy
@@ -6338,6 +6345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList:
   - {fileID: 2104370655}
+  - {fileID: 993615903}
 --- !u!1 &1688223754
 GameObject:
   m_ObjectHideFlags: 0

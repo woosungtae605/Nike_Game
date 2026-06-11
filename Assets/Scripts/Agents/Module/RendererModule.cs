@@ -1,4 +1,4 @@
-﻿using Module;
+using Module;
 using Systems.AnimationSystems;
 using UnityEngine;
 
@@ -26,6 +26,9 @@ namespace Agents.Module
             => Animator.SetBool(param.ParamHash, value);
         public void SetFloat(AnimParamSO param, float value)
             => Animator.SetFloat(param.ParamHash, value);
+
+        public void SetFloat(AnimParamSO param, float value, float dampTime, float deltaTime)
+            => Animator.SetFloat(param.ParamHash, value, dampTime, deltaTime);
         public void SetInt(AnimParamSO param, int value)
             => Animator.SetInteger(param.ParamHash, value);
         public void SetTrigger(AnimParamSO param)

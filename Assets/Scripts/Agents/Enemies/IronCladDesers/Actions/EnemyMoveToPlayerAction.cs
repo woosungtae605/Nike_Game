@@ -18,6 +18,7 @@ public partial class EnemyMoveToPlayerAction : Action
     private INavMovement _navMove;
     protected override Status OnStart()
     {
+        _navMove = Enemy.Value.NavMovement;
 
         _player = Player.Value.GetClosestPlayer(Enemy.Value.HitPos.position);
 
