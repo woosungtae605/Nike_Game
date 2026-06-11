@@ -49,12 +49,12 @@
                 _enemyManager = enemyManager;
             }
             
-public void SetGotoLeft(bool value)
-        {
+            public void SetGotoLeft(bool value)
+            {
             Debug.Log($"[Enemy] SetGotoLeft {name}: {GotoLeft} -> {value}", this);
             GotoLeft = value;
-        }
-            
+            }
+             
             public void SetVariableValue<T>(string variableName, T value)
             {
                 Debug.Assert(!string.IsNullOrEmpty(variableName), "변수 이름은 비어있으면 안됩니다.");
@@ -71,7 +71,7 @@ public void SetGotoLeft(bool value)
                 return BTAgent.GetVariable<T>(variableName, out variable);
             }
 
-            public void ResetItem()
+            public virtual void ResetItem()
             {
                 GotoLeft = false;
                 HealthModule.ChangeHealth(EnemyDataSo.MaxHp);

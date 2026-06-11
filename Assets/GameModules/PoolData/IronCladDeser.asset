@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc83e7873bf4e83b605cea6662fb86c, type: 3}
-  m_Name: DoomShotData
+  m_Script: {fileID: 11500000, guid: 6f808eaf5876411c971c6cfd51d25487, type: 3}
+  m_Name: IronCladDeser
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 200
-  <Damage>k__BackingField: 20
-  <Speed>k__BackingField: 1
+  poolingName: IronCladDeser
+  prefab: {fileID: 4378910730555539652, guid: 6d820c0e4ee31d44082f1166b61086cf, type: 3}
+  initCount: 10
