@@ -17,7 +17,7 @@ public partial class IronCladDeserFirstRunTrueAction : Action
         if (IronCladDeser == null && IronCladDeser.Value == null)
             return Status.Failure;
 
-        IronCladDeser.Value.SetFIrstRun(Value.Value);
+        IronCladDeser.Value.SetFirstRun(Value.Value);
         return Status.Success;
     }
 }

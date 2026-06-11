@@ -13,7 +13,7 @@ namespace Agents.Enemies.IronCladDesers
             FirstRun = true;
         }
 
-        public void SetFIrstRun(bool value)
+        public void SetFirstRun(bool value)
         {
             FirstRun = value;
         }

@@ -4334,10 +4334,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3313416021909306261, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
-      propertyPath: speedParam
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c3fb31e0d4367f4db9a9e6ea63f5906, type: 2}
     - target: {fileID: 3929802729235312353, guid: 384e86a9399d8784fbfbc2bdff006602, type: 3}
       propertyPath: m_Name
       value: DoomShotEnemy

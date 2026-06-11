@@ -1406,6 +1406,8 @@ MonoBehaviour:
   updatePositionByNavAgent: 0
   forceRotation: 1
   forceRotationSpeed: 80
+  speedParam: {fileID: 0}
+  speedDampTime: 0.1
 --- !u!114 &6726205413218211180
 MonoBehaviour:
   m_ObjectHideFlags: 0
