@@ -51,8 +51,8 @@
             
             public void SetGotoLeft(bool value)
             {
-            Debug.Log($"[Enemy] SetGotoLeft {name}: {GotoLeft} -> {value}", this);
-            GotoLeft = value;
+                Debug.Log($"[Enemy] SetGotoLeft {name}: {GotoLeft} -> {value}", this);
+                GotoLeft = value;
             }
              
             public void SetVariableValue<T>(string variableName, T value)

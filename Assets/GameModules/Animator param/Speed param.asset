@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
-  m_Name: Speed
+  m_Name: Speed param
   m_EditorClassIdentifier: Assembly-CSharp::Systems.AnimationSystems.AnimParamSO
   <ParamName>k__BackingField: Speed
   <ParamHash>k__BackingField: -823668238

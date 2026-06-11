@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHp>k__BackingField: 200
   <Damage>k__BackingField: 20
-  <Speed>k__BackingField: 3
+  <Speed>k__BackingField: 1.3

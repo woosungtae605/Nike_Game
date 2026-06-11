@@ -12,14 +12,21 @@ public partial class EnemySetMoveAction : Action
     [SerializeReference] public BlackboardVariable<AbstractEnemy> Enemy;
     [SerializeReference] public BlackboardVariable<Vector3> Direction;
 
+    private INavMovement _navMovement;
     protected override Status OnStart()
     {
-        return Status.Running;
+        if (Enemy == null || Enemy.Value == null || Enemy.Value.NavMovement == null)
+            return Status.Failure;
+
+        _navMovement = Enemy.Value.NavMovement;
+
+        _navMovement.SetDestination(Enemy.Value.transform.position + Enemy.Value.transform.TransformDirection(Direction.Value));
+        return Status.Success;
     }
 
     protected override Status OnUpdate()
     {
-        return Status.Success;
+        return _navMovement.IsArrived ? Status.Success : Status.Running;
     }
 }
 
