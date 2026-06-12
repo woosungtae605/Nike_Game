@@ -21,7 +21,7 @@ public partial class EnemySetMoveAction : Action
         _navMovement = Enemy.Value.NavMovement;
 
         _navMovement.SetDestination(Enemy.Value.transform.position + Enemy.Value.transform.TransformDirection(Direction.Value));
-        return Status.Success;
+        return Status.Running;
     }
 
     protected override Status OnUpdate()

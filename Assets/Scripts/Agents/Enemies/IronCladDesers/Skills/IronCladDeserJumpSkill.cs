@@ -124,6 +124,8 @@
 
                 _rigid.useGravity = true;
                 
+                _enemy.SetGotoLeft(!_enemy.GotoLeft);
+                
                 StopSkill();
             }
 

@@ -467,8 +467,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977260864686234007}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18472, y: 1.36153, z: 0.1524}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -478,7 +478,7 @@ Transform:
   - {fileID: 7716334760342985121}
   - {fileID: 2254474807726183835}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &6201024733752438611
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1046,8 +1046,20 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3416428105672266326, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
+      propertyPath: m_Size.y
+      value: 2.2300005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416428105672266326, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
+      propertyPath: m_Size.z
+      value: 1.2895726
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416428105672266326, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416428105672266326, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
+      propertyPath: m_Center.y
+      value: 0.5000049
       objectReference: {fileID: 0}
     - target: {fileID: 3416428105672266327, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
       propertyPath: m_Enabled
@@ -1131,6 +1143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3416428105511056802, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
+    - {fileID: 3416428105672266327, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3416428105672266324, guid: 3fe847d8c7beae446b2bd2d7361cacbd, type: 3}

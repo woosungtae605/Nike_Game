@@ -24,7 +24,7 @@ public partial class EnemyMoveToPlayerAction : Action
 
         Vector3 enemyPos = Enemy.Value.transform.position;
         _navMove.SetDestination(new Vector3(_player.transform.position.x, enemyPos.y, enemyPos.z));
-        _navMove.Speed = Enemy.Value.EnemyDataSo.Speed * 2;
+        _navMove.Speed = Enemy.Value.EnemyDataSo.Speed * 3;
         return Status.Running;
     }
 
