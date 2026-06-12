@@ -1844,7 +1844,7 @@ GameObject:
   - component: {fileID: 3676500998124585911}
   - component: {fileID: 3471781084258082756}
   - component: {fileID: 1779831177357437438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: foot_03_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,7 +2412,7 @@ NavMeshAgent:
   m_Height: 2.06
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &7625514819364909298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3942,7 +3942,7 @@ GameObject:
   - component: {fileID: 7705018866739869863}
   - component: {fileID: 6887655923157928728}
   - component: {fileID: 6565105089759273743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: foot_03_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}

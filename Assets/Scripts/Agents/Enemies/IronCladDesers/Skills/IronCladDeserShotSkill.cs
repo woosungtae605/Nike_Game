@@ -26,7 +26,7 @@ namespace Agents.Enemies.IronCladDesers.Skills
             
             _damageCaster = _enemy.GetComponentInChildren<EnemyDamageCaster>();
             _damageCaster?.InitCaster(_enemy);
-            _trigger = _enemy.GetModule<AgentTriggerModule>();
+            _trigger = _enemy.Trigger;
         }
 
         public override bool CanUseSkill(GameObject target = null)
