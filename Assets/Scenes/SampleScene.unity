@@ -2831,11 +2831,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722415306}
   m_CullTransparentMesh: 1
---- !u!1 &746043889 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7977260864686234007, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-  m_PrefabInstance: {fileID: 8299678705363847109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &765686007
 GameObject:
   m_ObjectHideFlags: 0
@@ -8380,7 +8375,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4044152502207162287, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4044152502207162287, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8388,7 +8383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4044152502207162287, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4044152502207162287, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8418,46 +8413,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: m_Graph
-      value: 
-      objectReference: {fileID: 2685594989547499878, guid: dc19b0dfff7eac34996407534aac9a09, type: 2}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: m_OriginalGraph
-      value: 
-      objectReference: {fileID: 2685594989547499878, guid: dc19b0dfff7eac34996407534aac9a09, type: 2}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: 'managedReferences[5427449165757808673]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.GameObject,
-        UnityEngine.CoreModule]]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: managedReferences[5427449165757808673].Name
-      value: Self
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: managedReferences[5427449165757808673].m_Value
-      value: 
-      objectReference: {fileID: 746043889}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[0]'
-      value: 5427449165757808673
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: managedReferences[5427449165757808673].GUID.m_Value0
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294220033944909662, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
-      propertyPath: managedReferences[5427449165757808673].GUID.m_Value1
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7977260864686234007, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
       propertyPath: m_Name
       value: Pushfire_CamoDesert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977260864686234007, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

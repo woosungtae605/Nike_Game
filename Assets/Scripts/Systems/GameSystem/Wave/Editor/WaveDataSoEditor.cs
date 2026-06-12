@@ -22,18 +22,40 @@ namespace Systems.GameSystem.Wave.Editor
         }
 
         private void HandleOnClick()
-        {
+        { 
             WaveDataSo waveDataSo = target as WaveDataSo;
             Debug.Assert(waveDataSo != null, "waveDataSo is null");
-            
+
+            if (waveDataSo.SpawnDataSos == null)
+                return;
+
             for (int i = 0; i < waveDataSo.SpawnDataSos.Length; i++)
             {
                 SpawnDataSo spawnDataSo = waveDataSo.SpawnDataSos[i];
+                if (spawnDataSo == null)
+                    continue;
+
                 string path = AssetDatabase.GetAssetPath(spawnDataSo);
-                AssetDatabase.RenameAsset(path, $"SpawnData{i+1}");
+                AssetDatabase.RenameAsset(path, $"__TempSpawnData{i + 1}");
             }
-            
+
             AssetDatabase.SaveAssets();
+
+            for (int i = 0; i < waveDataSo.SpawnDataSos.Length; i++)
+            {
+                SpawnDataSo spawnDataSo = waveDataSo.SpawnDataSos[i];
+                if (spawnDataSo == null)
+                    continue;
+
+                string path = AssetDatabase.GetAssetPath(spawnDataSo);
+                string error = AssetDatabase.RenameAsset(path, $"SpawnData{i + 1}");
+
+                if (!string.IsNullOrEmpty(error))
+                    Debug.LogError(error, spawnDataSo);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }

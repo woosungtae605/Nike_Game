@@ -19,12 +19,15 @@ namespace Agents.Enemies.Action
         {
             if(Enemy == null || Enemy.Value == null)
                 return Status.Failure;
+            
+            _animationEnd = false;
 
             _triggerModule = Enemy.Value.Trigger;
             
             if(_triggerModule == null)
                 return Status.Failure;
 
+            _triggerModule.OnAnimationEnd -= HandleAnimationEnd;
             _triggerModule.OnAnimationEnd += HandleAnimationEnd;
 
             return Status.Running;
@@ -32,13 +35,18 @@ namespace Agents.Enemies.Action
 
         private void HandleAnimationEnd()
         {
-            _triggerModule.OnAnimationEnd -= HandleAnimationEnd;
             _animationEnd = true;
         }
 
         protected override Status OnUpdate()
         {
             return _animationEnd ? Status.Success : Status.Running;
+        }
+        
+        protected override void OnEnd()
+        {
+            if (_triggerModule != null)
+                _triggerModule.OnAnimationEnd -= HandleAnimationEnd;
         }
     }
 }
