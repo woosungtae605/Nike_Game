@@ -49,20 +49,28 @@ namespace Agents.Enemies.IronCladDesers.Skills
 
         private IEnumerator AimAndCastRoutine()
         {
-            if (_target == null)
+            if (_target == null || skillAnimParam == null)
+            {
+                StopSkill();
                 yield break;
-            
+            }
+
             while (_target != null && aimTarget != null)
             {
                 Vector3 targetPoint = GetTargetPoint(_target);
                 aimTarget.position = Vector3.MoveTowards(aimTarget.position, targetPoint, aimSpeed * Time.deltaTime);
+
                 if (Vector3.Distance(aimTarget.position, targetPoint) <= 0.1f)
                     break;
-                
+
                 yield return null;
             }
-            
-            _renderer.PlayClip(skillAnimParam.ParamHash, 0);
+
+            if (_target == null)
+            {
+                StopSkill();
+                yield break;
+            }
             
             if (_trigger != null)
             {
@@ -70,7 +78,9 @@ namespace Agents.Enemies.IronCladDesers.Skills
                 _trigger.OnDamageCast -= CastDamage;
                 _trigger.OnAnimationEnd += StopSkill;
                 _trigger.OnDamageCast += CastDamage;
+                
             }
+            _renderer.PlayClip(skillAnimParam.ParamHash, 0);
         }
         
         public override void StopSkill()
@@ -96,6 +106,7 @@ namespace Agents.Enemies.IronCladDesers.Skills
                 return;
             
             CastDamage(_target);
+            Debug.Log("Cast Damage");
         }
         
         private void CastDamage(GameObject target)
@@ -107,7 +118,6 @@ namespace Agents.Enemies.IronCladDesers.Skills
             Vector3 targetPoint = GetTargetPoint(target);
             Vector3 direction = targetPoint - origin;
 
-            Debug.Log("Shot cast");
             _enemy.GunLineEffectModule?.Shot(0.1f, origin, targetPoint);
             _damageCaster.RayCastDamage(origin, direction,
                 new DamageData { Attacker = _enemy, Damage = SkillData.damage },

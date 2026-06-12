@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc83e7873bf4e83b605cea6662fb86c, type: 3}
-  m_Name: IronCladDeserData
+  m_Script: {fileID: 11500000, guid: c3c62a8c19ed437aa8b78b7ae793cbf5, type: 3}
+  m_Name: JUMP param
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 200
-  <Damage>k__BackingField: 20
-  <Speed>k__BackingField: 0.5
+  <ParamName>k__BackingField: JUMP
+  <ParamHash>k__BackingField: -1859720286

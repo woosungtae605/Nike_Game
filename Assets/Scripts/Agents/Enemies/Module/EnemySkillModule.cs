@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Agents.Enemies.Module
 {
-    public class EnemySkillModule : MonoBehaviour, IModule, ISkillModule
+    public class EnemySkillModule : MonoBehaviour, IModule, ISkillModule, IAfterInitModule
     {
         public ModuleOwner Owner { get; private set; }
         public AbstractEnemy Enemy { get; private set; }
@@ -24,13 +24,16 @@ namespace Agents.Enemies.Module
             Enemy = owner as AbstractEnemy;
             Debug.Assert(Enemy != null, "스킬 모듈은 Agent의 자식이어야 합니다.");
 
+        }
+        
+        public void AfterInit()
+        {
             _skillDict = GetComponentsInChildren<ISkill>()
                 .ToDictionary(skill => skill.SkillData.skillIndex);
             foreach (ISkill skill in _skillDict.Values)
             {
                 skill.InitializeSkill(this);
             }
-
         }
         
         public bool CanUseSkill(int skillIndex, GameObject target = null)

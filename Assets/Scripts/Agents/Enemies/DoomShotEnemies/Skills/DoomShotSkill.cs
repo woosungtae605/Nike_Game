@@ -156,7 +156,6 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             Vector3 targetPoint = GetTargetPoint(target);
             Vector3 direction = targetPoint - origin;
 
-            Debug.Log("Shot cast");
             _enemy.GunLineEffectModule?.Shot(0.1f, origin, targetPoint);
             _damageCaster.RayCastDamage(origin, direction,
                 new DamageData { Attacker = _enemy, Damage = SkillData.damage },
