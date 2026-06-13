@@ -8218,6 +8218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pushfire_CamoDesert
       objectReference: {fileID: 0}
+    - target: {fileID: 7977260864686234007, guid: bb15f807fcddd8b489501d9cb3c93cc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

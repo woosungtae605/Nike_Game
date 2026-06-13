@@ -14,5 +14,7 @@ namespace Agents.Missiles
         {
             HealthModule.ChangeHealth(missileSo.MaxHealth);
         }
+
+        public abstract void Shot(Vector3 startPos, Vector3 targetPos);
     }
 }
