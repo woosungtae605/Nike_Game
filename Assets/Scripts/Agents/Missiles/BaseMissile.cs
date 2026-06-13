@@ -1,5 +1,4 @@
 using System.Collections;
-using Gamelib.ObjectPool.Runtime;
 using UnityEngine;
 
 namespace Agents.Missiles
@@ -12,19 +11,18 @@ namespace Agents.Missiles
 
         private Coroutine _moveCoroutine;
 
-
-        public override void Shot(Vector3 startPos, Vector3 targetPos)
+        public override void Shot(Vector3 startPos, Vector3 targetPos, float curveAngle = 0f)
         {
             if (_moveCoroutine != null)
                 StopCoroutine(_moveCoroutine);
 
             transform.position = startPos;
-            _moveCoroutine = StartCoroutine(MoveBezierRoutine(startPos, targetPos));
+            _moveCoroutine = StartCoroutine(MoveBezierRoutine(startPos, targetPos, curveAngle));
         }
 
-        private IEnumerator MoveBezierRoutine(Vector3 startPos, Vector3 targetPos)
+        private IEnumerator MoveBezierRoutine(Vector3 startPos, Vector3 targetPos, float curveAngle)
         {
-            Vector3 controlPoint = GetControlPoint(startPos, targetPos);
+            Vector3 controlPoint = GetControlPoint(startPos, targetPos, curveAngle);
             float distance = Vector3.Distance(startPos, targetPos);
             float duration = distance / MissileSo.Speed;
 
@@ -62,17 +60,18 @@ namespace Agents.Missiles
                 PoolManagerSo.Push(this);
         }
 
-        private Vector3 GetControlPoint(Vector3 startPos, Vector3 targetPos)
+        private Vector3 GetControlPoint(Vector3 startPos, Vector3 targetPos, float curveAngle)
         {
             Vector3 controlPoint = (startPos + targetPos) * 0.5f;
             controlPoint += Vector3.up * curveHeight;
 
             Vector3 direction = targetPos - startPos;
-            Vector3 sideDirection = Vector3.Cross(Vector3.up, direction).normalized;
-            if (sideDirection.sqrMagnitude <= 0.0001f)
-                sideDirection = transform.right;
+            direction.y = 0f;
+            if (direction.sqrMagnitude <= 0.0001f)
+                direction = transform.forward;
 
-            controlPoint += sideDirection * curveSideOffset;
+            Vector3 curveDirection = Quaternion.AngleAxis(curveAngle, Vector3.up) * direction.normalized;
+            controlPoint += curveDirection * curveSideOffset;
             return controlPoint;
         }
 

@@ -15,6 +15,8 @@ namespace Agents.Enemies.CamoDeserts.Skills
         [SerializeField] private Transform[] firePoints;
         [SerializeField] private PoolManagerSo poolManagerSo;
         [SerializeField] private PoolItemSo missilePoolItem;
+        [SerializeField] private float missileCurveAngle = 35f;
+
         [SerializeField] private float aimSpeed = 10f;
         
         private AgentTriggerModule _trigger;
@@ -126,6 +128,7 @@ namespace Agents.Enemies.CamoDeserts.Skills
             if (firePoints == null)
                 return;
 
+            int idx = 0;
             foreach (Transform firePoint in firePoints)
             {
                 if (firePoint == null)
@@ -135,10 +138,14 @@ namespace Agents.Enemies.CamoDeserts.Skills
                 if (shotMissile == null)
                     continue;
 
-                if (shotMissile is BaseMissile baseMissile)
-                    baseMissile.PoolManagerSo = poolManagerSo;
+                shotMissile.PoolManagerSo = poolManagerSo;
 
-                shotMissile.Shot(firePoint.position, targetPoint);
+                if(idx == 0)
+                    shotMissile.Shot(firePoint.position, targetPoint, -missileCurveAngle);
+                else
+                    shotMissile.Shot(firePoint.position, targetPoint, missileCurveAngle);
+                
+                idx++;
             }
         }
     }
