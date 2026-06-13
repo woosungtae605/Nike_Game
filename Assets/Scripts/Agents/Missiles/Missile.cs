@@ -1,3 +1,4 @@
+using Agents.CombatSystem;
 using Gamelib.ObjectPool.Runtime;
 using UnityEngine;
 
@@ -26,6 +27,6 @@ namespace Agents.Missiles
                 PoolManagerSo.Push(this);
         }
 
-        public abstract void Shot(Vector3 startPos, Vector3 targetPos, float curveAngle = 0f);
+        public abstract void Shot(Vector3 startPos, Vector3 targetPos, GameObject target, float curveAngle = 0f);
     }
 }

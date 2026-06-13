@@ -101,7 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2611754831296352475}
   - component: {fileID: 3610250242615714986}
-  m_Layer: 7
+  - component: {fileID: 1137363206600782735}
+  - component: {fileID: 8361346994505062060}
+  m_Layer: 6
   m_Name: ActionDataModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,13 +118,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854233912769402998}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -7.4863596, y: -1.465765, z: -8.5038}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4154950840312304145}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!114 &3610250242615714986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +137,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e14232f61fb484db00c9219a312d814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1137363206600782735
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854233912769402998}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8361346994505062060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854233912769402998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149bc3ebca6a200408314627a8e3929b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Agents.CombatSystem.DamageHitBox
+  damageMultiplier: 1
+  isCritical: 0
 --- !u!1 &3374596398800594791
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +446,6 @@ GameObject:
   - component: {fileID: 4154950840312304145}
   - component: {fileID: 1333335296183209455}
   - component: {fileID: 4929618257830936873}
-  - component: {fileID: 7310988912505922074}
   - component: {fileID: 5397182471723571445}
   m_Layer: 6
   m_Name: Rocket
@@ -493,29 +531,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7310988912505922074
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8452389061050192510}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.12
-  m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.01}
 --- !u!114 &5397182471723571445
 MonoBehaviour:
   m_ObjectHideFlags: 0

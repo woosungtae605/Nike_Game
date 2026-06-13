@@ -141,9 +141,9 @@ namespace Agents.Enemies.CamoDeserts.Skills
                 shotMissile.PoolManagerSo = poolManagerSo;
 
                 if(idx == 0)
-                    shotMissile.Shot(firePoint.position, targetPoint, -missileCurveAngle);
+                    shotMissile.Shot(firePoint.position, targetPoint, _target, -missileCurveAngle);
                 else
-                    shotMissile.Shot(firePoint.position, targetPoint, missileCurveAngle);
+                    shotMissile.Shot(firePoint.position, targetPoint, _target, missileCurveAngle);
                 
                 idx++;
             }

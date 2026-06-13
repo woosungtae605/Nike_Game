@@ -1,4 +1,5 @@
 using System.Collections;
+using Agents.CombatSystem;
 using UnityEngine;
 
 namespace Agents.Missiles
@@ -11,11 +12,15 @@ namespace Agents.Missiles
 
         private Coroutine _moveCoroutine;
 
-        public override void Shot(Vector3 startPos, Vector3 targetPos, float curveAngle = 0f)
+        private GameObject _target;
+        
+        public override void Shot(Vector3 startPos, Vector3 targetPos, GameObject target, float curveAngle = 0f)
         {
             if (_moveCoroutine != null)
                 StopCoroutine(_moveCoroutine);
-
+            
+            _target = target;
+            
             transform.position = startPos;
             _moveCoroutine = StartCoroutine(MoveBezierRoutine(startPos, targetPos, curveAngle));
         }
@@ -56,6 +61,9 @@ namespace Agents.Missiles
 
         private void Hit()
         {
+            if(_target.TryGetComponent<IDamageable>(out IDamageable target))
+                target.ApplyDamage(new DamageData(this, MissileSo.Damage, Vector3.zero, Vector3.zero ,arriveDistance));
+            
             if (PoolManagerSo != null)
                 PoolManagerSo.Push(this);
         }
