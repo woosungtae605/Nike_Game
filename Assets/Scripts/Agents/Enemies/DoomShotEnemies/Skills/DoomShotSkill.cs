@@ -8,8 +8,8 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
 {
 public class DoomShotSkill : AbstractEnemySkill
     {
-        private Transform _aimTarget;
-        private Transform _firePoint;
+        [SerializeField] private Transform _aimTarget;
+        [SerializeField] private Transform _firePoint;
         private EnemyDamageCaster _damageCaster;
         
         [SerializeField] private AnimParamSO skillAnimParam;
@@ -29,9 +29,11 @@ public class DoomShotSkill : AbstractEnemySkill
         public override void InitializeSkill(ISkillModule skillModule)
         {
             base.InitializeSkill(skillModule);
-            
-            _aimTarget = _enemy.transform.Find("Renderer/Rig 1/HeadAim/Target");
-            _firePoint = _enemy.transform.Find("Renderer/root/base/center01/center02/center03/center04/cannon_01/cannon_02/cannon_03/cannon_04/cannon_front_02");
+
+            if (_aimTarget == null)
+                _aimTarget = _enemy.transform.Find("Renderer/Rig 1/HeadAim/Target");
+            if(_firePoint == null)
+                _firePoint = _enemy.transform.Find("Renderer/root/base/center01/center02/center03/center04/cannon_01/cannon_02/cannon_03/cannon_04/cannon_front_02");
             _damageCaster = _enemy.GetComponentInChildren<EnemyDamageCaster>();
             _damageCaster?.InitCaster(_enemy);
             _trigger = _enemy.GetModule<AgentTriggerModule>();
