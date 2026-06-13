@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 1_WaveData
   m_EditorClassIdentifier: 
   <SpawnDataSos>k__BackingField:
+  - {fileID: 11400000, guid: c6568acd45b910840967d55803e0f644, type: 2}
   - {fileID: 11400000, guid: 820a05563ace2804987f8f3c8eea6eb5, type: 2}
   - {fileID: 11400000, guid: df8a3b3b496422349acf8aaf2fce96a2, type: 2}
-  - {fileID: 11400000, guid: c6568acd45b910840967d55803e0f644, type: 2}

@@ -31,6 +31,11 @@ namespace Agents.CombatSystem
             Debug.Assert(_renderer != null, "에너미는 렌더러 모듈을 가져야 합니다.");
             IsUsing = false;
         }
+
+        public void LastTimeChange()
+        {
+            _lastUseTime = Time.time;
+        }
         
         public abstract bool CanUseSkill(GameObject target = null);
 
