@@ -19,6 +19,7 @@ namespace Systems.GameSystem.Wave
 
          public Action OnClear;         
          public Action<int, int> OnWaveStarted;
+         public Action OnBossSpawn;
          public int WaveCount => waveData == null || waveData.SpawnDataSos == null ? 0 : waveData.SpawnDataSos.Length;
 
          
@@ -38,10 +39,28 @@ namespace Systems.GameSystem.Wave
          private IEnumerator WaveRoutine()
          {
              int waveCount = WaveCount;
+             int bossWaveCount = 0;
              for (int i = 0; i < waveCount; i++)
              {
                  SpawnDataSo spawnData = waveData.SpawnDataSos[i];
-                 OnWaveStarted?.Invoke(i + 1, waveCount);
+                 if (spawnData.IsBossSpawned)
+                 {
+                     bossWaveCount++;
+                 }
+             }
+             
+             int lastWaveCount = waveCount - bossWaveCount;
+             for (int i = 0; i < waveCount; i++)
+             {
+                 SpawnDataSo spawnData = waveData.SpawnDataSos[i];
+                 if (spawnData.IsBossSpawned)
+                 {
+                     OnBossSpawn?.Invoke();
+                 }
+                 else
+                 {
+                     OnWaveStarted?.Invoke(i + 1, lastWaveCount);
+                 }
                  List<AbstractEnemy> spawnedEnemies = Spawn(spawnData);
 
                  if (spawnData.SpawnConditionSo == null)

@@ -9,5 +9,6 @@ namespace Systems.GameSystem.Wave
     {
         [field: SerializeField] public EnemySpawnData[] EnemySpawnDatas { get; private set; }
         [field: SerializeField] public SpawnConditionSO SpawnConditionSo { get; private set; }
+        [field: SerializeField] public bool IsBossSpawned { get; private set; }
     }
 }
