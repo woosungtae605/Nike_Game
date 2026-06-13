@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Agents.Enemies.DoomShotEnemies.Skills
 {
-    public class DoomShotSkill : AbstractEnemySkill
+public class DoomShotSkill : AbstractEnemySkill
     {
         private Transform _aimTarget;
         private Transform _firePoint;
@@ -14,6 +14,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
         
         [SerializeField] private AnimParamSO skillAnimParam;
         [SerializeField] private float aimSpeed = 10f;
+        [SerializeField] private int shotCount = 3;
         [SerializeField] private float fallbackDamageDelay = 0.35f;
         [SerializeField] private float fallbackEndDelay = 1.2f;
 
@@ -21,6 +22,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
         private Coroutine _attackCoroutine;
         private Coroutine _fallbackCoroutine;
         private bool _hasCastedDamage;
+        private bool _animationEnd;
         
         private AgentTriggerModule _trigger;
 
@@ -47,7 +49,6 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
 
             base.UseSkill(target);
             _target = target;
-            _hasCastedDamage = false;
 
             if (_attackCoroutine != null)
                 StopCoroutine(_attackCoroutine);
@@ -71,7 +72,7 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             _target = null;
             if (_trigger != null)
             {
-                _trigger.OnAnimationEnd -= StopSkill;
+                _trigger.OnAnimationEnd -= HandleAnimationEnd;
                 _trigger.OnDamageCast -= CastDamage;
             }
             base.StopSkill();
@@ -81,38 +82,67 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
         {
             if (_target == null)
                 yield break;
-            
-            while (_target != null && _aimTarget != null)
-            {
-                Vector3 targetPoint = GetTargetPoint(_target);
-                _aimTarget.position = Vector3.MoveTowards(_aimTarget.position, targetPoint, aimSpeed * Time.deltaTime);
-                if (Vector3.Distance(_aimTarget.position, targetPoint) <= 0.1f)
-                    break;
-                
-                yield return null;
-            }
 
-            if (_target == null || _renderer == null || skillAnimParam == null)
+            int count = Mathf.Max(1, shotCount);
+            for (int i = 0; i < count; i++)
             {
-                Debug.LogWarning($"{nameof(DoomShotSkill)} attack canceled. Target:{_target != null}, Renderer:{_renderer != null}, SkillAnim:{skillAnimParam != null}", this);
-                _attackCoroutine = null;
-                yield break;
+                _hasCastedDamage = false;
+                _animationEnd = false;
+                
+                while (_target != null && _aimTarget != null)
+                {
+                    Vector3 targetPoint = GetTargetPoint(_target);
+                    _aimTarget.position = Vector3.MoveTowards(_aimTarget.position, targetPoint, aimSpeed * Time.deltaTime);
+                    if (Vector3.Distance(_aimTarget.position, targetPoint) <= 0.1f)
+                        break;
+                    
+                    yield return null;
+                }
+
+                if (_target == null || _renderer == null || skillAnimParam == null)
+                {
+                    Debug.LogWarning($"{nameof(DoomShotSkill)} attack canceled. Target:{_target != null}, Renderer:{_renderer != null}, SkillAnim:{skillAnimParam != null}", this);
+                    _attackCoroutine = null;
+                    StopSkill();
+                    yield break;
+                }
+                
+                _renderer.PlayClip(skillAnimParam.ParamHash, 0, 0);
+                if (_trigger != null)
+                {
+                    _trigger.OnAnimationEnd -= HandleAnimationEnd;
+                    _trigger.OnDamageCast -= CastDamage;
+                    _trigger.OnAnimationEnd += HandleAnimationEnd;
+                    _trigger.OnDamageCast += CastDamage;
+                }
+                
+                if (_fallbackCoroutine != null)
+                    StopCoroutine(_fallbackCoroutine);
+                _fallbackCoroutine = StartCoroutine(FallbackDamageRoutine());
+
+                while (!_animationEnd && _target != null)
+                    yield return null;
+
+                if (_fallbackCoroutine != null)
+                {
+                    StopCoroutine(_fallbackCoroutine);
+                    _fallbackCoroutine = null;
+                }
+
+                if (_trigger != null)
+                {
+                    _trigger.OnAnimationEnd -= HandleAnimationEnd;
+                    _trigger.OnDamageCast -= CastDamage;
+                }
             }
-            
-            _renderer.PlayClip(skillAnimParam.ParamHash, 0, 0);
-            if (_trigger != null)
-            {
-                _trigger.OnAnimationEnd -= StopSkill;
-                _trigger.OnDamageCast -= CastDamage;
-                _trigger.OnAnimationEnd += StopSkill;
-                _trigger.OnDamageCast += CastDamage;
-            }
-            
-            if (_fallbackCoroutine != null)
-                StopCoroutine(_fallbackCoroutine);
-            _fallbackCoroutine = StartCoroutine(FallbackDamageRoutine());
 
             _attackCoroutine = null;
+            StopSkill();
+        }
+
+        private void HandleAnimationEnd()
+        {
+            _animationEnd = true;
         }
 
         private void CastDamage()
@@ -137,12 +167,8 @@ namespace Agents.Enemies.DoomShotEnemies.Skills
             float endDelay = Mathf.Max(0f, fallbackEndDelay - fallbackDamageDelay);
             yield return new WaitForSeconds(endDelay);
 
-            if (IsUsing)
-            {
-                _fallbackCoroutine = null;
-                StopSkill();
-                yield break;
-            }
+            if (IsUsing && !_animationEnd)
+                _animationEnd = true;
             
             _fallbackCoroutine = null;
         }
