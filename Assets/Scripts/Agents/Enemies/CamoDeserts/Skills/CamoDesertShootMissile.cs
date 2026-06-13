@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using Agents.CombatSystem;
 using Agents.Missiles;
 using Agents.Module;
+using Gamelib.ObjectPool.Runtime;
 using Systems.AnimationSystems;
 using UnityEngine;
 
@@ -12,7 +13,8 @@ namespace Agents.Enemies.CamoDeserts.Skills
         [SerializeField] private AnimParamSO skillAnimParam;
         [SerializeField] private Transform aimTarget;
         [SerializeField] private Transform[] firePoints;
-        [SerializeField] private Missile missile;
+        [SerializeField] private PoolManagerSo poolManagerSo;
+        [SerializeField] private PoolItemSo missilePoolItem;
         [SerializeField] private float aimSpeed = 10f;
         
         private AgentTriggerModule _trigger;
@@ -67,7 +69,6 @@ namespace Agents.Enemies.CamoDeserts.Skills
                 StopSkill();
                 yield break;
             }
-            _enemy.Renderer.PlayClip(skillAnimParam.ParamHash, 0);
             if (_trigger != null)
             {
                 _trigger.OnDamageCast -= HandleDamageCast;
@@ -75,6 +76,9 @@ namespace Agents.Enemies.CamoDeserts.Skills
                 _trigger.OnDamageCast += HandleDamageCast;
                 _trigger.OnAnimationEnd += HandleAnimationEnd;
             }
+
+            _enemy.Renderer.PlayClip(skillAnimParam.ParamHash, 0);
+            _attackCoroutine = null;
         }
         
         private Vector3 GetTargetPoint(GameObject target)
@@ -114,10 +118,27 @@ namespace Agents.Enemies.CamoDeserts.Skills
 
         private void HandleDamageCast()
         {
+            if (_target == null || poolManagerSo == null || missilePoolItem == null)
+                return;
+
+            Vector3 targetPoint = GetTargetPoint(_target);
+
+            if (firePoints == null)
+                return;
+
             foreach (Transform firePoint in firePoints)
             {
-                Missile shotMissile = Instantiate(missile);
-                shotMissile.transform.position = firePoint.position;
+                if (firePoint == null)
+                    continue;
+
+                Missile shotMissile = poolManagerSo.Pop<Missile>(missilePoolItem);
+                if (shotMissile == null)
+                    continue;
+
+                if (shotMissile is BaseMissile baseMissile)
+                    baseMissile.PoolManagerSo = poolManagerSo;
+
+                shotMissile.Shot(firePoint.position, targetPoint);
             }
         }
     }

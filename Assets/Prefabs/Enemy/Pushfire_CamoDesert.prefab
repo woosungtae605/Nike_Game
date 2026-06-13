@@ -894,7 +894,8 @@ MonoBehaviour:
   firePoints:
   - {fileID: 1458870104408741315}
   - {fileID: 2910338426116888547}
-  missile: {fileID: 5508616688726250207, guid: 661d240423d49da45aa40405907838d9, type: 3}
+  poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
+  missilePoolItem: {fileID: 11400000, guid: 5518307c27dca6543a79b1f577e041be, type: 2}
   aimSpeed: 10
 --- !u!1001 &2366337056386062601
 PrefabInstance:

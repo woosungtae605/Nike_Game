@@ -529,7 +529,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Missiles.BaseMissile
   <HitPos>k__BackingField: {fileID: 5359727576209426182}
-  missileSo: {fileID: 11400000, guid: 569f742c58ca86046bee86711065ffea, type: 2}
+  <MissileSo>k__BackingField: {fileID: 11400000, guid: 569f742c58ca86046bee86711065ffea, type: 2}
+  curveHeight: 3
+  curveSideOffset: 2
+  arriveDistance: 0.1
 --- !u!1001 &3674996452167672238
 PrefabInstance:
   m_ObjectHideFlags: 0
