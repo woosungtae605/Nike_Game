@@ -6025,6 +6025,7 @@ GameObject:
   - component: {fileID: 1084383345}
   - component: {fileID: 1084383344}
   - component: {fileID: 1084383343}
+  - component: {fileID: 1084383346}
   m_Layer: 5
   m_Name: StartUICanvas
   m_TagString: Untagged
@@ -6115,6 +6116,31 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1084383346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084383341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b1288aaf574f29ac73e86ca06f1520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.BattleUI.StartUIs.StartUICanvas
+  image1: {fileID: 385558995}
+  image2: {fileID: 1403172928}
+  bigText: {fileID: 1703131076}
+  smallText: {fileID: 1628846987}
+  scaleDuration: 1
+  image1TargetScale: 0.85
+  image2TargetScale: 0.67
+  blinkScaleDownAmount: 0.05
+  textMoveDistance: 20
+  textMoveDuration: 0.7
+  blinkDuration: 0.1
+  blinkCount: 1
+  blinkMinAlpha: 0.25
 --- !u!1 &1086576541
 GameObject:
   m_ObjectHideFlags: 0
