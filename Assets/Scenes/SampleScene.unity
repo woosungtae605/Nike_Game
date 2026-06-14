@@ -3468,8 +3468,8 @@ MonoBehaviour:
   healthCountText: {fileID: 1213685477}
   enemyNameText: {fileID: 1653201274}
   healthCount: 10
-  delayedHealthWait: 0.18
-  delayedHealthMoveDuration: 0.35
+  delayedHealthWait: 0.4
+  delayedHealthMoveDuration: 0.5
 --- !u!1 &665320604
 GameObject:
   m_ObjectHideFlags: 0

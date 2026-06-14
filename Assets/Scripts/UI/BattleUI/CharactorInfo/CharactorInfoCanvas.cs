@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Agents.Players;
+using CoreSystem.BusSystem;
+using GameEvents;
 using UnityEngine;
 
 namespace UI.BattleUI.CharactorInfo
@@ -14,16 +17,26 @@ namespace UI.BattleUI.CharactorInfo
             KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T
         };
 
-        private void Start()
+        private void Awake()
         {
-            Show(GetPlayers());
+            Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+        }
+        
+        private void OnDestroy()
+        {
+            Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
         }
 
+
+        private void HandleBattleStart(BattleStartEvent obj)
+        {
+            Show(GetPlayers());   
+        }
+        
         private void Update()
         {
             RefreshSlots();
         }
-
         public void Show(IReadOnlyList<Player> players)
         {
             if (slots == null)

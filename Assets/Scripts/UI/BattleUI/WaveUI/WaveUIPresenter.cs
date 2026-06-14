@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using Agents.Enemies;
+using CoreSystem.BusSystem;
+using GameEvents;
 using Systems;
 using Systems.GameSystem.Wave;
 using UI.BattleUI.WaveUI.WarningUI;
@@ -8,7 +10,7 @@ using UnityEngine;
 
 namespace UI.BattleUI.WaveUI
 {
-    public class WaveUIPresenter : MonoBehaviour, IBattleStart
+    public class WaveUIPresenter : MonoBehaviour
     {
         [Header("UIs")]
         [SerializeField] private WarningCanvas warningCanvas;
@@ -17,16 +19,24 @@ namespace UI.BattleUI.WaveUI
 
         [Header("References")]
         [SerializeField] private WaveManager waveManager;
+
+        private Coroutine _coroutine;
         private void Awake()
         {
             Init();
-            BattleStart();
+            Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+        }
+
+        private void HandleBattleStart(BattleStartEvent obj)
+        {
+            waveSlideCanvas.gameObject.SetActive(true);
         }
 
         private void OnDestroy()
         {
             waveManager.OnBossSpawn -= HandleBossSpawn;
             waveManager.OnWaveStarted -= HandleWaveStart;
+            Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
         }
 
         private void Init()
@@ -43,7 +53,10 @@ namespace UI.BattleUI.WaveUI
 
         private void HandleBossSpawn(AbstractEnemy obj)
         {
-            StartCoroutine(SpawnMotionCoroutine(obj));
+            if(_coroutine != null)
+                StopCoroutine(_coroutine);
+            
+            _coroutine = StartCoroutine(SpawnMotionCoroutine(obj));
         }
 
         private IEnumerator SpawnMotionCoroutine(AbstractEnemy obj)
@@ -62,13 +75,15 @@ namespace UI.BattleUI.WaveUI
         }
 
         public void Hide()
-        {
+        { 
+            if(_coroutine != null)
+                StopCoroutine(_coroutine);
             
-        }
-
-        public void BattleStart()
-        {
-            waveSlideCanvas.gameObject.SetActive(true);
+            _coroutine = null;
+            
+            warningCanvas.gameObject.SetActive(false); 
+            waveSlideCanvas.gameObject.SetActive(false); 
+            waveBossCanvas.gameObject.SetActive(false);
         }
     }
 }
