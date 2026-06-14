@@ -27,8 +27,6 @@ namespace Agents.Enemies.Action
                 return Status.Failure;
 
             GameObject target = Target?.Value;
-            if (!skillModule.CanUseSkill(SkillIndex.Value, target))
-                return Status.Failure;
 
             skillModule.UseSkill(SkillIndex.Value, target);
             return Status.Success;

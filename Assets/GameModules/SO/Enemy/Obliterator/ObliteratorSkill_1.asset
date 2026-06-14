@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.CombatSystem.SkillDataSO
   skillIndex: 0
   skillName: ObliteratorBlaster
-  cooldown: 10
+  cooldown: 5
   damage: 20
   maxDistance: 60
   hitMask:

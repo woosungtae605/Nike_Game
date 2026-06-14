@@ -46,9 +46,6 @@ public class DoomShotSkill : AbstractEnemySkill
 
         public override void UseSkill(GameObject target = null)
         {
-            if (!CanUseSkill(target))
-                return;
-
             base.UseSkill(target);
             _target = target;
 

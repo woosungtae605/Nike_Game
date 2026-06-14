@@ -439,8 +439,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Enemies.DoomShotEnemies.Skills.BasicEnemySkill
   <SkillData>k__BackingField: {fileID: 11400000, guid: 2f24f206fc283604584d652ba148b0bf, type: 2}
-  _aimTarget: {fileID: 0}
-  _firePoint: {fileID: 0}
+  _aimTarget: {fileID: 169611132253969142}
+  _firePoint: {fileID: 3016367256504700372}
   skillAnimParam: {fileID: 11400000, guid: 9ea3c8ff6e147b54dbc60f1688cec1ac, type: 2}
   aimSpeed: 10
   shotCount: 1
@@ -1351,6 +1351,11 @@ PrefabInstance:
 --- !u!4 &1681271662804805753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7393535018257892752, guid: c9bb1c0ab660ace4ea7002d40d3cce1a, type: 3}
+  m_PrefabInstance: {fileID: 8200508765980945897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3016367256504700372 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6346211032969535549, guid: c9bb1c0ab660ace4ea7002d40d3cce1a, type: 3}
   m_PrefabInstance: {fileID: 8200508765980945897}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &4773468421912207178 stripped

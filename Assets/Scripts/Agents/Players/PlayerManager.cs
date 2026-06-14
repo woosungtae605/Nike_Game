@@ -52,6 +52,25 @@ namespace Agents.Players
             return closestPlayer;
         }
 
+        public Player GetRandomPlayer()
+        {
+            List<Player> activePlayers = new List<Player>();
+
+            foreach (Player player in playerList)
+            {
+                if (player == null || !player.gameObject.activeInHierarchy)
+                    continue;
+
+                activePlayers.Add(player);
+            }
+
+            if (activePlayers.Count == 0)
+                return null;
+
+            int randomIndex = Random.Range(0, activePlayers.Count);
+            return activePlayers[randomIndex];
+        }
+
         private void Update()
         {
             if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
