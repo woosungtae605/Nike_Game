@@ -6,9 +6,11 @@ namespace GameEvents.Camera
     public struct CameraChangeEvent : IEvent
     {
         public readonly Transform TargetTransform;
-        public CameraChangeEvent(Transform targetTransform)
+        public readonly float Duration;
+        public CameraChangeEvent(Transform targetTransform, float duration)
         {
             TargetTransform = targetTransform;
+            Duration = duration;
         }
     }
 }

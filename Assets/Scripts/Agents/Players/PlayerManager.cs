@@ -106,7 +106,7 @@ namespace Agents.Players
             
             CurrentPlayer = playerList[index];
             CurrentPlayer.PlayerControl();
-            Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(playerList[index].CameraTransform));
+            Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(playerList[index].CameraTransform, 0.2f));
         }
     }
 }

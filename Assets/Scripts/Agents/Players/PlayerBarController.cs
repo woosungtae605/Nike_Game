@@ -1,5 +1,7 @@
 ﻿using System;
 using Agents.Module;
+using CoreSystem.BusSystem;
+using GameEvents;
 using LitMotion;
 using Module;
 using UnityEngine;
@@ -60,6 +62,21 @@ namespace Agents.Players
             _cover.OnCoverValueChange += HandleCoverValueChange;
         }
 
+        private void Awake()
+        {
+            Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+        }
+
+        private void HandleBattleStart(BattleStartEvent obj)
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
+
         private void OnDestroy()
         {
             _healthMoveHandle.TryCancel();
@@ -77,6 +94,7 @@ namespace Agents.Players
 
                 _cover.OnCoverValueChange -= HandleCoverValueChange;
             }
+            Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
         }
 
         private void HandleCoverValueChange(bool value)

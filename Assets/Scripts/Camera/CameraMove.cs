@@ -10,7 +10,6 @@ namespace Camera
 {
     public class CameraMove : MonoBehaviour
     {
-        [SerializeField] private float duration = 0.5f;
         private MotionHandle _moveHandle;
 
         private void Awake()
@@ -25,10 +24,10 @@ namespace Camera
 
         private void HandleCameraChange(CameraChangeEvent obj)
         {
-            MoveToNekke(obj.TargetTransform);
+            MoveToNekke(obj.TargetTransform, obj.Duration);
         }
 
-        public void MoveToNekke(Transform target)
+        public void MoveToNekke(Transform target, float duration)
         {
             _moveHandle.TryCancel();
             _moveHandle = LMotion.Create(transform.position, target.position,duration).WithEase(Ease.Linear).Bind(x => transform.position = x);
