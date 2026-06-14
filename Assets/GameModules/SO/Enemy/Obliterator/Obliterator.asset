@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc83e7873bf4e83b605cea6662fb86c, type: 3}
   m_Name: Obliterator
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 500
+  <EnemyName>k__BackingField: Obliterator
+  <MaxHp>k__BackingField: 2000
   <Damage>k__BackingField: 20
   <Speed>k__BackingField: 0.5

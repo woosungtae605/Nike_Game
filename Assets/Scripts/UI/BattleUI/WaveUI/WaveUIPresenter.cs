@@ -51,7 +51,8 @@ namespace UI.BattleUI.WaveUI
             waveSlideCanvas.gameObject.SetActive(false);
             yield return warningCanvas.ShowRoutine();
 
-            waveBossCanvas.gameObject.SetActive(true);
+            waveBossCanvas.SetEnemy(obj);
+            waveBossCanvas.Show();
             
         }
 
@@ -71,3 +72,4 @@ namespace UI.BattleUI.WaveUI
         }
     }
 }
+
