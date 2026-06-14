@@ -14,6 +14,7 @@ namespace UI.BattleUI.WaveUI
         [SerializeField] private Slider enemyHealthSlider;
         [SerializeField] private Slider delayedHealthSlider;
         [SerializeField] private TextMeshProUGUI healthCountText;
+        [SerializeField] private TextMeshProUGUI enemyNameText;
 
         [Header("Settings")]
         [SerializeField] private int healthCount = 10;
@@ -44,6 +45,7 @@ namespace UI.BattleUI.WaveUI
 
             _health.OnChanged += HandleHealthChanged;
             UpdateHealth(_health.CurrentValue, _health.MaxValue, true);
+            enemyNameText.text = _enemy.EnemyDataSo.EnemyName;
         }
 
         public void Show()

@@ -1,5 +1,8 @@
-﻿using Agents.Enemies;
+﻿using System;
+using Agents.Enemies;
 using Agents.Players;
+using CoreSystem.BusSystem;
+using GameEvents;
 using Systems.GameSystem.Wave;
 using UnityEngine;
 
@@ -11,7 +14,17 @@ namespace Systems.GameSystem
         [SerializeField] private EnemyManager enemyManager;
         [SerializeField] private WaveManager waveManager;
 
-        private void Start()
+        private void Awake()
+        {
+            Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+        }
+
+        private void OnDestroy()
+        {
+            Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
+        }
+
+        private void HandleBattleStart(BattleStartEvent obj)
         {
             Debug.Assert(enemyManager != null, "enemyManager is null");
             Debug.Assert(playerManager != null, "playerManager is null");
@@ -25,7 +38,7 @@ namespace Systems.GameSystem
             
             //Wave 초기화
             waveManager.SetEnemyManager(enemyManager);
-            waveManager.StartWave();
+            waveManager.StartWave();   
         }
     }
 }

@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using Agents.Enemies;
+using Agents.FSM;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Agents.Players
 {
@@ -18,6 +21,14 @@ namespace Agents.Players
         private void Awake()
         {
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
+        }
+
+        private void Start()
+        {
+            foreach (Player player in playerList)
+            {
+                player.ChangeState(PlayerStates.Dummy);
+            }
         }
 
         public void Init(EnemyRegisterSo enemyRegisterSo)

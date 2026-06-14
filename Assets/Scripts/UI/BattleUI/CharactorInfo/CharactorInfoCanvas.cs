@@ -11,6 +11,7 @@ namespace UI.BattleUI.CharactorInfo
     {
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private CharactorInfo[] slots;
+        [SerializeField] private GameObject charactorInfo;
 
         private static readonly KeyCode[] KeyCodes =
         {
@@ -20,6 +21,7 @@ namespace UI.BattleUI.CharactorInfo
         private void Awake()
         {
             Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+            charactorInfo.SetActive(false);
         }
         
         private void OnDestroy()
@@ -30,6 +32,7 @@ namespace UI.BattleUI.CharactorInfo
 
         private void HandleBattleStart(BattleStartEvent obj)
         {
+            charactorInfo.SetActive(true);
             Show(GetPlayers());   
         }
         
