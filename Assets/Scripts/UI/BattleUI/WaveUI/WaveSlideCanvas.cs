@@ -3,47 +3,25 @@ using Systems.GameSystem.Wave;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.BattleUI
+namespace UI.BattleUI.WaveUI
 {
     public class WaveSlideCanvas : MonoBehaviour, IUIElement<int>
     {
         [SerializeField] private Slider slider;
-        [SerializeField] private WaveManager waveManager;
         [SerializeField] private float moveDuration = 0.25f;
 
         private Coroutine _moveRoutine;
 
-        private void Awake()
+        public void InitializeSlider()
         {
             if (slider == null)
                 slider = GetComponentInChildren<Slider>();
 
-            InitializeSlider();
-        }
-
-        private void OnEnable()
-        {
-            if (waveManager != null)
-                waveManager.OnWaveStarted += HandleWaveStarted;
-        }
-
-        private void OnDisable()
-        {
-            if (waveManager != null)
-                waveManager.OnWaveStarted -= HandleWaveStarted;
-        }
-
-        private void InitializeSlider()
-        {
-            if (slider == null || waveManager == null)
-                return;
-
             slider.minValue = 0f;
-            slider.maxValue = waveManager.WaveCount;
             slider.value = 0f;
         }
 
-        private void HandleWaveStarted(int currentWave, int totalWave)
+        public void HandleWaveStarted(int currentWave, int totalWave)
         {
             if (slider == null)
                 return;
