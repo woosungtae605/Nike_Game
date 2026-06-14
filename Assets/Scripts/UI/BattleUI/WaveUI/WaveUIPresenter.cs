@@ -13,6 +13,7 @@ namespace UI.BattleUI.WaveUI
         [Header("UIs")]
         [SerializeField] private WarningCanvas warningCanvas;
         [SerializeField] private WaveSlideCanvas waveSlideCanvas;
+        [SerializeField] private WaveBossHealthCanvas waveBossCanvas;
 
         [Header("References")]
         [SerializeField] private WaveManager waveManager;
@@ -36,6 +37,8 @@ namespace UI.BattleUI.WaveUI
             waveSlideCanvas.InitializeSlider();
             waveManager.OnWaveStarted += HandleWaveStart;
             waveSlideCanvas.gameObject.SetActive(false);
+
+            waveBossCanvas.gameObject.SetActive(false);
         }
 
         private void HandleBossSpawn(AbstractEnemy obj)
@@ -45,8 +48,11 @@ namespace UI.BattleUI.WaveUI
 
         private IEnumerator SpawnMotionCoroutine(AbstractEnemy obj)
         {
-            warningCanvas.Show();
-            yield return null;
+            waveSlideCanvas.gameObject.SetActive(false);
+            yield return warningCanvas.ShowRoutine();
+
+            waveBossCanvas.gameObject.SetActive(true);
+            
         }
 
         private void HandleWaveStart(int arg1, int arg2)
