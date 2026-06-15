@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace UI.MainSceneUI.Bottoms
 {
@@ -32,7 +31,7 @@ namespace UI.MainSceneUI.Bottoms
 
         private void ClickEvent(ButtonsType obj)
         {
-            OnClickButton?.Invoke(obj);
+            OnClickButton?.Invoke(obj); 
         }
     }
 }

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 7d127ae5238ee1447ba8904a3d2653ba
   - enabled: 1
+    path: Assets/Scenes/BattleStart.unity
+    guid: d97b217711d34fa42b63e0a0b26b042d
+  - enabled: 1
     path: Assets/Scenes/Wave1.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
