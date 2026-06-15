@@ -6236,7 +6236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f1bcadc9bc4356837de033202f8dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Systems.GameSystem.BattleStarter
-  startUICanvas: {fileID: 1084383346}
 --- !u!1 &1121146601
 GameObject:
   m_ObjectHideFlags: 0
