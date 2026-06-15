@@ -14,7 +14,8 @@ namespace Agents.Enemies.Obliterators
     public class Obliterator : AbstractEnemy
     {
         [SerializeField] private PoolManagerSo poolManagerSo;
-        [SerializeField] private PoolItemSo _effect;
+        [SerializeField] private PoolItemSo effect;
+        [field: SerializeField] public Transform CameraTarget { get; private set; }
         private CinemachineImpulseSource _impulseSource;
         protected override void HandleDeath()
         {
@@ -32,12 +33,13 @@ namespace Agents.Enemies.Obliterators
         private IEnumerator StartAction()
         {
             Bus<BattleEndEvent>.Raise(new BattleEndEvent());
+            Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(CameraTarget, 1f));
             yield return new WaitForSeconds(1.5f);
 
-            ParticlePooling effect = poolManagerSo.Pop<ParticlePooling>(_effect);
+            ParticlePooling particlePooling = poolManagerSo.Pop<ParticlePooling>(this.effect);
 
-            effect.PoolManagerSo = poolManagerSo;
-            effect.Play(HitPos.position);
+            particlePooling.PoolManagerSo = poolManagerSo;
+            particlePooling.Play(HitPos.position);
 
             _impulseSource.GenerateImpulse();
             yield return new WaitForSeconds(0.7f);

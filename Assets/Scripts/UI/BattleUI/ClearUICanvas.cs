@@ -58,7 +58,15 @@ namespace UI.BattleUI
                 waveManager.OnClear += Show;
 
             if (confirmButton != null)
+            {
                 confirmButton.onClick.AddListener(Hide);
+                confirmButton.onClick.AddListener(ClearNext);
+            }
+        }
+
+        private void ClearNext()
+        {
+            
         }
 
         private void OnDisable()
@@ -67,7 +75,10 @@ namespace UI.BattleUI
                 waveManager.OnClear -= Show;
 
             if (confirmButton != null)
+            {
                 confirmButton.onClick.RemoveListener(Hide);
+                confirmButton.onClick.RemoveListener(ClearNext);   
+            }
 
             _motions.Cancel();
         }

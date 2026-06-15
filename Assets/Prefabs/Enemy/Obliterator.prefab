@@ -279,6 +279,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fill: {fileID: 7398376313623298332}
+--- !u!1 &2024458060556063661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064247378253800702}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064247378253800702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024458060556063661}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.9, z: 2.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9189644768882792553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2917114828108353679
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +622,7 @@ Transform:
   - {fileID: 5741783162351507009}
   - {fileID: 7863191241913094328}
   - {fileID: 4851265098997017942}
+  - {fileID: 1064247378253800702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8374589764711879935
@@ -608,7 +640,8 @@ MonoBehaviour:
   <EnemyDataSo>k__BackingField: {fileID: 11400000, guid: 593b7e148d6d9d541a5fdff54d876528, type: 2}
   <HitPos>k__BackingField: {fileID: 8176508965273982317}
   poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
-  _effect: {fileID: 11400000, guid: 6bcd9b955fdb8934b9dee4f7f102a43d, type: 2}
+  effect: {fileID: 11400000, guid: 6bcd9b955fdb8934b9dee4f7f102a43d, type: 2}
+  <CameraTarget>k__BackingField: {fileID: 1064247378253800702}
 --- !u!54 &6645597432175168322
 Rigidbody:
   m_ObjectHideFlags: 0
