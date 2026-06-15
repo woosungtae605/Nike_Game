@@ -49,6 +49,11 @@
                 _enemyManager = enemyManager;
             }
             
+            protected void ChangeState(EnemyState state)
+            {
+                StateChannel?.SendEventMessage(state);
+            }
+            
             public void SetGotoLeft(bool value)
             {
                 Debug.Log($"[Enemy] SetGotoLeft {name}: {GotoLeft} -> {value}", this);

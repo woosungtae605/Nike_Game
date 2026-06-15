@@ -17,11 +17,18 @@ namespace Systems.GameSystem
         private void Awake()
         {
             Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent += HandleBattleEnd;
         }
 
         private void OnDestroy()
         {
             Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent -= HandleBattleEnd;
+        }
+
+        private void HandleBattleEnd(BattleEndEvent obj)
+        {
+            playerManager.AllPlayerDummy();
         }
 
         private void HandleBattleStart(BattleStartEvent obj)

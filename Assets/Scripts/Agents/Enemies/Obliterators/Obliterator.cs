@@ -13,7 +13,8 @@ namespace Agents.Enemies.Obliterators
         protected override void HandleDeath()
         {
             HealthModule.OnDeath -= HandleDeath;
-            
+            ChangeState(EnemyState.DEATH);
+            StartCoroutine(StartAction());
         }
 
         public override void ResetItem()
@@ -25,7 +26,6 @@ namespace Agents.Enemies.Obliterators
         private IEnumerator StartAction()
         {
             Bus<BattleEndEvent>.Raise(new BattleEndEvent());
-            Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(HitPos, 1));
             yield return new WaitForSeconds(1);
             impulseSource.GenerateImpulse();
         }

@@ -25,6 +25,11 @@ namespace Agents.Players
 
         private void Start()
         {
+            AllPlayerDummy();
+        }
+
+        public void AllPlayerDummy()
+        {
             foreach (Player player in playerList)
             {
                 player.ChangeState(PlayerStates.Dummy);
