@@ -884,9 +884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d123c8a31d9e4e6198bfbdd0be797bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.BottomCanvas
-  mainSceneUIElements:
-  - {fileID: 1914218239}
-  - {fileID: 1619052133}
+  mainSceneUIObjects:
+  - {fileID: 1914218237}
+  - {fileID: 1619052130}
   bottom: {fileID: 1854497862}
 --- !u!1 &851361905
 GameObject:

@@ -5,7 +5,7 @@ namespace UI.MainSceneUI.Bottoms
 {
     public class BottomCanvas : MonoBehaviour, IUIElement
     {
-        [SerializeField] private MonoBehaviour[] mainSceneUIElements;
+        [SerializeField] private GameObject[] mainSceneUIObjects;
         [SerializeField] private BottomButtonController bottom;
 
         private Dictionary<ButtonsType, IMainSceneUIElement> _mainSceneUIElementList = new();
@@ -14,12 +14,12 @@ namespace UI.MainSceneUI.Bottoms
         private ButtonsType _nowButtonType;
         public void Awake()
         {
-            foreach (MonoBehaviour mainSceneUIElement in mainSceneUIElements)
+            foreach (GameObject obj in mainSceneUIObjects)
             {
-                if (mainSceneUIElement is IMainSceneUIElement iMainSceneUIElement)
+                if (obj.TryGetComponent(out IMainSceneUIElement element))
                 {
-                    _mainSceneUIElementList[iMainSceneUIElement.MyButtonType] = iMainSceneUIElement;
-                    iMainSceneUIElement.Hide();
+                    _mainSceneUIElementList[element.MyButtonType] = element;
+                    element.Hide();
                 }
             }
             ClickEvent(ButtonsType.Lobby);
