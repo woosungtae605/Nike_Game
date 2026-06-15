@@ -1,4 +1,5 @@
 using System;
+using CoreSystem;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using LitMotion;
@@ -6,6 +7,7 @@ using LitMotion.Extensions;
 using Systems.GameSystem.Wave;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI.BattleUI
@@ -66,7 +68,7 @@ namespace UI.BattleUI
 
         private void ClearNext()
         {
-            
+            FadeManager.Instance.FadeAndExecute(() => SceneManager.LoadScene("MainScene"));
         }
 
         private void OnDisable()
