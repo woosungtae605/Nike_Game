@@ -21,7 +21,7 @@ namespace Agents.Players.States
             Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(5, true));
         }
 
-public override void Update()
+        public override void Update()
         {
             base.Update();
 

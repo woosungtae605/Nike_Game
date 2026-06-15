@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc83e7873bf4e83b605cea6662fb86c, type: 3}
-  m_Name: Obliterator
+  m_Script: {fileID: 11500000, guid: 6f808eaf5876411c971c6cfd51d25487, type: 3}
+  m_Name: BoomParticle
   m_EditorClassIdentifier: 
-  <EnemyName>k__BackingField: Obliterator
-  <MaxHp>k__BackingField: 1000
-  <Damage>k__BackingField: 20
-  <Speed>k__BackingField: 0.5
+  poolingName: BoomParticle
+  prefab: {fileID: 8358143710831807487, guid: 81340a672a4738e408ee3aab5e950f52, type: 3}
+  initCount: 10

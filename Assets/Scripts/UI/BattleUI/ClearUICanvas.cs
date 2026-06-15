@@ -1,3 +1,6 @@
+using System;
+using CoreSystem.BusSystem;
+using GameEvents.UI;
 using LitMotion;
 using LitMotion.Extensions;
 using Systems.GameSystem.Wave;
@@ -35,6 +38,18 @@ namespace UI.BattleUI
 
             CacheDefaults();
             HideImmediate();
+
+            Bus<ClearUIEvent>.OnEvent += HandleClearUI;
+        }
+
+        private void OnDestroy()
+        {
+            Bus<ClearUIEvent>.OnEvent -= HandleClearUI;
+        }
+
+        private void HandleClearUI(ClearUIEvent obj)
+        {
+            Show();
         }
 
         private void OnEnable()

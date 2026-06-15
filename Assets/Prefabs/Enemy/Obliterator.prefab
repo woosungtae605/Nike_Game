@@ -607,6 +607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Enemies.Obliterators.Obliterator
   <EnemyDataSo>k__BackingField: {fileID: 11400000, guid: 593b7e148d6d9d541a5fdff54d876528, type: 2}
   <HitPos>k__BackingField: {fileID: 8176508965273982317}
+  poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
+  _effect: {fileID: 11400000, guid: 6bcd9b955fdb8934b9dee4f7f102a43d, type: 2}
 --- !u!54 &6645597432175168322
 Rigidbody:
   m_ObjectHideFlags: 0

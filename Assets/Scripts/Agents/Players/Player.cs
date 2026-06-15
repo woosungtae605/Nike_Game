@@ -69,6 +69,11 @@ namespace Agents.Players
             ChangeState(PlayerStates.IDLE);
         }
 
+        public void SetControl(bool control)
+        {
+            IsControl = control;
+        }
+
         public void PlayerNotControl()
         {
             IsControl = false;
