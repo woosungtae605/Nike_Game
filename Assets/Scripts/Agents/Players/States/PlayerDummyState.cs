@@ -15,6 +15,7 @@ namespace Agents.Players.States
             base.Enter();
             Player.CoverModule.SetHide(true);
             Player.SetControl(false);
+            Player.GunCursorModule.UnActive();
         }
     }
 }
