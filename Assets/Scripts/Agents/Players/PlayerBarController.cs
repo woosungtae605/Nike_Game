@@ -65,6 +65,12 @@ namespace Agents.Players
         private void Awake()
         {
             Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent += HandleBattleEnd;
+        }
+
+        private void HandleBattleEnd(BattleEndEvent obj)
+        {
+            gameObject.SetActive(false);
         }
 
         private void HandleBattleStart(BattleStartEvent obj)
@@ -95,6 +101,7 @@ namespace Agents.Players
                 _cover.OnCoverValueChange -= HandleCoverValueChange;
             }
             Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent -= HandleBattleEnd;
         }
 
         private void HandleCoverValueChange(bool value)

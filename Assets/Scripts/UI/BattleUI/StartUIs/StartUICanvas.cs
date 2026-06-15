@@ -13,8 +13,11 @@ namespace UI.BattleUI.StartUIs
         [SerializeField] private TextMeshProUGUI bigText;
         [SerializeField] private TextMeshProUGUI smallText;
         [SerializeField] private TextMeshProUGUI middleText;
+        [SerializeField] private RectTransform upImage;
+        [SerializeField] private RectTransform downImage;
         
         [SerializeField] private float scaleDuration = 0.35f;
+        [SerializeField] private float horizontalImageStartScaleX = 0.04f;
         [SerializeField] private float image1TargetScale = 0.85f;
         [SerializeField] private float image2TargetScale = 0.65f;
         [SerializeField] private float blinkScaleDownAmount = 0.05f;
@@ -35,11 +38,16 @@ namespace UI.BattleUI.StartUIs
         private CanvasGroup[] _textCanvasGroups;
         private CanvasGroup[] _smallTextCanvasGroups;
         private CanvasGroup[] _finalCanvasGroups;
+        private CanvasGroup[] _finalFadeCanvasGroups;
         private CanvasGroup _middleTextCanvasGroup;
+        private CanvasGroup _upImageCanvasGroup;
+        private CanvasGroup _downImageCanvasGroup;
         private RectTransform[] _scaleTargets;
         private RectTransform[] _finalScaleTargets;
         
         private Vector2 _smallTextOriginPos;
+        private Vector3 _upImageOriginScale;
+        private Vector3 _downImageOriginScale;
         private Vector3 _middleTextOriginScale;
         
         private Sequence _scaleSequence;
@@ -49,6 +57,8 @@ namespace UI.BattleUI.StartUIs
         private void Awake()
         {
             _smallTextOriginPos = smallText.rectTransform.anchoredPosition;
+            _upImageOriginScale = upImage.localScale;
+            _downImageOriginScale = downImage.localScale;
 
             _imageCanvasGroups = new[]
             {
@@ -75,14 +85,28 @@ namespace UI.BattleUI.StartUIs
             _scaleTargets = new[]
             {
                 image1,
-                image2
+                image2,
+                upImage,
+                downImage
             };
+
+            _upImageCanvasGroup = GetOrAddCanvasGroup(upImage.gameObject);
+            _downImageCanvasGroup = GetOrAddCanvasGroup(downImage.gameObject);
 
             _finalCanvasGroups = new[]
             {
                 _imageCanvasGroups[0],
                 _imageCanvasGroups[1],
                 _middleTextCanvasGroup
+            };
+
+            _finalFadeCanvasGroups = new[]
+            {
+                _imageCanvasGroups[0],
+                _imageCanvasGroups[1],
+                _middleTextCanvasGroup,
+                _upImageCanvasGroup,
+                _downImageCanvasGroup
             };
 
             _finalScaleTargets = new[]
@@ -147,6 +171,24 @@ namespace UI.BattleUI.StartUIs
                 image2.DOScale(image2TargetScale, scaleDuration)
                     .SetEase(Ease.OutCubic)
             );
+
+            _scaleSequence.Join(
+                CreateHorizontalImageReturnTween(upImage, _upImageOriginScale, Ease.InExpo)
+            );
+
+            _scaleSequence.Join(
+                CreateHorizontalImageReturnTween(downImage, _downImageOriginScale, Ease.OutExpo)
+            );
+        }
+
+        private Tween CreateHorizontalImageReturnTween(RectTransform rect, Vector3 originScale, Ease ease)
+        {
+            Vector3 startScale = originScale;
+            startScale.x *= horizontalImageStartScaleX;
+            rect.localScale = startScale;
+
+            return rect.DOScaleX(originScale.x, 1.3f)
+                .SetEase(ease);
         }
         
         private Tween PlaySmallTextUp()
@@ -224,7 +266,17 @@ namespace UI.BattleUI.StartUIs
                 );
             }
 
-            foreach (CanvasGroup canvasGroup in _finalCanvasGroups)
+            sequence.Join(
+                upImage.DOScaleX(upImage.localScale.x * horizontalImageStartScaleX, finalFadeDuration)
+                    .SetEase(Ease.InCubic)
+            );
+
+            sequence.Join(
+                downImage.DOScale(downImage.localScale * finalScaleMultiplier, finalFadeDuration)
+                    .SetEase(Ease.OutCubic)
+            );
+
+            foreach (CanvasGroup canvasGroup in _finalFadeCanvasGroups)
             {
                 canvasGroup.alpha = 1f;
                 sequence.Join(
@@ -238,6 +290,8 @@ namespace UI.BattleUI.StartUIs
                 image1.gameObject.SetActive(false);
                 image2.gameObject.SetActive(false);
                 middleText.gameObject.SetActive(false);
+                upImage.gameObject.SetActive(false);
+                downImage.gameObject.SetActive(false);
             });
 
             return sequence;

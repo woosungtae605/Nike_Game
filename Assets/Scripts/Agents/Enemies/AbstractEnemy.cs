@@ -85,7 +85,7 @@
                 }
             }
             
-            private void HandleDeath()
+            protected virtual void HandleDeath()
             {
                 HealthModule.OnDeath -= HandleDeath;
 

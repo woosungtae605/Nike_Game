@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Systems.GameSystem
 {
-    public class BattleStarter : MonoBehaviour
+    public class BattleTimingController : MonoBehaviour
     {
         [SerializeField] private StartUICanvas startUICanvas;
         [SerializeField] private PlayerManager playerManager;
@@ -36,6 +36,11 @@ namespace Systems.GameSystem
 
         private void Start()
         {
+            BattleStart();
+        }
+
+        private void BattleStart()
+        {
             StartCoroutine(BattleDelay());
         }
 
@@ -47,8 +52,11 @@ namespace Systems.GameSystem
             
             foreach (Player player in playerManager.Players)
             {
-                if(player != null)
+                if (player != null)
+                {
                     Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(player.CameraTransform, 1));
+                    break;
+                }
             }
         }
     }

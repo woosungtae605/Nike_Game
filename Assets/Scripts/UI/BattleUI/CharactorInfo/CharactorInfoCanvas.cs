@@ -21,12 +21,19 @@ namespace UI.BattleUI.CharactorInfo
         private void Awake()
         {
             Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent += HandleBattleEnd;
             charactorInfo.SetActive(false);
         }
         
         private void OnDestroy()
         {
             Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent -= HandleBattleEnd;
+        }
+
+        private void HandleBattleEnd(BattleEndEvent obj)
+        {
+            charactorInfo.SetActive(false);
         }
 
 

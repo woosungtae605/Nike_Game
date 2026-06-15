@@ -25,6 +25,7 @@ namespace UI.BattleUI.WaveUI
         {
             Init();
             Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent += HandleBattleEnd;
         }
 
         private void HandleBattleStart(BattleStartEvent obj)
@@ -37,6 +38,14 @@ namespace UI.BattleUI.WaveUI
             waveManager.OnBossSpawn -= HandleBossSpawn;
             waveManager.OnWaveStarted -= HandleWaveStart;
             Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
+            Bus<BattleEndEvent>.OnEvent -= HandleBattleEnd;
+        }
+
+        private void HandleBattleEnd(BattleEndEvent obj)
+        {
+            warningCanvas.gameObject.SetActive(false);
+            waveSlideCanvas.gameObject.SetActive(false);
+            waveBossCanvas.gameObject.SetActive(false);
         }
 
         private void Init()
