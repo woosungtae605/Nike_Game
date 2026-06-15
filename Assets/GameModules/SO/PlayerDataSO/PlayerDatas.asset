@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf69dbe72f149938c32ac08055d600d, type: 3}
   m_Name: PlayerDatas
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Players.PlayerDataSos
+  saveFileName: {fileID: 11400000, guid: de65a542539695e42bf0cc9169d6307b, type: 2}
   allPlayerDatas:
   - {fileID: 11400000, guid: 8c8a6efbd81a1c14f893ea10627af983, type: 2}
   - {fileID: 11400000, guid: 02fa5d103419a8145b1ed198b87ecf7c, type: 2}

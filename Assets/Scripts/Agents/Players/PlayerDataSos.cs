@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Systems.SaveSystem;
 using UnityEngine;
 
 namespace Agents.Players
@@ -6,8 +7,7 @@ namespace Agents.Players
     [CreateAssetMenu(fileName = "PlayerDatas", menuName = "SO/PlayerDatas", order = 0)]
     public class PlayerDataSos : ScriptableObject
     {
-        private const string SaveKey = "PlayerDataSos_NowPlayerIds";
-
+        [SerializeField] private SaveFileNameSO saveFileName;
         [SerializeField] private List<PlayerDataSO> allPlayerDatas = new List<PlayerDataSO>();
         private List<PlayerDataSO> _nowPlayerDatas = new List<PlayerDataSO>();
 
@@ -16,6 +16,10 @@ namespace Agents.Players
 
         private void OnEnable()
         {
+            foreach (PlayerDataSO playerData in allPlayerDatas)
+            {
+                AddNowPlayerData(playerData);
+            }
             Load();
         }
 
@@ -66,18 +70,16 @@ namespace Agents.Players
                 saveData.playerIds.Add(playerData.NikkeID);
             }
 
-            PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(saveData));
-            PlayerPrefs.Save();
+            JsonSaveService.Save(saveFileName, saveData);
         }
 
         public void Load()
         {
             _nowPlayerDatas.Clear();
 
-            if (!PlayerPrefs.HasKey(SaveKey))
+            if (!JsonSaveService.TryLoad(saveFileName, out SaveData saveData))
                 return;
 
-            SaveData saveData = JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString(SaveKey));
             if (saveData == null || saveData.playerIds == null)
                 return;
 

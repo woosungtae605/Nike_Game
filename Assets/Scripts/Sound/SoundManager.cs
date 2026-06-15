@@ -20,7 +20,10 @@ namespace Sound
             if (Instance != this) return;
 
             DontDestroyOnLoad(gameObject);
+        }
 
+        private void Start()
+        {
             LoadVolume(MASTER);
             LoadVolume(BGM);
             LoadVolume(SFX);
