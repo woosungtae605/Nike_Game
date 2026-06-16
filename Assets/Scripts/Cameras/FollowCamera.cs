@@ -1,7 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Camera
+namespace Cameras
 {
     public class FollowCamera : MonoBehaviour
     {

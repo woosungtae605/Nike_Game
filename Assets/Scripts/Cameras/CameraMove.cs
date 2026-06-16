@@ -1,12 +1,9 @@
-﻿using System;
-using CoreSystem.BusSystem;
+﻿using CoreSystem.BusSystem;
 using GameEvents.Camera;
 using LitMotion;
-using LitMotion.Extensions;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-namespace Camera
+namespace Cameras
 {
     public class CameraMove : MonoBehaviour
     {

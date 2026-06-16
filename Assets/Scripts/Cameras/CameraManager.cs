@@ -6,7 +6,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityCamera = UnityEngine.Camera;
 
-namespace Camera
+namespace Cameras
 {
     public class CameraManager : MonoBehaviour
     {

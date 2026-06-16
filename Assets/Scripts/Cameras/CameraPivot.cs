@@ -1,7 +1,6 @@
-﻿using Systems;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Camera
+namespace Cameras
 {
     public class CameraPivot : MonoBehaviour
     {

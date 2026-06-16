@@ -1,12 +1,10 @@
-﻿using CoreSystem;
-using CoreSystem.BusSystem;
-using GameEvents;
+﻿using CoreSystem.BusSystem;
 using GameEvents.Camera;
 using Reflex.Attributes;
 using Systems;
 using UnityEngine;
 
-namespace Camera
+namespace Cameras
 {
     public class CameraRigRoot : MonoBehaviour
     {

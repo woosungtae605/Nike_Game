@@ -7,6 +7,8 @@ namespace Systems
     [CreateAssetMenu(fileName = "inputSystem", menuName = "SO/inputSystem", order = 0)]
     public class PlayerInputSO : ScriptableObject, Controller.IPlayerActions
     {
+        [SerializeField] private LayerMask whatIsGround;
+        
         public event Action<Vector2> OnMovementPressed;
         public event Action OnLeftMousePressedStart;
         public event Action OnLeftMousePressedEnd;
@@ -15,7 +17,20 @@ namespace Systems
         public event Action<Vector2> OnMouseDeltaPos;
         public event Action<Vector2> OnMousePos;
         
+        private Camera _mainCam;
+        public Camera MainCam
+        {
+            get
+            {
+                if(_mainCam == null)
+                    _mainCam = Camera.main;
+                return _mainCam;
+            }
+        }
+        
         public Vector2 CurrentMousePosition { get; private set; }
+        
+        private Vector3 _worldMousePosition;
 
         private Controller _inputSo;
         private void OnEnable()
@@ -32,6 +47,18 @@ namespace Systems
         private void OnDisable()
         {
             _inputSo.Player.Disable();
+        }
+        
+        public Vector3 GetWorldMousePosition()
+        {
+            if (MainCam == null)
+                return _worldMousePosition;
+            Ray camRay = MainCam.ScreenPointToRay(CurrentMousePosition);
+            if (Physics.Raycast(camRay, out RaycastHit hit, MainCam.farClipPlane, whatIsGround))
+            {
+                _worldMousePosition = hit.point;
+            }
+            return _worldMousePosition;
         }
 
         public void OnMove(InputAction.CallbackContext context)

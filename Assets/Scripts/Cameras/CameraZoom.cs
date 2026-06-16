@@ -1,11 +1,10 @@
-﻿using System;
-using CoreSystem.BusSystem;
+﻿using CoreSystem.BusSystem;
 using GameEvents.Camera;
 using LitMotion;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Camera
+namespace Cameras
 {
     public class CameraZoom : MonoBehaviour
     {
