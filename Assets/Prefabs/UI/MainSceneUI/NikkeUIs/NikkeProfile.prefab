@@ -584,6 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1211403166262838496}
   - component: {fileID: -6097976693576055850}
+  - component: {fileID: 201535961081234542}
   m_Layer: 5
   m_Name: NikkeProfile
   m_TagString: Untagged
@@ -635,6 +636,20 @@ MonoBehaviour:
   nameText: {fileID: 2939661977994810327}
   profileImage: {fileID: 4415774685226318264}
   clickBtn: {fileID: 1254523487898792638}
+  animDuration: 0.5
+  slideOffset: 100
+--- !u!225 &201535961081234542
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734713080406207671}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4902211833823382723
 GameObject:
   m_ObjectHideFlags: 0

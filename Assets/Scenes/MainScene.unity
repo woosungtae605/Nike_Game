@@ -3693,10 +3693,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NikkeProfile
       objectReference: {fileID: 0}
-    - target: {fileID: 4902211833823382723, guid: f603a380bf7890e499f39aa031f10380, type: 3}
-      propertyPath: m_Name
-      value: BtnSensor
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -2,7 +2,7 @@
 
 namespace UI.MainSceneUI.Nikkes
 {
-    public class NikkeContatiner : MonoBehaviour
+    public class NikkeContainer : MonoBehaviour
     {
         
     }
