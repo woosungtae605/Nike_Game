@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Hacker data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 1
+  <NikkeName>k__BackingField: "\uB8E8\uCE74"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 37e9672757678e94b9e8a50fe932c1b7, type: 2}
-  <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
+  <NikkeSprite>k__BackingField: {fileID: 884049336, guid: 28ee9ef2b66dc4149b8aab0543b58f24, type: 3}
   <MaxHp>k__BackingField: 150

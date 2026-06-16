@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Cat data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 1
+  <NikkeName>k__BackingField: "\uC57C\uC639\uC774"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: c46f195d8adb7e94f9a1b0e1991ff117, type: 2}
   <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
   <MaxHp>k__BackingField: 100

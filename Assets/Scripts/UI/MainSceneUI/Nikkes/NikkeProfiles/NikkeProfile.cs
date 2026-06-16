@@ -21,25 +21,33 @@ namespace UI.MainSceneUI.Nikkes.NikkeProfiles
         private PlayerDataSO _playerData;
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
-        private Vector2 _originPos;
         
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
+            if (_canvasGroup == null)
+                _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
             _rectTransform = GetComponent<RectTransform>();
-            _originPos = _rectTransform.anchoredPosition;
         }
         
         public void Show(PlayerDataSO item)
         {
+            gameObject.SetActive(true);
+
             _playerData = item;
             nameText.text = item.NikkeName;
             profileImage.sprite = item.NikkeSprite;
-            
-            _rectTransform.anchoredPosition = _originPos + Vector2.up * slideOffset;
+            _canvasGroup.alpha = 0f;
+        }
+
+        public void PlayShowAnimation()
+        {
+            Vector2 originPos = _rectTransform.anchoredPosition;
+            _rectTransform.anchoredPosition = originPos + Vector2.up * slideOffset;
             _canvasGroup.alpha = 0f;
 
-            LMotion.Create(_originPos + Vector2.up * slideOffset, _originPos, animDuration)
+            LMotion.Create(originPos + Vector2.up * slideOffset, originPos, animDuration)
                 .WithEase(Ease.OutCubic)
                 .BindToAnchoredPosition(_rectTransform);
 
@@ -51,6 +59,10 @@ namespace UI.MainSceneUI.Nikkes.NikkeProfiles
         public void Hide()
         {
             _playerData = null;
+            if (_canvasGroup != null)
+                _canvasGroup.alpha = 0f;
+
+            gameObject.SetActive(false);
         }
     }
 }
