@@ -10,6 +10,7 @@ namespace UI.MainSceneUI.Nikkes
         [SerializeField] private GameObject showGameObject;
 
         [SerializeField] private TextMeshProUGUI nameText;
+        [SerializeField] private Image nikkeImage;
         
         [Header("Status")] 
         [SerializeField] private TextMeshProUGUI attackText;
@@ -42,6 +43,7 @@ namespace UI.MainSceneUI.Nikkes
                 ? playerDataSo.PlayerGunData.GunData.GunName
                 : string.Empty;
             storyText.text = playerDataSo.NikkeDescription;
+            nikkeImage.sprite = playerDataSo.NikkeSprite;
         }
 
         public void Hide()
