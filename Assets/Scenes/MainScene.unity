@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 41211087}
   - component: {fileID: 41211089}
   - component: {fileID: 41211088}
+  - component: {fileID: 41211091}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -290,6 +291,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41211086}
   m_CullTransparentMesh: 1
+--- !u!114 &41211091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41211086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49184f7ff20157488a461b375b445ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquadSlotUI
+  iconImage: {fileID: 41211088}
+  noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &58161653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,7 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3522,7 +3537,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -3541,7 +3556,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquardCanvas
   <MyButtonType>k__BackingField: 1
   playerDataSos: {fileID: 11400000, guid: 49dbbb0e805018e4894011d061ec669f, type: 2}
+  playerSquad: {fileID: 11400000, guid: b9db07e5b94b73b4c8ee63f75d768b0d, type: 2}
   nikkeContainer: {fileID: 1089848723}
+  squadPlusUI: {fileID: 1390588741}
   squad: {fileID: 919227324}
 --- !u!1 &1072799186
 GameObject:
@@ -4886,6 +4903,7 @@ GameObject:
   - component: {fileID: 1370468835}
   - component: {fileID: 1370468837}
   - component: {fileID: 1370468836}
+  - component: {fileID: 1370468839}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -4950,6 +4968,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370468834}
   m_CullTransparentMesh: 1
+--- !u!114 &1370468839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370468834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49184f7ff20157488a461b375b445ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquadSlotUI
+  iconImage: {fileID: 1370468836}
+  noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &1376415022
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,6 +5325,12 @@ MonoBehaviour:
   - {fileID: 1370468836}
   - {fileID: 1657657363}
   - {fileID: 1443119608}
+  slots:
+  - {fileID: 41211091}
+  - {fileID: 1988829213}
+  - {fileID: 1370468839}
+  - {fileID: 1657657366}
+  - {fileID: 1443119611}
   noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &1401566162
 GameObject:
@@ -5489,6 +5527,7 @@ GameObject:
   - component: {fileID: 1443119607}
   - component: {fileID: 1443119609}
   - component: {fileID: 1443119608}
+  - component: {fileID: 1443119611}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -5553,6 +5592,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443119606}
   m_CullTransparentMesh: 1
+--- !u!114 &1443119611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443119606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49184f7ff20157488a461b375b445ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquadSlotUI
+  iconImage: {fileID: 1443119608}
+  noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &1460347228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6980,6 +7033,7 @@ GameObject:
   - component: {fileID: 1657657362}
   - component: {fileID: 1657657364}
   - component: {fileID: 1657657363}
+  - component: {fileID: 1657657366}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -7044,6 +7098,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657657361}
   m_CullTransparentMesh: 1
+--- !u!114 &1657657366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657657361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49184f7ff20157488a461b375b445ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquadSlotUI
+  iconImage: {fileID: 1657657363}
+  noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &1687611800
 GameObject:
   m_ObjectHideFlags: 0
@@ -8552,6 +8620,7 @@ GameObject:
   - component: {fileID: 1988829209}
   - component: {fileID: 1988829211}
   - component: {fileID: 1988829210}
+  - component: {fileID: 1988829213}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -8616,6 +8685,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988829208}
   m_CullTransparentMesh: 1
+--- !u!114 &1988829213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988829208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49184f7ff20157488a461b375b445ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquadSlotUI
+  iconImage: {fileID: 1988829210}
+  noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &2009377709
 GameObject:
   m_ObjectHideFlags: 0

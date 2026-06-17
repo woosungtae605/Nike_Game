@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dab874d0524f65aecb5629651c5a89, type: 3}
   m_Name: PlayerSquad
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Players.PlayerSquadSO
+  saveFileName: {fileID: 11400000, guid: a0d7e5a14d7b4f77b814af72bd995c3b, type: 2}
+  playerDataSos: {fileID: 11400000, guid: 49dbbb0e805018e4894011d061ec669f, type: 2}
