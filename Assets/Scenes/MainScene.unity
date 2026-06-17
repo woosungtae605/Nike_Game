@@ -5178,6 +5178,7 @@ GameObject:
   - component: {fileID: 1390588739}
   - component: {fileID: 1390588738}
   - component: {fileID: 1390588740}
+  - component: {fileID: 1390588741}
   m_Layer: 5
   m_Name: SquadPlus
   m_TagString: Untagged
@@ -5273,6 +5274,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1390588741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390588736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c94060288d4ef3abed9abefc3ce1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Squards.SquadPlusUI
+  playerSquad: {fileID: 11400000, guid: b9db07e5b94b73b4c8ee63f75d768b0d, type: 2}
+  images:
+  - {fileID: 41211088}
+  - {fileID: 1988829210}
+  - {fileID: 1370468836}
+  - {fileID: 1657657363}
+  - {fileID: 1443119608}
+  noEquip: {fileID: 1181196011, guid: 7af4cae221417be40a4438c0aaa9c585, type: 3}
 --- !u!1 &1401566162
 GameObject:
   m_ObjectHideFlags: 0
