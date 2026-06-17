@@ -1,13 +1,13 @@
-﻿using Reflex.Attributes;
+using Reflex.Attributes;
 using Systems;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace UI
 {
     public class UIFollowMouse : MonoBehaviour
     {
-        [Inject] private PlayerInputSO _playerInputSO;
-        
+        [SerializeField, Inject] private PlayerInputSO _playerInputSO;
 
         private void OnEnable()
         {
@@ -21,6 +21,12 @@ namespace UI
                 _playerInputSO.OnMousePos -= HandleMousePos;
         }
 
+        private void Update()
+        {
+            if (_playerInputSO == null)
+                transform.position = GetCurrentMousePosition();
+        }
+
         private void HandleMousePos(Vector2 mousePosition)
         {
             transform.position = mousePosition;
@@ -28,7 +34,15 @@ namespace UI
 
         public void SnapToCurrentMousePosition()
         {
-            transform.position = _playerInputSO.CurrentMousePosition;
+            transform.position = GetCurrentMousePosition();
+        }
+
+        private Vector2 GetCurrentMousePosition()
+        {
+            if (_playerInputSO != null)
+                return _playerInputSO.CurrentMousePosition;
+
+            return Mouse.current != null ? Mouse.current.position.ReadValue() : Vector2.zero;
         }
     }
 }

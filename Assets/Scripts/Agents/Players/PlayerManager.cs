@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Agents.Enemies;
 using Agents.FSM;
@@ -12,14 +11,24 @@ namespace Agents.Players
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] private List<Player> playerList;
+        [SerializeField] private PlayerSquadSO playerSquad;
+        [SerializeField] private Transform[] spawnPoints;
+        [SerializeField] private Transform playerParent;
+
+        private readonly List<Player> playerList = new();
+        private readonly List<Player> _spawnedPlayers = new();
         public IReadOnlyList<Player> Players => playerList;
         public Player CurrentPlayer { get; private set; }
 
         private EnemyRegisterSo _enemyRegisterSo;
+        private static readonly Key[] ChangePlayerKeys =
+        {
+            Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5
+        };
 
         private void Awake()
         {
+            SpawnSquadPlayers();
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
         }
 
@@ -32,6 +41,9 @@ namespace Agents.Players
         {
             foreach (Player player in playerList)
             {
+                if (player == null)
+                    continue;
+
                 player.ChangeState(PlayerStates.Dummy);
             }
         }
@@ -39,12 +51,83 @@ namespace Agents.Players
         public void Init(EnemyRegisterSo enemyRegisterSo)
         {
             _enemyRegisterSo = enemyRegisterSo;
+
+            if (playerList.Count <= 0)
+                SpawnSquadPlayers();
+
             foreach (Player player in playerList)
             {
+                if (player == null)
+                    continue;
+
                 player.SetEnemyRegister(_enemyRegisterSo);
                 player.PlayerNotControl();
             }
-            ChangePlayer(0);
+
+            ChangeFirstPlayer();
+        }
+
+        private void SpawnSquadPlayers()
+        {
+            ClearSpawnedPlayers();
+
+            if (playerSquad == null)
+            {
+                Debug.LogError("PlayerSquadSO is null", this);
+                return;
+            }
+
+            PlayerDataSO[] playerDatas = playerSquad.PlayerDataSos;
+            if (playerDatas == null)
+                return;
+
+            for (int i = 0; i < playerDatas.Length; i++)
+            {
+                PlayerDataSO playerData = playerDatas[i];
+                if (playerData == null || playerData.player == null)
+                    continue;
+
+                Player player = SpawnPlayer(playerData.player, i);
+                if (player == null)
+                    continue;
+
+                playerList.Add(player);
+                _spawnedPlayers.Add(player);
+            }
+        }
+
+        private Player SpawnPlayer(Player playerPrefab, int index)
+        {
+            Transform spawnPoint = GetSpawnPoint(index);
+            Vector3 position = spawnPoint != null ? spawnPoint.position : transform.position;
+            Quaternion rotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
+            Transform parent = playerParent != null ? playerParent : transform;
+
+            return Instantiate(playerPrefab, position, rotation, parent);
+        }
+
+        private Transform GetSpawnPoint(int index)
+        {
+            if (spawnPoints == null || index < 0 || index >= spawnPoints.Length)
+                return null;
+
+            return spawnPoints[index];
+        }
+
+        private void ClearSpawnedPlayers()
+        {
+            CurrentPlayer = null;
+            playerList.Clear();
+
+            foreach (Player player in _spawnedPlayers)
+            {
+                if (player == null)
+                    continue;
+
+                Destroy(player.gameObject);
+            }
+
+            _spawnedPlayers.Clear();
         }
 
         public Player GetClosestPlayer(Vector3 origin)
@@ -89,13 +172,25 @@ namespace Agents.Players
 
         private void Update()
         {
-            if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
+            for (int i = 0; i < ChangePlayerKeys.Length && i < playerList.Count; i++)
             {
-                ChangePlayer(0);
+                if (Keyboard.current[ChangePlayerKeys[i]].wasPressedThisFrame)
+                {
+                    ChangePlayer(i);
+                    return;
+                }
             }
-            else if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
+        }
+
+        private void ChangeFirstPlayer()
+        {
+            for (int i = 0; i < playerList.Count; i++)
             {
-                ChangePlayer(1);
+                if (playerList[i] != null && playerList[i].gameObject.activeInHierarchy)
+                {
+                    ChangePlayer(i);
+                    return;
+                }
             }
         }
 
@@ -106,6 +201,9 @@ namespace Agents.Players
                 Debug.LogError($"Player index {index} is out of range");
                 return;
             }
+            if (playerList[index] == null)
+                return;
+
             if (CurrentPlayer != null)
                 CurrentPlayer.PlayerNotControl();
             
