@@ -18,6 +18,7 @@ namespace UI.BattleStartUI
         [SerializeField] private Button playButton;
         [SerializeField] private float moveDistance = 60f;
         [SerializeField] private float moveDuration = 0.35f;
+        [SerializeField] private CurrentWaveInformationSO currentWaveInformation;
 
         private WaveInformationSO _informationSo;
         private RectTransform _waveRect;
@@ -34,6 +35,12 @@ namespace UI.BattleStartUI
 
         private void GotoWave()
         {
+            if (_informationSo == null)
+                return;
+
+            if (currentWaveInformation != null)
+                currentWaveInformation.SetCurrentWaveInformation(_informationSo);
+
             FadeManager.Instance.FadeAndExecute(() => SceneManager.LoadScene(_informationSo.WaveName));
         }
 
@@ -49,6 +56,9 @@ namespace UI.BattleStartUI
         private void HandleBattleGoUI(BattleGoUIEvent obj)
         {
             _informationSo = obj.waveInformationSo;
+            if (_informationSo == null)
+                return;
+
             wave.text = "Wave - " + obj.waveInformationSo.WaveNumber.ToString();
             PlayUpMotion();
         }

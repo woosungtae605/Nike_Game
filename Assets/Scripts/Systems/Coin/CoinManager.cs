@@ -36,6 +36,7 @@ namespace Systems.Coin
 
         private void HandleCoinEvent(CoinEvent coinEvent)
         {
+            Debug.Log($"[Coin] Receive coin event: {coinEvent.Amount}", this);
             AddCoin(coinEvent.Amount);
         }
 

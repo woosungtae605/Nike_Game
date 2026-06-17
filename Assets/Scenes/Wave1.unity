@@ -5670,6 +5670,8 @@ MonoBehaviour:
   playerManager: {fileID: 1687233503}
   enemyManager: {fileID: 1674721352}
   waveManager: {fileID: 604650599}
+  currentWaveInformation: {fileID: 11400000, guid: 7a93d53a8ad94b61b5f920db63bb0182, type: 2}
+  fallbackWaveInformation: {fileID: 11400000, guid: 19780bc1e12ed564a9058e780005cefb, type: 2}
 --- !u!1 &995740347
 GameObject:
   m_ObjectHideFlags: 0

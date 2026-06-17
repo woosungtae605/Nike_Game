@@ -22,6 +22,13 @@ namespace Systems.GameSystem.Wave
          public Action<AbstractEnemy> OnBossSpawn;
          public int WaveCount => waveData == null || waveData.SpawnDataSos == null ? 0 : waveData.SpawnDataSos.Length;
 
+         public void SetWaveInformation(WaveInformationSO waveInformation)
+         {
+             if (waveInformation == null || waveInformation.WaveData == null)
+                 return;
+
+             waveData = waveInformation.WaveData;
+         }
          
          public void SetEnemyManager(EnemyManager enemyManager)
          {
@@ -39,6 +46,11 @@ namespace Systems.GameSystem.Wave
          private IEnumerator WaveRoutine()
          {
              int waveCount = WaveCount;
+             if (waveCount <= 0)
+             {
+                 OnClear?.Invoke();
+                 yield break;
+             }
              
              int lastWaveCount = waveCount - 1;
              for (int i = 0; i < waveCount; i++)
@@ -49,7 +61,8 @@ namespace Systems.GameSystem.Wave
 
                  if (spawnData.IsBossSpawned)
                  {
-                     OnBossSpawn?.Invoke(spawnedEnemies[0]);
+                     if (spawnedEnemies.Count > 0)
+                         OnBossSpawn?.Invoke(spawnedEnemies[0]);
                  }
                  else
                  {

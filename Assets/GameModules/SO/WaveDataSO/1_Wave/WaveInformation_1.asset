@@ -15,3 +15,4 @@ MonoBehaviour:
   <WaveData>k__BackingField: {fileID: 11400000, guid: 63a58841b9677df44a3f88dad98470a6, type: 2}
   <WaveName>k__BackingField: Wave1
   <WaveNumber>k__BackingField: 1
+  <GetCoin>k__BackingField: 500

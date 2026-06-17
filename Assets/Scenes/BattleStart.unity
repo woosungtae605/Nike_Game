@@ -2022,6 +2022,7 @@ MonoBehaviour:
   playButton: {fileID: 1685184937}
   moveDistance: 400
   moveDuration: 0.35
+  currentWaveInformation: {fileID: 11400000, guid: 7a93d53a8ad94b61b5f920db63bb0182, type: 2}
 --- !u!1 &1135144664
 GameObject:
   m_ObjectHideFlags: 0
