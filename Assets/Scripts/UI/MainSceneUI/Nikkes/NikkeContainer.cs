@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using System;
 using Agents.Players;
 using UI.MainSceneUI.Nikkes.NikkeProfiles;
 using UnityEngine;
@@ -18,12 +19,31 @@ namespace UI.MainSceneUI.Nikkes
         private readonly List<NikkeProfile> _activeProfiles = new List<NikkeProfile>();
         private Coroutine _showRoutine;
 
+        public event Action<PlayerDataSO> OnClickProfile;
+
         private void Awake()
         {
             if (profileParent == null)
                 profileParent = transform;
 
             CreatePool(defaultPoolCount);
+        }
+
+        private void OnDestroy()
+        {
+            StopShowRoutine();
+
+            foreach (NikkeProfile profile in _activeProfiles)
+            {
+                if (profile != null)
+                    profile.OnClickBtn -= HandleClickProfile;
+            }
+
+            foreach (NikkeProfile profile in _profilePool)
+            {
+                if (profile != null)
+                    profile.OnClickBtn -= HandleClickProfile;
+            }
         }
 
         public void Init(PlayerDataSos playerDataSos)
@@ -74,6 +94,8 @@ namespace UI.MainSceneUI.Nikkes
             for (int i = 0; i < count; i++)
             {
                 NikkeProfile profile = Instantiate(profilePrefab, profileParent);
+                profile.OnClickBtn -= HandleClickProfile;
+                profile.OnClickBtn += HandleClickProfile;
                 profile.Hide();
                 _profilePool.Enqueue(profile);
             }
@@ -122,6 +144,14 @@ namespace UI.MainSceneUI.Nikkes
                 LayoutRebuilder.ForceRebuildLayoutImmediate(parentRect);
 
             Canvas.ForceUpdateCanvases();
+        }
+
+        private void HandleClickProfile(PlayerDataSO playerData)
+        {
+            if (playerData == null)
+                return;
+
+            OnClickProfile?.Invoke(playerData);
         }
     }
 }
