@@ -6,6 +6,7 @@ namespace Systems.GameSystem.Wave
     public class WaveInformationSO : ScriptableObject
     {
         [field: SerializeField] public WaveDataSo WaveData { get; private set; }
+        [field: SerializeField] public string WaveName { get; private set; }
         [field: SerializeField] public int WaveNumber { get; private set; }
     }
 }
