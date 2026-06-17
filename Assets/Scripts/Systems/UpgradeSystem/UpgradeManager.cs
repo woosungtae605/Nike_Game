@@ -17,6 +17,8 @@ namespace Systems.UpgradeSystem
         [SerializeField] private int attackIncreasePerLevel = 1;
         [SerializeField] private int hpIncreasePerLevel = 10;
         
+        public int MaxLevel => maxLevel;
+        
         private readonly Dictionary<int, int> _levels = new();
         private void Awake()
         {
