@@ -3,6 +3,7 @@ using Agents.Enemies;
 using Agents.FSM;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
+using Systems.UpgradeSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -12,6 +13,7 @@ namespace Agents.Players
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private PlayerSquadSO playerSquad;
+        [SerializeField] private UpgradeManager upgradeManager;
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private Transform playerParent;
 
@@ -91,9 +93,19 @@ namespace Agents.Players
                 if (player == null)
                     continue;
 
+                ApplyUpgradeStats(player, playerData);
                 playerList.Add(player);
                 _spawnedPlayers.Add(player);
             }
+        }
+
+        private void ApplyUpgradeStats(Player player, PlayerDataSO playerData)
+        {
+            if (player == null || playerData == null || upgradeManager == null)
+                return;
+
+            player.SetBattleStats(upgradeManager.GetAttack(playerData), upgradeManager.GetMaxHp(playerData));
+            Debug.Log($"[Player] Apply upgrade stats {playerData.NikkeName} LV:{upgradeManager.GetLevel(playerData) + 1} ATK:{player.AttackDamage} HP:{player.MaxHp}", player);
         }
 
         private Player SpawnPlayer(Player playerPrefab, int index)

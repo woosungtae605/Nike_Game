@@ -31,6 +31,8 @@ namespace Agents.Players
         
         public EnemyRegisterSo EnemyRegisterSo { get; private set; }
         public AbstractEnemy CurrentTarget { get; private set; }
+        public int AttackDamage { get; private set; }
+        public int MaxHp { get; private set; }
 
         protected override void InitializeComponents()
         {
@@ -41,7 +43,26 @@ namespace Agents.Players
             CoverModule = GetModule<CoverModule>();
             GunCursorModule = GetModule<GunCursorModule>();
             
-            HealthModule.ChangeHealth(PlayerData.MaxHp);
+            AttackDamage = GetBaseAttackDamage();
+            MaxHp = PlayerData.MaxHp;
+            HealthModule.ChangeHealth(MaxHp);
+        }
+
+        public void SetBattleStats(int attackDamage, int maxHp)
+        {
+            AttackDamage = Mathf.Max(0, attackDamage);
+            MaxHp = Mathf.Max(1, maxHp);
+
+            if (HealthModule != null)
+                HealthModule.ChangeHealth(MaxHp);
+        }
+
+        private int GetBaseAttackDamage()
+        {
+            if (PlayerData == null || PlayerData.PlayerGunData == null || PlayerData.PlayerGunData.GunData == null)
+                return 0;
+
+            return PlayerData.PlayerGunData.GunData.Damage;
         }
 
         public void SetEnemyRegister(EnemyRegisterSo enemyRegisterSo)

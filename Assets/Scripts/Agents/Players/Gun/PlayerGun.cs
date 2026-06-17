@@ -20,6 +20,7 @@ namespace Agents.Players.Gun
         
         private int _currentAmmo;
         public int CurrentAmmo => _currentAmmo;
+        public int CurrentDamage => Owner != null && Owner.AttackDamage > 0 ? Owner.AttackDamage : GunData.Damage;
         
         private float _lastFireTime;
         public float LastFireTime => _lastFireTime;

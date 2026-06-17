@@ -20,7 +20,7 @@ namespace Agents.Players.Gun.GunData
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
 
             if (playerGunOwner.RayDamageCaster.RayCastDamage(ray.origin, ray.direction,
-                    new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner }))
+                    new DamageData { Damage = playerGunOwner.CurrentDamage, Attacker = playerGunOwner.Owner }))
             {
                 playerGunOwner.LineEffectModule.Shot(LineEffectDuration, lineStartPosition, playerGunOwner.ActionDataModule.HitPoint);   
             }
@@ -46,7 +46,7 @@ namespace Agents.Players.Gun.GunData
             Vector3 direction = GetSpreadDirection((target.HitPos.position - lineStartPosition).normalized, AIRandomSpreadAngle);
 
             bool isHit = playerGunOwner.RayDamageCaster.RayCastDamage(lineStartPosition, direction,
-                new DamageData { Damage = Damage, Attacker = playerGunOwner.Owner });
+                new DamageData { Damage = playerGunOwner.CurrentDamage, Attacker = playerGunOwner.Owner });
 
             Vector3 endPosition = isHit
                 ? playerGunOwner.ActionDataModule.HitPoint

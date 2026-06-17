@@ -9909,6 +9909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687233502}
   - component: {fileID: 1687233503}
+  - component: {fileID: 1687233504}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -9946,6 +9947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSquad: {fileID: 11400000, guid: b9db07e5b94b73b4c8ee63f75d768b0d, type: 2}
+  upgradeManager: {fileID: 1687233504}
   spawnPoints:
   - {fileID: 1347558320}
   - {fileID: 1795580260}
@@ -9953,6 +9955,24 @@ MonoBehaviour:
   - {fileID: 1712678220}
   - {fileID: 1244543029}
   playerParent: {fileID: 945669533}
+--- !u!114 &1687233504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687233501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6819ffc6ff414a748fa7ad93347048e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Systems.UpgradeSystem.UpgradeManager
+  saveFileSo: {fileID: 11400000, guid: fdc3baeba3f5f20468f87185ee913c10, type: 2}
+  maxLevel: 20
+  baseCost: 100
+  costIncrease: 50
+  attackIncreasePerLevel: 2
+  hpIncreasePerLevel: 10
 --- !u!1 &1688223754
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,8 @@ namespace Systems.UpgradeSystem
         public int MaxLevel => maxLevel;
         
         private readonly Dictionary<int, int> _levels = new();
+        private bool _isLoaded;
+
         private void Awake()
         {
             Load();
@@ -28,6 +30,8 @@ namespace Systems.UpgradeSystem
 
         public int GetLevel(PlayerDataSO playerData)
         {
+            EnsureLoaded();
+
             if (playerData == null)
                 return 0;
 
@@ -95,11 +99,13 @@ namespace Systems.UpgradeSystem
             }
 
             JsonSaveService.Save(saveFileSo, saveDatas);
+            _isLoaded = true;
         }
 
         private void Load()
         {
             _levels.Clear();
+            _isLoaded = true;
 
             if (!JsonSaveService.TryLoad(saveFileSo, out UpgradeSaveDatas saveDatas))
                 return;
@@ -111,6 +117,14 @@ namespace Systems.UpgradeSystem
             {
                 _levels[saveData.playerId] = saveData.level;
             }
+        }
+
+        private void EnsureLoaded()
+        {
+            if (_isLoaded)
+                return;
+
+            Load();
         }
         
     }

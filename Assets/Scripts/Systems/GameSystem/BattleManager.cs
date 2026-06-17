@@ -52,10 +52,6 @@ namespace Systems.GameSystem
 
             _isBattleCleared = false;
             _waveInformation = ResolveWaveInformation();
-            if (_waveInformation != null)
-                Debug.Log($"[Battle] Wave start: {_waveInformation.WaveName}, coin: {_waveInformation.GetCoin}", this);
-            else
-                Debug.LogWarning("[Battle] WaveInformation is null. Clear reward will be 0.", this);
             
             //enemy 초기화
             enemyManager.ClearEnemies();
