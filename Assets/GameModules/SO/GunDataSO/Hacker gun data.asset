@@ -21,6 +21,7 @@ MonoBehaviour:
     - rid: 5427449051656224836
       type: {class: ShotgunData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
+        <GunName>k__BackingField: "\uC0F7\uAC74"
         damage: 10
         fireInterval: 0.7
         maxAmmo: 7

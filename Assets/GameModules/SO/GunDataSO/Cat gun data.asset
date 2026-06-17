@@ -21,15 +21,16 @@ MonoBehaviour:
     - rid: 3787334453019017291
       type: {class: ARData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
+        <GunName>k__BackingField: AR
         damage: 10
         fireInterval: 0.1
         maxAmmo: 30
         reloadTime: 1.5
         maxDistance: 100
+        aiRandomSpreadAngle: 1
         hitMask:
           serializedVersion: 2
           m_Bits: 64
         cameraShakePower: 0.3
         cameraShakeDuration: 0.1
-        cursorSprite: {fileID: 1841779649, guid: 2c10d04ee96a58440ac4d2f7fdec3c7e, type: 3}
-        ar: 0
+        lineEffectDuration: 0.05

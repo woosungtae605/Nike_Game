@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e27e82988834ae2bd94a862c03fba0a, type: 3}
   m_Name: Player_Cat data
   m_EditorClassIdentifier: 
-  <NikkeID>k__BackingField: 1
+  <NikkeID>k__BackingField: 0
   <NikkeName>k__BackingField: "\uC57C\uC639\uC774"
+  <NikkeDescription>k__BackingField: "\uC790\uC2E0\uC758 \uC8FC\uC778\uC5D0\uAC8C
+    \uBC30\uC2E0\uB2F9\uD574 \uC911\uC131\uD654\uB97C \uB2F9\uD55C \uACE0\uC591\uC774.
+    \uC778\uAC04\uC5D0\uAC8C \uBCF5\uC218\uD558\uAE30 \uC704\uD574 AR\uC744 \uB4E4\uC5C8\uB2E4."
+  <Sexuality>k__BackingField: "\uC911\uC131"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: c46f195d8adb7e94f9a1b0e1991ff117, type: 2}
   <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
   <MaxHp>k__BackingField: 100

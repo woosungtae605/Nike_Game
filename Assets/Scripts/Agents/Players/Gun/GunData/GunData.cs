@@ -7,6 +7,8 @@ namespace Agents.Players.Gun.GunData
     [Serializable]
     public abstract class GunData
     {
+        [field : SerializeField] public string GunName { get; private set; }
+        
         [Header("Common")]
         [SerializeField] private int damage = 10;
         [SerializeField] private float fireInterval = 0.1f;
