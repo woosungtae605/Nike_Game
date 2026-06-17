@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using Agents.Players;
+using Systems.SaveSystem;
+using UnityEngine;
+
+namespace Systems.UpgradeSystem
+{
+    public class UpgradeManager : MonoBehaviour
+    {
+        [SerializeField] private SaveFileNameSO saveFileSo;
+
+        [Header("Settings")]
+        [SerializeField] private int maxLevel = 100;
+        [SerializeField] private int baseCost = 100;
+        [SerializeField] private int costIncrease = 50;
+        [SerializeField] private int attackIncreasePerLevel = 1;
+        [SerializeField] private int hpIncreasePerLevel = 10;
+        
+        private readonly Dictionary<int, int> _levels = new();
+        private void Awake()
+        {
+            Load();
+        }
+
+        public int GetLevel(PlayerDataSO playerData)
+        {
+            if (playerData == null)
+                return 0;
+
+            return _levels.GetValueOrDefault(playerData.NikkeID, 0);
+        }
+        
+        public int GetUpgradeCost(PlayerDataSO playerData)
+        {
+            int level = GetLevel(playerData);
+            return baseCost + level * costIncrease;
+        }
+
+        public bool CanUpgrade(PlayerDataSO playerData)
+        {
+            return playerData != null && GetLevel(playerData) < maxLevel;
+        }
+
+        public bool TryUpgrade(PlayerDataSO playerData)
+        {
+            if (!CanUpgrade(playerData))
+                return false;
+
+            int currentLevel = GetLevel(playerData);
+            _levels[playerData.NikkeID] = currentLevel + 1;
+
+            Save();
+            return true;
+        }
+
+        public int GetAttack(PlayerDataSO playerData)
+        {
+            if (playerData == null)
+                return 0;
+
+            return playerData.PlayerGunData.GunData.Damage + GetLevel(playerData) * attackIncreasePerLevel;
+        }
+
+        public int GetMaxHp(PlayerDataSO playerData)
+        {
+            if (playerData == null)
+                return 0;
+
+            return playerData.MaxHp + GetLevel(playerData) * hpIncreasePerLevel;
+        }
+
+        private void Save()
+        {
+            UpgradeSaveDatas saveDatas = new UpgradeSaveDatas();
+
+            foreach ((int playerId, int level) in _levels)
+            {
+                saveDatas.upgradeSaveDatas.Add(new UpgradeSaveData(playerId, level));
+            }
+
+            JsonSaveService.Save(saveFileSo, saveDatas);
+        }
+
+        private void Load()
+        {
+            _levels.Clear();
+
+            if (!JsonSaveService.TryLoad(saveFileSo, out UpgradeSaveDatas saveDatas))
+                return;
+
+            if (saveDatas?.upgradeSaveDatas == null)
+                return;
+
+            foreach (UpgradeSaveData saveData in saveDatas.upgradeSaveDatas)
+            {
+                _levels[saveData.playerId] = saveData.level;
+            }
+        }
+        
+    }
+
+    [Serializable]
+    public class UpgradeSaveDatas
+    {
+        public List<UpgradeSaveData> upgradeSaveDatas = new();
+    }
+    [Serializable]
+    public class UpgradeSaveData
+    {
+        public int playerId;
+        public int level;
+
+        public UpgradeSaveData(int playerId, int level)
+        {
+            this.playerId = playerId;
+            this.level = level;
+        }
+    }
+}

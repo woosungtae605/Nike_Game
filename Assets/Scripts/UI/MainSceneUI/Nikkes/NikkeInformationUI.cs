@@ -21,6 +21,7 @@ namespace UI.MainSceneUI.Nikkes
         [SerializeField] private TextMeshProUGUI ageText;
         [SerializeField] private TextMeshProUGUI gunText;
         [SerializeField] private TextMeshProUGUI storyText;
+        [SerializeField] private TextMeshProUGUI needMoney;
 
         [SerializeField] private Button upgradeBtn;
         

@@ -8,5 +8,6 @@ namespace Systems.GameSystem.Wave
         [field: SerializeField] public WaveDataSo WaveData { get; private set; }
         [field: SerializeField] public string WaveName { get; private set; }
         [field: SerializeField] public int WaveNumber { get; private set; }
+        [field: SerializeField] public int GetCoin { get; private set; }
     }
 }
