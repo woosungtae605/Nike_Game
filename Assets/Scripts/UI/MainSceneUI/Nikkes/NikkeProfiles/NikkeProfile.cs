@@ -1,4 +1,5 @@
-﻿using Agents.Players;
+﻿using System;
+using Agents.Players;
 using LitMotion;
 using LitMotion.Extensions;
 using TMPro;
@@ -22,6 +23,8 @@ namespace UI.MainSceneUI.Nikkes.NikkeProfiles
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
         
+        public event Action<PlayerDataSO> OnClickBtn;
+        
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
@@ -29,8 +32,19 @@ namespace UI.MainSceneUI.Nikkes.NikkeProfiles
                 _canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
             _rectTransform = GetComponent<RectTransform>();
+            clickBtn.onClick.AddListener(SendPlayerData);
         }
-        
+
+        private void OnDestroy()
+        {
+            clickBtn.onClick.RemoveListener(SendPlayerData);
+        }
+
+        private void SendPlayerData()
+        {
+            OnClickBtn?.Invoke(_playerData);
+        }
+
         public void Show(PlayerDataSO item)
         {
             gameObject.SetActive(true);
