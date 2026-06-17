@@ -57,7 +57,7 @@ namespace UI.BattleUI.CharactorInfo
                 statusDot.color = selected ? new Color(1f, 0.73f, 0.15f, 1f) : new Color(0.24f, 0.42f, 0.68f, 1f);
 
             if (nameText != null)
-                nameText.text = _player.name;
+                nameText.text = _player.PlayerData != null ? _player.PlayerData.NikkeName : _player.name;
 
             UpdatePortrait();
             UpdateAmmo();
