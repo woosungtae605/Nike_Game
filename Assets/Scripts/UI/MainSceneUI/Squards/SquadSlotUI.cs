@@ -32,6 +32,9 @@ namespace UI.MainSceneUI.Squards
                 return;
 
             iconImage.sprite = _playerData != null ? _playerData.NikkeSprite : noEquip;
+            Color color = iconImage.color;
+            color.a = _playerData != null ? 1f : 0f;
+            iconImage.color = color;
         }
 
         public void OnPointerClick(PointerEventData eventData)
