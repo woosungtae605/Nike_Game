@@ -11,7 +11,8 @@ namespace Agents.Module
         [SerializeField] private PlayerInputSO inputSO;
         [SerializeField] private AnimParamSO _walkHash;
         [SerializeField] private AnimParamSO _idleHash;
-        
+
+        public bool CanClick { get; private set; } = true;
         private INavMovement _navMovement;
         private RendererModule agentRenderer;
         private ModuleOwner Owner;
@@ -52,8 +53,15 @@ namespace Agents.Module
             }
         }
 
+        public void CanClickChange(bool value)
+        {
+            CanClick = value;
+        }
+
         private void HandleLeftMouseClick()
         {
+            if (!CanClick) return;
+            
             Vector3 mouseWorldPosition = inputSO.GetWorldMousePosition();
 
             _navMovement.SetDestination(mouseWorldPosition);

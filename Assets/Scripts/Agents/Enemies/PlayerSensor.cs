@@ -1,3 +1,4 @@
+using Agents.Module;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using Systems.GameSystem.Wave;
@@ -21,6 +22,12 @@ namespace Agents.Enemies
 
             if(other.TryGetComponent<Agent>(out Agent agent))
             {
+                INavMovement navMove = agent.GetModule<INavMovement>();
+                navMove.StopImmediately();
+
+                PlayerMoveInput moveInput = agent.GetModule<PlayerMoveInput>();
+                moveInput.CanClickChange(false);
+                
                 Bus<BattleGoUIEvent>.Raise(new BattleGoUIEvent(waveInformationSO));
             }
         }
