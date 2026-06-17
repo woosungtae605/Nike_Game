@@ -16,6 +16,7 @@ namespace Systems.SaveSystem
 
             string json = JsonUtility.ToJson(data, true);
             File.WriteAllText(saveFileName.SavePath, json);
+            Debug.Log($"Save complete. Path: {saveFileName.SavePath}");
         }
 
         public static bool TryLoad<T>(SaveFileNameSO saveFileName, out T data)

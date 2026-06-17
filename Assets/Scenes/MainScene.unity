@@ -1759,6 +1759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Nikkes.NikkeInformationUI
   upgradeManager: {fileID: 1405116940}
+  coinManager: {fileID: 8833306899482278025}
   showGameObject: {fileID: 1583036908}
   nameText: {fileID: 1376415025}
   nikkeImage: {fileID: 1973374577}

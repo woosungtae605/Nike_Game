@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Agents.Players;
+using Systems.Coin;
 using Systems.SaveSystem;
 using UnityEngine;
 
@@ -54,6 +55,18 @@ namespace Systems.UpgradeSystem
 
             Save();
             return true;
+        }
+
+        public bool TryUpgrade(PlayerDataSO playerData, CoinManager coinManager)
+        {
+            if (!CanUpgrade(playerData) || coinManager == null)
+                return false;
+
+            int cost = GetUpgradeCost(playerData);
+            if (!coinManager.TryUseCoin(cost))
+                return false;
+
+            return TryUpgrade(playerData);
         }
 
         public int GetAttack(PlayerDataSO playerData)

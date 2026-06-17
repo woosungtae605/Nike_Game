@@ -1,4 +1,5 @@
-﻿using Agents.Players;
+using Agents.Players;
+using Systems.Coin;
 using Systems.UpgradeSystem;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace UI.MainSceneUI.Nikkes
     public class NikkeInformationUI : MonoBehaviour
     {
         [SerializeField] private UpgradeManager upgradeManager;
+        [SerializeField] private CoinManager coinManager;
         
         [SerializeField] private GameObject showGameObject;
 
@@ -47,7 +49,7 @@ namespace UI.MainSceneUI.Nikkes
             if (_playerData == null || upgradeManager == null)
                 return;
 
-            if (!upgradeManager.TryUpgrade(_playerData))
+            if (!upgradeManager.TryUpgrade(_playerData, coinManager))
                 return;
 
             Refresh();
