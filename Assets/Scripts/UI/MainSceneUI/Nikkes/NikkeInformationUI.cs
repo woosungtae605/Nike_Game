@@ -56,21 +56,27 @@ namespace UI.MainSceneUI.Nikkes
         
         private void Refresh()
         {
-            if (_playerData == null || upgradeManager == null)
+            if (_playerData == null)
                 return;
 
-            int level = upgradeManager.GetLevel(_playerData);
-            int maxLevel = upgradeManager.MaxLevel;
+            int level = upgradeManager != null ? upgradeManager.GetLevel(_playerData) : 0;
+            int maxLevel = upgradeManager != null ? upgradeManager.MaxLevel : 0;
             bool isMaxLevel = level >= maxLevel;
 
-            attackText.text = upgradeManager.GetAttack(_playerData).ToString();
-            hpText.text = upgradeManager.GetMaxHp(_playerData).ToString();
+            attackText.text = upgradeManager != null
+                ? upgradeManager.GetAttack(_playerData).ToString()
+                : GetBaseAttack(_playerData).ToString();
+            hpText.text = upgradeManager != null
+                ? upgradeManager.GetMaxHp(_playerData).ToString()
+                : _playerData.MaxHp.ToString();
 
             levelText.text = $"{level + 1} / {maxLevel + 1}";
-            needMoney.text = upgradeManager.GetUpgradeCost(_playerData).ToString();
+            needMoney.text = isMaxLevel || upgradeManager == null
+                ? "MAX"
+                : upgradeManager.GetUpgradeCost(_playerData).ToString();
 
             if (upgradeBtn != null)
-                upgradeBtn.interactable = !isMaxLevel;
+                upgradeBtn.interactable = upgradeManager != null && !isMaxLevel;
         }
         
         public void Show(PlayerDataSO playerDataSo)
@@ -81,9 +87,6 @@ namespace UI.MainSceneUI.Nikkes
             _playerData = playerDataSo;
             showGameObject.SetActive(true);
 
-            attackText.text = playerDataSo.PlayerGunData != null && playerDataSo.PlayerGunData.GunData != null
-                ? playerDataSo.PlayerGunData.GunData.Damage.ToString() : "0";
-            hpText.text = playerDataSo.MaxHp.ToString();
             sexualityText.text = playerDataSo.Sexuality;
             ageText.text = playerDataSo.Age.ToString();
             nameText.text = playerDataSo.NikkeName;
@@ -92,18 +95,20 @@ namespace UI.MainSceneUI.Nikkes
                 : string.Empty;
             storyText.text = playerDataSo.NikkeDescription;
             nikkeImage.sprite = playerDataSo.NikkeSprite;
-            needMoney.text = upgradeManager.GetUpgradeCost(playerDataSo).ToString();
-            
-            int level = upgradeManager.GetLevel(_playerData);
-            int maxLevel = upgradeManager.MaxLevel;
-            
-            levelText.text = $"Lv.{level + 1} / {maxLevel + 1}";
+            Refresh();
         }
 
         public void Hide()
         {
             _playerData = null;
             showGameObject.SetActive(false);
+        }
+
+        private int GetBaseAttack(PlayerDataSO playerData)
+        {
+            return playerData.PlayerGunData != null && playerData.PlayerGunData.GunData != null
+                ? playerData.PlayerGunData.GunData.Damage
+                : 0;
         }
     }
 }
