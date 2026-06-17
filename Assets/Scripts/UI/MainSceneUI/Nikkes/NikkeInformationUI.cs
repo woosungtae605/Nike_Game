@@ -30,6 +30,7 @@ namespace UI.MainSceneUI.Nikkes
         [SerializeField] private Button upgradeBtn;
         
         PlayerDataSO _playerData;
+        public event System.Action<PlayerDataSO> OnUpgrade;
         
         private void Awake()
         {
@@ -50,6 +51,7 @@ namespace UI.MainSceneUI.Nikkes
                 return;
 
             Refresh();
+            OnUpgrade?.Invoke(_playerData);
         }
         
         private void Refresh()

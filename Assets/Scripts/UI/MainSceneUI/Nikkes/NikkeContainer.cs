@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using Agents.Players;
+using Systems.UpgradeSystem;
 using UI.MainSceneUI.Nikkes.NikkeProfiles;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace UI.MainSceneUI.Nikkes
         [SerializeField] private Transform profileParent;
         [SerializeField] private int defaultPoolCount = 10;
         [SerializeField] private float showInterval = 0.05f;
+        [SerializeField] private UpgradeManager upgradeManager;
 
         private readonly Queue<NikkeProfile> _profilePool = new Queue<NikkeProfile>();
         private readonly List<NikkeProfile> _activeProfiles = new List<NikkeProfile>();
@@ -25,6 +27,9 @@ namespace UI.MainSceneUI.Nikkes
         {
             if (profileParent == null)
                 profileParent = transform;
+
+            if (upgradeManager == null)
+                upgradeManager = FindFirstObjectByType<UpgradeManager>();
 
             CreatePool(defaultPoolCount);
         }
@@ -63,7 +68,7 @@ namespace UI.MainSceneUI.Nikkes
                 if (profile == null)
                     return;
 
-                profile.Show(playerData);
+                profile.Show(playerData, GetDisplayLevel(playerData));
                 _activeProfiles.Add(profile);
             }
 
@@ -152,6 +157,29 @@ namespace UI.MainSceneUI.Nikkes
                 return;
 
             OnClickProfile?.Invoke(playerData);
+        }
+
+        public void RefreshProfileLevels()
+        {
+            foreach (NikkeProfile profile in _activeProfiles)
+            {
+                if (profile == null)
+                    continue;
+
+                PlayerDataSO playerData = profile.PlayerData;
+                if (playerData == null)
+                    continue;
+
+                profile.SetLevel(GetDisplayLevel(playerData));
+            }
+        }
+
+        private int GetDisplayLevel(PlayerDataSO playerData)
+        {
+            if (upgradeManager == null)
+                return 1;
+
+            return upgradeManager.GetLevel(playerData) + 1;
         }
     }
 }

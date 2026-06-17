@@ -16,12 +16,18 @@ namespace UI.MainSceneUI.Nikkes
         {
             if (nikkeContainer != null)
                 nikkeContainer.OnClickProfile += HandleClickProfile;
+
+            if (nikkeInformationUI != null)
+                nikkeInformationUI.OnUpgrade += HandleUpgrade;
         }
 
         private void OnDestroy()
         {
             if (nikkeContainer != null)
                 nikkeContainer.OnClickProfile -= HandleClickProfile;
+
+            if (nikkeInformationUI != null)
+                nikkeInformationUI.OnUpgrade -= HandleUpgrade;
         }
 
         public void Show()
@@ -41,6 +47,12 @@ namespace UI.MainSceneUI.Nikkes
                 return;
 
             nikkeInformationUI.Show(playerData);
+        }
+
+        private void HandleUpgrade(PlayerDataSO playerData)
+        {
+            if (nikkeContainer != null)
+                nikkeContainer.RefreshProfileLevels();
         }
     }
 }

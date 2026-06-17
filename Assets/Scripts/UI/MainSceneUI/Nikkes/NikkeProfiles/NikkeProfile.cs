@@ -24,6 +24,7 @@ namespace UI.MainSceneUI.Nikkes.NikkeProfiles
         private RectTransform _rectTransform;
         
         public event Action<PlayerDataSO> OnClickBtn;
+        public PlayerDataSO PlayerData => _playerData;
         
         private void Awake()
         {
@@ -47,12 +48,24 @@ namespace UI.MainSceneUI.Nikkes.NikkeProfiles
 
         public void Show(PlayerDataSO item)
         {
+            Show(item, 1);
+        }
+
+        public void Show(PlayerDataSO item, int level)
+        {
             gameObject.SetActive(true);
 
             _playerData = item;
             nameText.text = item.NikkeName;
             profileImage.sprite = item.NikkeSprite;
+            SetLevel(level);
             _canvasGroup.alpha = 0f;
+        }
+
+        public void SetLevel(int level)
+        {
+            if (levelText != null)
+                levelText.text = level.ToString();
         }
 
         public void PlayShowAnimation()
