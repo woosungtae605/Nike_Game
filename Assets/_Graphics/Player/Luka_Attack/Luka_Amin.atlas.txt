@@ -1,0 +1,6 @@
+Luka_Amin.png
+size:288,408
+filter:Linear,Linear
+Luka_Amin
+bounds:2,2,284,404
+offsets:1,1,286,406

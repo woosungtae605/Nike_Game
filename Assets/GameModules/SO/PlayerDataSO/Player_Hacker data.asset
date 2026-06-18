@@ -18,6 +18,6 @@ MonoBehaviour:
   <NikkeDescription>k__BackingField: "\uD574\uCEE4\uB2E4"
   <Sexuality>k__BackingField: "\uB0A8\uC131"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 37e9672757678e94b9e8a50fe932c1b7, type: 2}
-  <NikkeSprite>k__BackingField: {fileID: 884049336, guid: 28ee9ef2b66dc4149b8aab0543b58f24, type: 3}
+  <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
   <MaxHp>k__BackingField: 150
-  player: {fileID: 8015787726836934902, guid: 1a810a192e5127b43ac3505c230c55e0, type: 3}
+  player: {fileID: 58666874425255592, guid: 1a810a192e5127b43ac3505c230c55e0, type: 3}

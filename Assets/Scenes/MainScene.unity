@@ -2227,6 +2227,7 @@ MonoBehaviour:
   profileParent: {fileID: 466474934}
   defaultPoolCount: 10
   showInterval: 0.05
+  upgradeManager: {fileID: 0}
 --- !u!114 &466474937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4708,6 +4709,7 @@ MonoBehaviour:
   profileParent: {fileID: 1089848721}
   defaultPoolCount: 10
   showInterval: 0.05
+  upgradeManager: {fileID: 0}
 --- !u!114 &1089848724
 MonoBehaviour:
   m_ObjectHideFlags: 0

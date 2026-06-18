@@ -14,7 +14,7 @@ namespace Agents.Module
 
         public bool CanClick { get; private set; } = true;
         private INavMovement _navMovement;
-        private RendererModule agentRenderer;
+        private IRenderer agentRenderer;
         private ModuleOwner Owner;
 
         private bool isMoving;
@@ -27,7 +27,7 @@ namespace Agents.Module
         public void AfterInit()
         {
             _navMovement = Owner.GetModule<INavMovement>();
-            agentRenderer = Owner.GetModule<RendererModule>();
+            agentRenderer = Owner.GetModule<IRenderer>();
         }
 
         private void OnEnable()
