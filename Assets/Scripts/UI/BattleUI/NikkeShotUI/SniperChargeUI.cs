@@ -8,7 +8,6 @@ namespace UI.BattleUI.NikkeShotUI
 {
     public class SniperChargeUI : MonoBehaviour
     {
-        [SerializeField] private GameObject root;
         [SerializeField] private Slider slider;
         [SerializeField] private TextMeshProUGUI percentText;
 
@@ -16,13 +15,6 @@ namespace UI.BattleUI.NikkeShotUI
 
         private void Awake()
         {
-            if (root == null)
-                root = gameObject;
-
-            _canvasGroup = root.GetComponent<CanvasGroup>();
-            if (_canvasGroup == null)
-                _canvasGroup = root.AddComponent<CanvasGroup>();
-
             SetVisible(false);
         }
         

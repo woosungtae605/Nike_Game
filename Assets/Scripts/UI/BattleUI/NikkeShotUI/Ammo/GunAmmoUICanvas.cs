@@ -7,12 +7,10 @@ namespace UI.BattleUI.NikkeShotUI.Ammo
     public class GunAmmoUICanvas : MonoBehaviour, IUIElement<GunAmmoUIActiveEvent>
     {
         [SerializeField] private GameObject ammoObject;
-        private UIFollowMouse _uiFollowMouse;
         private GunAmmoSlider _gunAmmoSlider;
         private GunAmmoTexts _ammoTexts;
         private void Awake()
         {
-            _uiFollowMouse = ammoObject.GetComponent<UIFollowMouse>();
             _gunAmmoSlider = GetComponentInChildren<GunAmmoSlider>(true);
             _ammoTexts = GetComponentInChildren<GunAmmoTexts>(true);
 
@@ -46,7 +44,6 @@ namespace UI.BattleUI.NikkeShotUI.Ammo
         public void Show(GunAmmoUIActiveEvent item)
         {
             ammoObject.SetActive(true);
-            _uiFollowMouse.SnapToCurrentMousePosition();
             _gunAmmoSlider.SetAmmo(item.CurrentAmmo, item.MaxAmmo);
             _ammoTexts.SetAmmo(item.CurrentAmmo);
         }

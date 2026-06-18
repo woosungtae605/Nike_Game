@@ -48,7 +48,7 @@ namespace Agents.Players.Gun.GunData
         public override bool Shot(PlayerGun playerGunOwner)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
-            if (Time.time < playerGunOwner.LastFireTime + FireInterval) return false;
+            if (Time.time < playerGunOwner.LastFireTime + FireInterval + chargeTime) return false;
 
             Ray ray = playerGunOwner.AimModule.GetAimRay();
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
@@ -74,7 +74,7 @@ namespace Agents.Players.Gun.GunData
         public override bool ShotAI(PlayerGun playerGunOwner, AbstractEnemy target)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
-            if (Time.time < playerGunOwner.LastFireTime + FireInterval) return false;
+            if (Time.time < playerGunOwner.LastFireTime + chargeTime) return false;
             if (target == null || !target.gameObject.activeSelf) return false;
 
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
