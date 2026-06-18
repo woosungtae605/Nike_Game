@@ -2308,6 +2308,7 @@ GameObject:
   - component: {fileID: 9145130614151127272}
   - component: {fileID: 7625514819364909298}
   - component: {fileID: 96560638270254367}
+  - component: {fileID: 736937568656018651}
   m_Layer: 6
   m_Name: DoomShotEnemy
   m_TagString: Untagged
@@ -2443,6 +2444,20 @@ MonoBehaviour:
   poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
   hitEffect: {fileID: 11400000, guid: dd2940cb726adc24fb647b435c6abc4e, type: 2}
   normalOffset: 0.03
+--- !u!114 &736937568656018651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929802729235312353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a216be3f8b79e04789e4f787b91b894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Agents.Enemies.Module.EnemyDeathEffectModule
+  poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
+  deathEffect: {fileID: 11400000, guid: 46582048220f2554e91cd4f3a17d5004, type: 2}
 --- !u!1 &4020210502625569702
 GameObject:
   m_ObjectHideFlags: 0

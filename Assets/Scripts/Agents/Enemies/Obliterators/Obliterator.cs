@@ -20,6 +20,7 @@ namespace Agents.Enemies.Obliterators
         protected override void HandleDeath()
         {
             HealthModule.OnDeath -= HandleDeath;
+            PlayDeathEffect();
             ChangeState(EnemyState.DEATH);
             StartCoroutine(StartAction());
         }

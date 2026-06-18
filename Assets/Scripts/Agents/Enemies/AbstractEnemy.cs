@@ -26,6 +26,7 @@
             public EnemySkillModule EnemySkillModule { get; private set; }
             public GunLineEffectModule GunLineEffectModule { get; private set; }
             public Agents.Enemies.Module.EnemyHitEffectModule HitEffectModule { get; private set; }
+            public Agents.Enemies.Module.EnemyDeathEffectModule DeathEffectModule { get; private set; }
             
             public StateChannel StateChannel { get; private set; }
             
@@ -44,6 +45,7 @@
                 EnemySkillModule = GetModule<EnemySkillModule>();
                 GunLineEffectModule = GetModule<GunLineEffectModule>();
                 HitEffectModule = GetModule<Agents.Enemies.Module.EnemyHitEffectModule>();
+                DeathEffectModule = GetModule<Agents.Enemies.Module.EnemyDeathEffectModule>();
             }
 
             public override void ApplyDamage(DamageData damageData)
@@ -101,9 +103,15 @@
             protected virtual void HandleDeath()
             {
                 HealthModule.OnDeath -= HandleDeath;
+                PlayDeathEffect();
 
                 if (_enemyManager != null)
                     _enemyManager.NotifyEnemyDead(this);
+            }
+
+            protected void PlayDeathEffect()
+            {
+                DeathEffectModule?.Play(transform);
             }
         }
     }
