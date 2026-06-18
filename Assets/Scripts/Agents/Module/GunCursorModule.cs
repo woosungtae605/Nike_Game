@@ -9,6 +9,7 @@ namespace Agents.Module
         private Player _player;
 
         private GunCursorImage _gunCursor;
+        [SerializeField] private GameObject activeFalseObject;
         public void Initialize(ModuleOwner owner)
         {
             _player = owner as Player;
@@ -23,11 +24,19 @@ namespace Agents.Module
         public void UnActive()
         {
             _gunCursor.SetActiveFalse();
+            if (activeFalseObject != null)
+            {
+                activeFalseObject.SetActive(false);
+            }
         }
 
         public void Active()
         {
             _gunCursor.gameObject.SetActive(true);
+            if(activeFalseObject != null)
+            {
+                activeFalseObject.SetActive(true);
+            }
             _gunCursor.ActiveTrue();
         }
         

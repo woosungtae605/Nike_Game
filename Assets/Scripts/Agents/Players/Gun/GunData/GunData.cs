@@ -36,6 +36,20 @@ namespace Agents.Players.Gun.GunData
         public float CameraShakeDuration => cameraShakeDuration;
         public float LineEffectDuration => lineEffectDuration;
 
+        public virtual bool CanShootInAimingState => false;
+
+        public virtual void OnAimStart(PlayerGun playerGunOwner)
+        {
+        }
+
+        public virtual void OnAimUpdate(PlayerGun playerGunOwner)
+        {
+        }
+
+        public virtual void OnAimEnd(PlayerGun playerGunOwner)
+        {
+        }
+
         public abstract bool Shot(PlayerGun playerGunOwner);        
         public abstract bool ShotAI(PlayerGun playerGunOwner, AbstractEnemy target);
 

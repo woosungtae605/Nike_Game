@@ -21,10 +21,22 @@ namespace Agents.Players.States
             Player.PlayerInputSo.OnRightMousePressedEnd += HandleRightMousePressedEnd;
             Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(5, true));
             Bus<GunAmmoUIActiveEvent>.Raise(new GunAmmoUIActiveEvent(Player.PlayerGunCompo.CurrentAmmo, Player.PlayerGunCompo.GunData.MaxAmmo, true));
+            Player.PlayerGunCompo.GunData.OnAimStart(Player.PlayerGunCompo);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (!Player.IsControl)
+                return;
+
+            Player.PlayerGunCompo.GunData.OnAimUpdate(Player.PlayerGunCompo);
         }
 
         public override void Exit()
         {
+            Player.PlayerGunCompo.GunData.OnAimEnd(Player.PlayerGunCompo);
             Bus<CameraZoomEvent>.Raise(new CameraZoomEvent(0, false));
             Bus<GunAmmoUIActiveEvent>.Raise(new GunAmmoUIActiveEvent(0, 0, false));
             Player.PlayerInputSo.OnLeftMousePressedStart -= HandleLeftMousePressedStart;
@@ -45,6 +57,19 @@ namespace Agents.Players.States
         {
             if (!Player.IsControl)
                 return;
+
+            if (Player.PlayerGunCompo.GunData.CanShootInAimingState)
+            {
+                Player.PlayerGunCompo.TryFirePlayer();
+
+                if (Player.PlayerGunCompo.CurrentAmmo <= 0)
+                {
+                    Player.ChangeState(PlayerStates.RELOADING);
+                    Player.GunCursorModule.UnActive();
+                }
+
+                return;
+            }
 
             Player.ChangeState(PlayerStates.SHOOTING);
         }

@@ -26,7 +26,7 @@ MonoBehaviour:
         fireInterval: 0.1
         maxAmmo: 5
         reloadTime: 2
-        maxDistance: 20
+        maxDistance: 100
         aiRandomSpreadAngle: 1
         hitMask:
           serializedVersion: 2
@@ -34,3 +34,6 @@ MonoBehaviour:
         cameraShakePower: 4
         cameraShakeDuration: 0.3
         lineEffectDuration: 0.05
+        chargeTime: 2
+        minDamageMultiplier: 1
+        maxDamageMultiplier: 4
