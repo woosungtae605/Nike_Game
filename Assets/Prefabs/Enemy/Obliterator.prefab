@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 7333167245734001927}
   - component: {fileID: 5410790658581281236}
   - component: {fileID: 2531333587422237231}
+  - component: {fileID: 84987356203923514}
   m_Layer: 0
   m_Name: Obliterator
   m_TagString: Untagged
@@ -773,6 +774,21 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -2, z: 0}
+--- !u!114 &84987356203923514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020287940755098681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7b486700a80424a876677fcd0d8ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Agents.Enemies.Module.EnemyHitEffectModule
+  poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
+  hitEffect: {fileID: 11400000, guid: dd2940cb726adc24fb647b435c6abc4e, type: 2}
+  normalOffset: 0.03
 --- !u!1 &7106244835620600051
 GameObject:
   m_ObjectHideFlags: 0

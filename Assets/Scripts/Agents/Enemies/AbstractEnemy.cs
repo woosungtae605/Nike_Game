@@ -25,6 +25,7 @@
             public AgentTriggerModule Trigger { get; private set; }
             public EnemySkillModule EnemySkillModule { get; private set; }
             public GunLineEffectModule GunLineEffectModule { get; private set; }
+            public Agents.Enemies.Module.EnemyHitEffectModule HitEffectModule { get; private set; }
             
             public StateChannel StateChannel { get; private set; }
             
@@ -42,6 +43,13 @@
                 Trigger = GetModule<AgentTriggerModule>();
                 EnemySkillModule = GetModule<EnemySkillModule>();
                 GunLineEffectModule = GetModule<GunLineEffectModule>();
+                HitEffectModule = GetModule<Agents.Enemies.Module.EnemyHitEffectModule>();
+            }
+
+            public override void ApplyDamage(DamageData damageData)
+            {
+                base.ApplyDamage(damageData);
+                HitEffectModule?.Play(damageData, HitPos);
             }
 
             public void SetManager(EnemyManager enemyManager)
