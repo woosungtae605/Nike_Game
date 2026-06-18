@@ -30,9 +30,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _OutsideDarkAlpha: 0
+    - _OutsideDarkAlpha: 0.14
     - _Radius: 1
-    - _RingWidth: 0
+    - _RingWidth: 0.151
     - _Softness: 0.001
     - _Stencil: 0
     - _StencilComp: 8
@@ -40,9 +40,9 @@ Material:
     - _StencilReadMask: 0
     - _StencilWriteMask: 0
     - _UseUIAlphaClip: 0
-    - _Zoom: 2
+    - _Zoom: 1.56
     m_Colors:
-    - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Center: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RingColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

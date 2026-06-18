@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3f0d8e03c34879af9ef2dc60201965, type: 3}
+  m_Name: Sniper gun data
+  m_EditorClassIdentifier: 
+  gunData:
+    rid: 5427449296648404992
+  className: SniperData
+  references:
+    version: 2
+    RefIds:
+    - rid: 5427449296648404992
+      type: {class: SniperData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
+      data:
+        <GunName>k__BackingField: "\uC2A4\uB098\uC774\uD37C"
+        damage: 70
+        fireInterval: 0.1
+        maxAmmo: 5
+        reloadTime: 2
+        maxDistance: 20
+        aiRandomSpreadAngle: 1
+        hitMask:
+          serializedVersion: 2
+          m_Bits: 64
+        cameraShakePower: 4
+        cameraShakeDuration: 0.3
+        lineEffectDuration: 0.05

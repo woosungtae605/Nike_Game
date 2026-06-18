@@ -16,3 +16,4 @@ MonoBehaviour:
   allPlayerDatas:
   - {fileID: 11400000, guid: 8c8a6efbd81a1c14f893ea10627af983, type: 2}
   - {fileID: 11400000, guid: 02fa5d103419a8145b1ed198b87ecf7c, type: 2}
+  - {fileID: 11400000, guid: 34117403ea69e2349a217f72cde1e424, type: 2}
