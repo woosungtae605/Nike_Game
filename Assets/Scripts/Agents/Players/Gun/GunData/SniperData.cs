@@ -4,6 +4,7 @@ using Agents.Enemies;
 using Agents.Module;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
+using GameEvents.UI;
 using UnityEngine;
 
 namespace Agents.Players.Gun.GunData
@@ -23,6 +24,7 @@ namespace Agents.Players.Gun.GunData
         public override void OnAimStart(PlayerGun playerGunOwner)
         {
             _chargePercent = 0f;
+            RaiseChargeUI(true);
         }
 
         public override void OnAimUpdate(PlayerGun playerGunOwner)
@@ -35,10 +37,12 @@ namespace Agents.Players.Gun.GunData
                 : _chargePercent + Time.deltaTime / chargeTime;
 
             _chargePercent = Mathf.Clamp01(nextCharge);
+            RaiseChargeUI(true);
         }
 
         public override void OnAimEnd(PlayerGun playerGunOwner)
         {
+            RaiseChargeUI(false);
         }
 
         public override bool Shot(PlayerGun playerGunOwner)
@@ -58,11 +62,12 @@ namespace Agents.Players.Gun.GunData
                 : ray.origin + ray.direction.normalized * MaxDistance;
 
             playerGunOwner.LineEffectModule.Shot(LineEffectDuration, lineStartPosition, endPosition);
-            playerGunOwner.ShotSuccess();
+            playerGunOwner.ShotSuccess(false);
 
             Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(CameraShakePower, CameraShakeDuration, false, true));
             playerGunOwner.Owner.GetModule<GunCursorModule>().PlayScaleMotion();
             _chargePercent = 0f;
+            RaiseChargeUI(false);
             return true;
         }
 
@@ -90,13 +95,19 @@ namespace Agents.Players.Gun.GunData
 
         public override AbstractEnemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
         {
-            return enemyRegisterSo.ClosestEnemy(myTransform);
+            return enemyRegisterSo.FurthestEnemy(myTransform);
         }
 
         private int GetChargedDamage(PlayerGun playerGunOwner)
         {
             float multiplier = Mathf.Lerp(minDamageMultiplier, maxDamageMultiplier, _chargePercent);
             return Mathf.RoundToInt(playerGunOwner.CurrentDamage * multiplier);
+        }
+
+        private void RaiseChargeUI(bool active)
+        {
+            float displayPercent = Mathf.Lerp(minDamageMultiplier, maxDamageMultiplier, _chargePercent) * 100f;
+            Bus<SniperChargeUIEvent>.Raise(new SniperChargeUIEvent(_chargePercent, displayPercent, active));
         }
     }
 }

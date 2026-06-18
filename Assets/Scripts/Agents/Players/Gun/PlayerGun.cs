@@ -75,12 +75,12 @@ namespace Agents.Players.Gun
             return GunData.SelectAITarget(enemyRegisterSo, Owner.transform);
         }
 
-        public void ShotSuccess()
+        public void ShotSuccess(bool showAmmoUI = true)
         {
             _lastFireTime = Time.time;
             _currentAmmo--;
             
-            if(_owner.IsControl)
+            if(_owner.IsControl && showAmmoUI)
                 Bus<GunAmmoUIActiveEvent>.Raise(new GunAmmoUIActiveEvent(CurrentAmmo, GunData.MaxAmmo, true));
         }
 

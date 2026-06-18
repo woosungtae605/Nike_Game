@@ -60,14 +60,19 @@ namespace Agents.Players.States
 
             if (Player.PlayerGunCompo.GunData.CanShootInAimingState)
             {
-                Player.PlayerGunCompo.TryFirePlayer();
+                bool shot = Player.PlayerGunCompo.TryFirePlayer();
+                if (!shot)
+                    return;
 
                 if (Player.PlayerGunCompo.CurrentAmmo <= 0)
                 {
                     Player.ChangeState(PlayerStates.RELOADING);
                     Player.GunCursorModule.UnActive();
+                    return;
                 }
 
+                Player.GunCursorModule.UnActive();
+                Player.ChangeState(PlayerStates.IDLE);
                 return;
             }
 
