@@ -15,6 +15,7 @@ namespace Agents.Players.States
         public override void Enter()
         {
             base.Enter();
+            Player.AimPositionModule?.MoveToAimPosition();
             Player.GunCursorModule.Active();
             Player.CoverModule.SetHide(false);
             Player.PlayerInputSo.OnLeftMousePressedStart += HandleLeftMousePressedStart;

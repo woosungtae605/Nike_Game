@@ -13,6 +13,7 @@ namespace Agents.Players.States
         public override void Enter()
         {
             base.Enter();
+            Player.AimPositionModule?.MoveToOriginPosition();
             if (Player.PlayerGunCompo.CurrentAmmo < Player.PlayerGunCompo.GunData.MaxAmmo)
             {
                 Player.ChangeState(PlayerStates.RELOADING);

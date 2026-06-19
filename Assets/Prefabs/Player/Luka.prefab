@@ -1295,6 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8341234093875029108}
   - component: {fileID: 58666874425255592}
+  - component: {fileID: 4336589098518000953}
   m_Layer: 7
   m_Name: Luka
   m_TagString: Untagged
@@ -1343,6 +1344,22 @@ MonoBehaviour:
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 34117403ea69e2349a217f72cde1e424, type: 2}
   <CameraTransform>k__BackingField: {fileID: 2324252863599244668}
   playerStates: {fileID: 11400000, guid: 65afd47608260954fb81f1cc3a333260, type: 2}
+--- !u!114 &4336589098518000953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501895941301860878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a86c97e63f30be458abc0721a265b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Agents.Module.PlayerAimPositionModule
+  moveTarget: {fileID: 8341234093875029108}
+  cameraTarget: {fileID: 2324252863599244668}
+  aimOffsetX: 0.5
+  moveDuration: 0.15
 --- !u!1 &4734256743566956266
 GameObject:
   m_ObjectHideFlags: 0

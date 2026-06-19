@@ -24,6 +24,7 @@ namespace Agents.Players
         public PlayerGun PlayerGunCompo { get; private set; }
         public CoverModule CoverModule { get; private set; }
         public GunCursorModule GunCursorModule { get; private set; }
+        public PlayerAimPositionModule AimPositionModule { get; private set; }
         
         private AgentStateMachine _stateMachine;
 
@@ -42,6 +43,7 @@ namespace Agents.Players
             PlayerGunCompo = GetModule<PlayerGun>();
             CoverModule = GetModule<CoverModule>();
             GunCursorModule = GetModule<GunCursorModule>();
+            AimPositionModule = GetModule<PlayerAimPositionModule>();
             
             AttackDamage = GetBaseAttackDamage();
             MaxHp = PlayerData.MaxHp;

@@ -26,6 +26,9 @@ namespace Cameras
 
         public void MoveToNekke(Transform target, float duration)
         {
+            if (target == null)
+                return;
+
             _moveHandle.TryCancel();
             _moveHandle = LMotion.Create(transform.position, target.position,duration).WithEase(Ease.Linear).Bind(x => transform.position = x);
         }

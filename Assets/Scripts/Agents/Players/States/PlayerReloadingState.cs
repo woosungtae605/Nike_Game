@@ -17,6 +17,7 @@ namespace Agents.Players.States
         public override void Enter()
         {
             base.Enter();
+            Player.AimPositionModule?.MoveToOriginPosition();
             _enterTime = Time.time;
             if(Player.IsControl)
                 Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(Player.PlayerGunCompo.GunData.ReloadTime, true));

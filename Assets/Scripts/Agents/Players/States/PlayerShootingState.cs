@@ -15,6 +15,7 @@ namespace Agents.Players.States
         public override void Enter()
         {
             base.Enter();
+            Player.AimPositionModule?.MoveToAimPosition();
             Player.PlayerInputSo.OnLeftMousePressedEnd += HandleMousePressedEnd;
             Player.PlayerInputSo.OnRightMousePressedEnd += HandleRightMousePressedEnd;
             Player.CoverModule.SetHide(false);
