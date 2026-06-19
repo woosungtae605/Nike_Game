@@ -54,7 +54,7 @@ namespace Systems.GameSystem
             {
                 if (player != null)
                 {
-                    Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(player.CameraTransform, 1));
+                    Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(player.CameraTransform, 0.7f));
                     break;
                 }
             }
