@@ -31,7 +31,7 @@ MonoBehaviour:
         hitMask:
           serializedVersion: 2
           m_Bits: 64
-        cameraShakePower: 4
+        cameraShakePower: 8
         cameraShakeDuration: 0.3
         lineEffectDuration: 0.05
         chargeTime: 1.4

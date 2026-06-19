@@ -1,4 +1,4 @@
-using Agents.CombatSystem;
+﻿using Agents.CombatSystem;
 using Agents.Enemies;
 using Agents.Module;
 using CoreSystem.BusSystem;
@@ -29,6 +29,7 @@ namespace Agents.Players.Gun
         public AbstractDamageCaster RayDamageCaster { get; private set; }
         public GunLineEffectModule  LineEffectModule { get; private set; }
         public ActionDataModule  ActionDataModule { get; private set; }
+        public CameraImpulseModule CameraImpulseModule { get; private set; }
         
         public void Initialize(ModuleOwner owner)
         {
@@ -49,6 +50,7 @@ namespace Agents.Players.Gun
             AimModule = Owner.GetModule<PlayerAimModule>();
             LineEffectModule = Owner.GetModule<GunLineEffectModule>();
             ActionDataModule = Owner.GetModule<ActionDataModule>();
+            CameraImpulseModule = Owner.GetModule<CameraImpulseModule>();
         }
         
         public bool TryFirePlayer()
@@ -90,3 +92,6 @@ namespace Agents.Players.Gun
         }
     }
 }
+
+
+

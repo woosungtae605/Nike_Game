@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Agents.CombatSystem;
 using Agents.Enemies;
 using Agents.Module;
@@ -65,6 +65,7 @@ namespace Agents.Players.Gun.GunData
             playerGunOwner.ShotSuccess(false);
 
             Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(CameraShakePower, CameraShakeDuration, false, true));
+            playerGunOwner.CameraImpulseModule?.GenerateImpulse();
             playerGunOwner.Owner.GetModule<GunCursorModule>().PlayScaleMotion();
             _chargePercent = 0f;
             RaiseChargeUI(false);
@@ -111,3 +112,5 @@ namespace Agents.Players.Gun.GunData
         }
     }
 }
+
+
