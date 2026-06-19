@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Agents.CombatSystem;
 using Agents.Enemies;
 using Agents.FSM;
@@ -7,6 +7,7 @@ using Agents.Players.Gun;
 using Agents.Players.States;
 using CoreSystem.BusSystem;
 using FSM;
+using GameEvents;
 using GameEvents.UI;
 using Systems;
 using UnityEngine;
@@ -29,6 +30,7 @@ namespace Agents.Players
         private AgentStateMachine _stateMachine;
 
         public bool IsControl { get; private set; }
+        public bool IsDead { get; private set; }
         
         public EnemyRegisterSo EnemyRegisterSo { get; private set; }
         public AbstractEnemy CurrentTarget { get; private set; }
@@ -48,6 +50,37 @@ namespace Agents.Players
             AttackDamage = GetBaseAttackDamage();
             MaxHp = PlayerData.MaxHp;
             HealthModule.ChangeHealth(MaxHp);
+            HealthModule.OnDeath -= HandleDeath;
+            HealthModule.OnDeath += HandleDeath;
+        }
+
+        private void OnDestroy()
+        {
+            if (HealthModule != null)
+                HealthModule.OnDeath -= HandleDeath;
+        }
+
+        public void ReviveForBattle()
+        {
+            IsDead = false;
+            ClearTarget();
+
+            if (HealthModule != null)
+                HealthModule.ChangeHealth(MaxHp);
+        }
+
+        private void HandleDeath()
+        {
+            if (IsDead)
+                return;
+
+            IsDead = true;
+            IsControl = false;
+            ClearTarget();
+            Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
+            GunCursorModule.UnActive();
+            ChangeState(PlayerStates.Dummy);
+            Bus<PlayerDeathEvent>.Raise(new PlayerDeathEvent(this));
         }
 
         public void SetBattleStats(int attackDamage, int maxHp)
@@ -87,6 +120,9 @@ namespace Agents.Players
 
         public void PlayerControl()
         {
+            if (IsDead)
+                return;
+
             IsControl = true;
             GunCursorModule.UnActive();
             ChangeState(PlayerStates.IDLE);
@@ -94,7 +130,7 @@ namespace Agents.Players
 
         public void SetControl(bool control)
         {
-            IsControl = control;
+            IsControl = !IsDead && control;
         }
 
         public void PlayerNotControl()
@@ -102,6 +138,13 @@ namespace Agents.Players
             IsControl = false;
             Bus<NikkeReloadUIActiveEvent>.Raise(new NikkeReloadUIActiveEvent(0, false));
             GunCursorModule.UnActive();
+
+            if (IsDead)
+            {
+                ChangeState(PlayerStates.Dummy);
+                return;
+            }
+
             ChangeState(PlayerStates.AIIDLE);
         }
 
@@ -109,6 +152,9 @@ namespace Agents.Players
 
         public override void ApplyDamage(DamageData damageData)
         {
+            if (IsDead)
+                return;
+
             if (CoverModule != null && CoverModule.IsHide && !CoverModule.IsCoverBroken)
             {
                 CoverModule.ApplyCoverDamage(damageData);

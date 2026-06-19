@@ -1,11 +1,8 @@
-﻿using System;
-using CoreSystem;
+﻿using CoreSystem;
 using CoreSystem.BusSystem;
-using GameEvents;
 using GameEvents.UI;
 using LitMotion;
 using LitMotion.Extensions;
-using Systems.GameSystem.Wave;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,9 +10,8 @@ using UnityEngine.UI;
 
 namespace UI.BattleUI
 {
-    public class ClearUICanvas : MonoBehaviour, IUIElement
+    public class FailUICanvas : MonoBehaviour, IUIElement
     {
-        [SerializeField] private WaveManager waveManager;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private RectTransform panelRoot;
         [SerializeField] private RectTransform titleRoot;
@@ -30,7 +26,6 @@ namespace UI.BattleUI
         private Vector2 _panelShownPosition;
         private Vector2 _titleShownPosition;
         private float _titleFontSize;
-        private bool _isBattleFailed;
 
         private void Awake()
         {
@@ -43,74 +38,55 @@ namespace UI.BattleUI
             CacheDefaults();
             HideImmediate();
 
-            Bus<ClearUIEvent>.OnEvent += HandleClearUI;
-            Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
-            Bus<BattleFailEvent>.OnEvent += HandleBattleFail;
+            Bus<FailUIEvent>.OnEvent += HandleFailUI;
         }
 
         private void OnDestroy()
         {
-            Bus<ClearUIEvent>.OnEvent -= HandleClearUI;
-            Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
-            Bus<BattleFailEvent>.OnEvent -= HandleBattleFail;
-        }
-
-        private void HandleClearUI(ClearUIEvent obj)
-        {
-            Show();
-        }
-        private void HandleBattleStart(BattleStartEvent obj)
-        {
-            _isBattleFailed = false;
-        }
-
-        private void HandleBattleFail(BattleFailEvent obj)
-        {
-            _isBattleFailed = true;
-            if (waveManager != null)
-                waveManager.OnClear -= Show;
-            Hide();
+            Bus<FailUIEvent>.OnEvent -= HandleFailUI;
         }
 
         private void OnEnable()
         {
-            if (waveManager != null)
-                waveManager.OnClear += Show;
-
             if (confirmButton != null)
             {
                 confirmButton.onClick.AddListener(Hide);
-                confirmButton.onClick.AddListener(ClearNext);
+                confirmButton.onClick.AddListener(ReturnMainScene);
             }
-        }
-
-        private void ClearNext()
-        {
-            FadeManager.Instance.FadeAndExecute(() => SceneManager.LoadScene("MainScene"));
         }
 
         private void OnDisable()
         {
-            if (waveManager != null)
-                waveManager.OnClear -= Show;
-
             if (confirmButton != null)
             {
                 confirmButton.onClick.RemoveListener(Hide);
-                confirmButton.onClick.RemoveListener(ClearNext);
+                confirmButton.onClick.RemoveListener(ReturnMainScene);
             }
 
             _motions.Cancel();
+        }
+
+        private void HandleFailUI(FailUIEvent obj)
+        {
+            Show();
+        }
+
+        private void ReturnMainScene()
+        {
+            FadeManager.Instance.FadeAndExecute(() => SceneManager.LoadScene("MainScene"));
         }
 
         [ContextMenu("Show")]
         public void Show()
         {
-            if (_isBattleFailed)
-                return;
-
             CacheDefaults();
             _motions.Cancel();
+
+            if (titleText != null)
+                titleText.text = "MISSION FAILED";
+
+            if (subText != null)
+                subText.text = "All squad members are down.";
 
             if (canvasGroup != null)
             {
@@ -125,7 +101,7 @@ namespace UI.BattleUI
 
             if (panelRoot != null)
             {
-                panelRoot.anchoredPosition = _panelShownPosition + new Vector2(-180f, 0f);
+                panelRoot.anchoredPosition = _panelShownPosition + new Vector2(180f, 0f);
                 LMotion.Create(panelRoot.anchoredPosition, _panelShownPosition, panelMoveDuration)
                     .WithEase(Ease.OutExpo)
                     .BindToAnchoredPosition(panelRoot)
@@ -134,7 +110,7 @@ namespace UI.BattleUI
 
             if (titleRoot != null)
             {
-                titleRoot.anchoredPosition = _titleShownPosition + new Vector2(70f, 0f);
+                titleRoot.anchoredPosition = _titleShownPosition + new Vector2(-70f, 0f);
                 LMotion.Create(titleRoot.anchoredPosition, _titleShownPosition, titlePunchDuration)
                     .WithEase(Ease.OutBack)
                     .BindToAnchoredPosition(titleRoot)
@@ -180,5 +156,3 @@ namespace UI.BattleUI
         }
     }
 }
-
-

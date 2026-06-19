@@ -43,6 +43,15 @@ namespace Systems.GameSystem.Wave
              _waveRoutine = StartCoroutine(WaveRoutine());
          }
 
+         public void StopWave()
+         {
+             if (_waveRoutine == null)
+                 return;
+
+             StopCoroutine(_waveRoutine);
+             _waveRoutine = null;
+         }
+
          private IEnumerator WaveRoutine()
          {
              int waveCount = WaveCount;
@@ -81,6 +90,7 @@ namespace Systems.GameSystem.Wave
                  }
              }
              
+             _waveRoutine = null;
              OnClear?.Invoke();
          }
          

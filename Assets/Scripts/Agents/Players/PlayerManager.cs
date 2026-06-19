@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Agents.Enemies;
 using Agents.FSM;
 using CoreSystem.BusSystem;
+using GameEvents;
 using GameEvents.Camera;
 using Systems.UpgradeSystem;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace Agents.Players
         public Player CurrentPlayer { get; private set; }
 
         private EnemyRegisterSo _enemyRegisterSo;
+        private bool _battleFailed;
         private static readonly Key[] ChangePlayerKeys =
         {
             Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5
@@ -32,6 +34,12 @@ namespace Agents.Players
         {
             SpawnSquadPlayers();
             Debug.Assert(playerList != null && playerList.Count > 0, "Player list is empty");
+            Bus<PlayerDeathEvent>.OnEvent += HandlePlayerDeath;
+        }
+
+        private void OnDestroy()
+        {
+            Bus<PlayerDeathEvent>.OnEvent -= HandlePlayerDeath;
         }
 
         private void Start()
@@ -53,6 +61,7 @@ namespace Agents.Players
         public void Init(EnemyRegisterSo enemyRegisterSo)
         {
             _enemyRegisterSo = enemyRegisterSo;
+            _battleFailed = false;
 
             if (playerList.Count <= 0)
                 SpawnSquadPlayers();
@@ -62,6 +71,7 @@ namespace Agents.Players
                 if (player == null)
                     continue;
 
+                player.ReviveForBattle();
                 player.SetEnemyRegister(_enemyRegisterSo);
                 player.PlayerNotControl();
             }
@@ -149,7 +159,7 @@ namespace Agents.Players
 
             foreach (Player player in playerList)
             {
-                if (player == null || !player.gameObject.activeInHierarchy)
+                if (!IsAlivePlayer(player))
                     continue;
 
                 float distance = (player.transform.position - origin).sqrMagnitude;
@@ -169,7 +179,7 @@ namespace Agents.Players
 
             foreach (Player player in playerList)
             {
-                if (player == null || !player.gameObject.activeInHierarchy)
+                if (!IsAlivePlayer(player))
                     continue;
 
                 activePlayers.Add(player);
@@ -184,6 +194,9 @@ namespace Agents.Players
 
         private void Update()
         {
+            if (_battleFailed || Keyboard.current == null)
+                return;
+
             for (int i = 0; i < ChangePlayerKeys.Length && i < playerList.Count; i++)
             {
                 if (Keyboard.current[ChangePlayerKeys[i]].wasPressedThisFrame)
@@ -198,12 +211,14 @@ namespace Agents.Players
         {
             for (int i = 0; i < playerList.Count; i++)
             {
-                if (playerList[i] != null && playerList[i].gameObject.activeInHierarchy)
+                if (IsAlivePlayer(playerList[i]))
                 {
                     ChangePlayer(i);
                     return;
                 }
             }
+
+            CurrentPlayer = null;
         }
 
         private void ChangePlayer(int index)
@@ -213,7 +228,7 @@ namespace Agents.Players
                 Debug.LogError($"Player index {index} is out of range");
                 return;
             }
-            if (playerList[index] == null)
+            if (!IsAlivePlayer(playerList[index]))
                 return;
 
             if (CurrentPlayer != null)
@@ -222,6 +237,39 @@ namespace Agents.Players
             CurrentPlayer = playerList[index];
             CurrentPlayer.PlayerControl();
             Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(playerList[index].CameraTransform, 0.2f));
+        }
+
+        private void HandlePlayerDeath(PlayerDeathEvent deathEvent)
+        {
+            if (deathEvent.Player == CurrentPlayer)
+            {
+                CurrentPlayer = null;
+                ChangeFirstPlayer();
+            }
+
+            if (_battleFailed || HasAlivePlayer())
+                return;
+
+            _battleFailed = true;
+            CurrentPlayer = null;
+            AllPlayerDummy();
+            Bus<BattleFailEvent>.Raise(new BattleFailEvent());
+        }
+
+        private bool HasAlivePlayer()
+        {
+            foreach (Player player in playerList)
+            {
+                if (IsAlivePlayer(player))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private bool IsAlivePlayer(Player player)
+        {
+            return player != null && player.gameObject.activeInHierarchy && !player.IsDead;
         }
     }
 }

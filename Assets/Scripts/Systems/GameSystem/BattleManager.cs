@@ -1,9 +1,9 @@
-﻿using System;
-using Agents.Enemies;
+﻿using Agents.Enemies;
 using Agents.Players;
 using CoreSystem.BusSystem;
 using GameEvents;
 using GameEvents.Coin;
+using GameEvents.UI;
 using Systems.GameSystem.Wave;
 using UnityEngine;
 
@@ -19,11 +19,13 @@ namespace Systems.GameSystem
 
         private WaveInformationSO _waveInformation;
         private bool _isBattleCleared;
+        private bool _isBattleFailed;
 
         private void Awake()
         {
             Bus<BattleStartEvent>.OnEvent += HandleBattleStart;
             Bus<BattleEndEvent>.OnEvent += HandleBattleEnd;
+            Bus<BattleFailEvent>.OnEvent += HandleBattleFail;
 
             if (waveManager != null)
                 waveManager.OnClear += HandleWaveClear;
@@ -33,6 +35,7 @@ namespace Systems.GameSystem
         {
             Bus<BattleStartEvent>.OnEvent -= HandleBattleStart;
             Bus<BattleEndEvent>.OnEvent -= HandleBattleEnd;
+            Bus<BattleFailEvent>.OnEvent -= HandleBattleFail;
 
             if (waveManager != null)
                 waveManager.OnClear -= HandleWaveClear;
@@ -40,8 +43,23 @@ namespace Systems.GameSystem
 
         private void HandleBattleEnd(BattleEndEvent obj)
         {
+            if (_isBattleFailed)
+                return;
+
             TryGiveClearReward();
             playerManager.AllPlayerDummy();
+        }
+
+        private void HandleBattleFail(BattleFailEvent obj)
+        {
+            if (_isBattleFailed || _isBattleCleared)
+                return;
+
+            _isBattleFailed = true;
+            waveManager?.StopWave();
+            playerManager.AllPlayerDummy();
+            enemyManager?.ClearEnemies();
+            Bus<FailUIEvent>.Raise(new FailUIEvent());
         }
 
         private void HandleBattleStart(BattleStartEvent obj)
@@ -51,22 +69,22 @@ namespace Systems.GameSystem
             Debug.Assert(waveManager != null, "waveManager is null");
 
             _isBattleCleared = false;
+            _isBattleFailed = false;
             _waveInformation = ResolveWaveInformation();
             
-            //enemy 초기화
             enemyManager.ClearEnemies();
-            
-            //player 초기화
             playerManager.Init(enemyManager.EnemyRegister);
             
-            //Wave 초기화
             waveManager.SetWaveInformation(_waveInformation);
             waveManager.SetEnemyManager(enemyManager);
-            waveManager.StartWave();   
+            waveManager.StartWave();
         }
 
         private void HandleWaveClear()
         {
+            if (_isBattleFailed)
+                return;
+
             TryGiveClearReward();
             Bus<BattleEndEvent>.Raise(new BattleEndEvent());
         }
@@ -81,7 +99,7 @@ namespace Systems.GameSystem
 
         private void TryGiveClearReward()
         {
-            if (_isBattleCleared)
+            if (_isBattleCleared || _isBattleFailed)
                 return;
 
             _isBattleCleared = true;
