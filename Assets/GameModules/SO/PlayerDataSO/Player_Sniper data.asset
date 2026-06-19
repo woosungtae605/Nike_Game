@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Player_Sniper data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 2
-  <NikkeName>k__BackingField: "\uC2A4\uB098\uC774\uD37C"
+  <NikkeName>k__BackingField: "\uC0F7\uAC74"
   <Age>k__BackingField: 17
-  <NikkeDescription>k__BackingField: "\uD574\uCEE4\uB2E4"
+  <NikkeDescription>k__BackingField: "\uC0F7\uAC74 \u3147\u3147"
   <Sexuality>k__BackingField: "\uB0A8\uC131"
-  <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 8320bc0f7e801c643977f1f946413c03, type: 2}
+  <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 37e9672757678e94b9e8a50fe932c1b7, type: 2}
   <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
   <MaxHp>k__BackingField: 150
   player: {fileID: 58666874425255592, guid: 1a810a192e5127b43ac3505c230c55e0, type: 3}

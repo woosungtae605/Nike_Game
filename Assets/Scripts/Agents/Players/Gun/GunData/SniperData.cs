@@ -48,7 +48,7 @@ namespace Agents.Players.Gun.GunData
         public override bool Shot(PlayerGun playerGunOwner)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
-            if (Time.time < playerGunOwner.LastFireTime + FireInterval + chargeTime) return false;
+            if (Time.time < playerGunOwner.LastFireTime + FireInterval) return false;
 
             Ray ray = playerGunOwner.AimModule.GetAimRay();
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;

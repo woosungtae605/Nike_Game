@@ -34,7 +34,10 @@ namespace Agents.Enemies.Obliterators
         private IEnumerator StartAction()
         {
             Bus<BattleEndEvent>.Raise(new BattleEndEvent());
-            Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(CameraTarget, 1f));
+
+            Transform cameraTarget = CameraTarget != null ? CameraTarget : HitPos != null ? HitPos : transform;
+            Bus<CameraChangeEvent>.Raise(new CameraChangeEvent(cameraTarget, 1f, 100, 2.5f));
+
             yield return new WaitForSeconds(1.5f);
 
             ParticlePooling particlePooling = poolManagerSo.Pop<ParticlePooling>(this.effect);
@@ -48,3 +51,4 @@ namespace Agents.Enemies.Obliterators
         }
     }
 }
+

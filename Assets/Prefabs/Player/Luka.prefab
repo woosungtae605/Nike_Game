@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerInputSo>k__BackingField: {fileID: 11400000, guid: e63042d841f1391428507130b880749c, type: 2}
-  <PlayerData>k__BackingField: {fileID: 11400000, guid: 34117403ea69e2349a217f72cde1e424, type: 2}
+  <PlayerData>k__BackingField: {fileID: 11400000, guid: 02fa5d103419a8145b1ed198b87ecf7c, type: 2}
   <CameraTransform>k__BackingField: {fileID: 2324252863599244668}
   playerStates: {fileID: 11400000, guid: 65afd47608260954fb81f1cc3a333260, type: 2}
 --- !u!114 &4336589098518000953
