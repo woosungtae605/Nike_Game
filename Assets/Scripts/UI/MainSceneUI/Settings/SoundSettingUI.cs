@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sound
+namespace UI.MainSceneUI.Settings
 {
     public class SoundSettingUI : MonoBehaviour
     {
