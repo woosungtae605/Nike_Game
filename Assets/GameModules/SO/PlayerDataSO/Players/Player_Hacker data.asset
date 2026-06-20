@@ -15,9 +15,14 @@ MonoBehaviour:
   <NikkeID>k__BackingField: 1
   <NikkeName>k__BackingField: "\uB8E8\uCE74"
   <Age>k__BackingField: 17
-  <NikkeDescription>k__BackingField: "\uD574\uCEE4\uB2E4"
+  <NikkeDescription>k__BackingField: "\uC5EC\uC131\uCC98\uB7FC \uC0DD\uAE34 \uB0A8\uC790\uC774\uBA70,
+    \uD2B8\uC704\uD130\uC5D0\uC11C \uC8FC\uB85C \uB0A8\uC790\uB4E4\uC5D0\uAC8C \uC2A4\uD338
+    \uC5F0\uB77D\uC774 \uC790\uC8FC\uC640 \uC9C4\uC815\uD55C \uB0A8\uC790\uAC00 \uB418\uAE30
+    \uC704\uD574 \uD574\uBCD1\uC5D0 \uC785\uB300\uD558\uC5EC \uC790\uC2E0\uC774 \uC798\uD558\uB294
+    \uD574\uD0B9\uC744 \uD1A0\uB300\uB85C IT\uAC1C\uBC1C\uAD00\uB9AC\uBCD1\uC73C\uB85C
+    \uBC30\uCE58\uBC1B\uAC8C \uB41C\uB2E4 "
   <Sexuality>k__BackingField: "\uB0A8\uC131"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 8320bc0f7e801c643977f1f946413c03, type: 2}
-  <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
+  <NikkeSprite>k__BackingField: {fileID: -2130923495, guid: a2b77f67618a40047871844113c33271, type: 3}
   <MaxHp>k__BackingField: 30
   player: {fileID: 58666874425255592, guid: 1a810a192e5127b43ac3505c230c55e0, type: 3}

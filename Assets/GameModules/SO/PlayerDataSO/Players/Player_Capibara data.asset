@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Player_Capibara data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 3
-  <NikkeName>k__BackingField: John
+  <NikkeName>k__BackingField: "\uC874(John) - \uB098 \uC324"
   <Age>k__BackingField: 3
-  <NikkeDescription>k__BackingField: "\uB85C\uCF13\uB7F0\uCCD0"
+  <NikkeDescription>k__BackingField: "\uC678\uAD6D\uC5D0\uC11C \uD65C\uB3D9\uD55C
+    \uC804\uC124\uC801\uC778 \uC6A9\uBCD1.\r\n\uC218 \uB9CE\uC740 \uC804\uC7C1\uACFC
+    \uC784\uBB34\uC5D0\uC11C \uBAA9\uC228\uC744 \uBD88\uD0DC\uC6B0\uBA70 \uD65C\uB3D9\uD55C
+    \uC804\uC801\uC774 \uC788\uB2E4."
   <Sexuality>k__BackingField: "\uC554\uCEF7"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 04e44cee93e3c3f4fa243e4a00ea2ec2, type: 2}
   <NikkeSprite>k__BackingField: {fileID: 269052864, guid: 1c54529c83a57124e9c64d572ee80d3c, type: 3}

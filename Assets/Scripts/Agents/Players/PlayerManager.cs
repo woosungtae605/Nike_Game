@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Agents.Enemies;
 using Agents.FSM;
 using CoreSystem.BusSystem;
@@ -27,7 +27,7 @@ namespace Agents.Players
         private bool _battleFailed;
         private static readonly Key[] ChangePlayerKeys =
         {
-            Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5
+            Key.Q, Key.W, Key.E, Key.R, Key.T
         };
 
         private void Awake()

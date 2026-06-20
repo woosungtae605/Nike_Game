@@ -5438,13 +5438,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1722f43196d443dadea105e214f7371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Settings.SoundSettingUI
-  exitBtn: {fileID: 662001914}
   masterSlider: {fileID: 423131144}
   masterToggle: {fileID: 274699683}
   bgmSlider: {fileID: 945992839}
   bgmToggle: {fileID: 1696915840}
   sfxSlider: {fileID: 478227201}
   sfxToggle: {fileID: 1600924587}
+  exitBtn: {fileID: 662001914}
+  exitObject: {fileID: 0}
 --- !u!1 &825443752
 GameObject:
   m_ObjectHideFlags: 0
@@ -8381,8 +8382,8 @@ RectTransform:
   - {fileID: 443822173}
   - {fileID: 723148427}
   - {fileID: 1011134398}
-  - {fileID: 520366992}
   - {fileID: 1973374576}
+  - {fileID: 520366992}
   m_Father: {fileID: 1583036909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13591,8 +13592,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -91.132935, y: -29}
-  m_SizeDelta: {x: 800, y: 800}
+  m_AnchoredPosition: {x: -91.132935, y: -150}
+  m_SizeDelta: {x: 1300, y: 1300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1973374577
 MonoBehaviour:

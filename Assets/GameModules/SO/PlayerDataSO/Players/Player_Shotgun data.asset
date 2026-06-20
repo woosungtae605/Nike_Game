@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Player_Shotgun data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 2
-  <NikkeName>k__BackingField: "\uC0F7\uAC74"
-  <Age>k__BackingField: 17
-  <NikkeDescription>k__BackingField: "\uC0F7\uAC74 \u3147\u3147"
+  <NikkeName>k__BackingField: "(\uC0F7\uAC74)\uBA00\uC639\uC774"
+  <Age>k__BackingField: 6
+  <NikkeDescription>k__BackingField: "\uC778\uAC04\uC5D0\uAC8C \uBCF5\uC218\uD558\uAE30
+    \uC704\uD574 AR\uC744 \uB4E4\uC5C8\uC9C0\uB9CC, \uBD80\uC871\uD558\uB2E8 \uAC83\uC744
+    \uAE68\uB2EB\uACE0 \uD654\uB825\uC774 \uB354 \uAC15\uD55C \uC0F7\uAC74\uC744
+    \uB4E4\uC5C8\uB2E4."
   <Sexuality>k__BackingField: "\uB0A8\uC131"
   <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 37e9672757678e94b9e8a50fe932c1b7, type: 2}
   <NikkeSprite>k__BackingField: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}

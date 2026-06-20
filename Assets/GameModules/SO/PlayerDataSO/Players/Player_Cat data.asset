@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player_Cat data
   m_EditorClassIdentifier: 
   <NikkeID>k__BackingField: 0
-  <NikkeName>k__BackingField: "\uC57C\uC639\uC774"
+  <NikkeName>k__BackingField: "\uBA00\uC639\uC774"
   <Age>k__BackingField: 6
   <NikkeDescription>k__BackingField: "\uC8FC\uC778\uC5D0\uAC8C \uBC30\uC2E0\uB2F9\uD574
     \uC911\uC131\uD654\uC218\uC220\uC744 \uB2F9\uD55C \uACE0\uC591\uC774. \uC778\uAC04\uC5D0\uAC8C
