@@ -1,6 +1,7 @@
 ﻿using System;
 using Agents.CombatSystem;
 using Agents.Enemies;
+using Agents.FSM;
 using Agents.Module;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
@@ -18,8 +19,6 @@ namespace Agents.Players.Gun.GunData
         [SerializeField] private float maxDamageMultiplier = 3f;
 
         private float _chargePercent;
-
-        public override bool CanShootInAimingState => true;
 
         public override void OnAimStart(PlayerGun playerGunOwner)
         {
@@ -45,6 +44,12 @@ namespace Agents.Players.Gun.GunData
             RaiseChargeUI(false);
         }
 
+        public override bool HandleAimingShot(PlayerGun playerGunOwner)
+        {
+            Shot(playerGunOwner);
+            return true;
+        }
+
         public override bool Shot(PlayerGun playerGunOwner)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
@@ -67,8 +72,10 @@ namespace Agents.Players.Gun.GunData
             Bus<CameraRecoilEvent>.Raise(new CameraRecoilEvent(CameraShakePower, CameraShakeDuration, false, true));
             playerGunOwner.CameraImpulseModule?.GenerateImpulse();
             playerGunOwner.Owner.GetModule<GunCursorModule>().PlayScaleMotion();
+
             _chargePercent = 0f;
             RaiseChargeUI(false);
+            ChangeStateAfterPlayerShot(playerGunOwner);
             return true;
         }
 
@@ -99,6 +106,17 @@ namespace Agents.Players.Gun.GunData
             return enemyRegisterSo.FurthestEnemy(myTransform);
         }
 
+        private void ChangeStateAfterPlayerShot(PlayerGun playerGunOwner)
+        {
+            playerGunOwner.Owner.GetModule<GunCursorModule>()?.UnActive();
+
+            PlayerStates nextState = playerGunOwner.CurrentAmmo <= 0
+                ? PlayerStates.RELOADING
+                : PlayerStates.IDLE;
+
+            playerGunOwner.Owner.ChangeState(nextState);
+        }
+
         private int GetChargedDamage(PlayerGun playerGunOwner)
         {
             float multiplier = Mathf.Lerp(minDamageMultiplier, maxDamageMultiplier, _chargePercent);
@@ -112,5 +130,6 @@ namespace Agents.Players.Gun.GunData
         }
     }
 }
+
 
 

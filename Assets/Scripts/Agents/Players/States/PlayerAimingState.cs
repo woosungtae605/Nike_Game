@@ -1,4 +1,4 @@
-using Agents.FSM;
+﻿using Agents.FSM;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
 using GameEvents.UI;
@@ -59,25 +59,12 @@ namespace Agents.Players.States
             if (!Player.IsControl)
                 return;
 
-            if (Player.PlayerGunCompo.GunData.CanShootInAimingState)
-            {
-                bool shot = Player.PlayerGunCompo.TryFirePlayer();
-                if (!shot)
-                    return;
-
-                if (Player.PlayerGunCompo.CurrentAmmo <= 0)
-                {
-                    Player.ChangeState(PlayerStates.RELOADING);
-                    Player.GunCursorModule.UnActive();
-                    return;
-                }
-
-                Player.GunCursorModule.UnActive();
-                Player.ChangeState(PlayerStates.IDLE);
+            if (Player.PlayerGunCompo.GunData.HandleAimingShot(Player.PlayerGunCompo))
                 return;
-            }
 
             Player.ChangeState(PlayerStates.SHOOTING);
         }
     }
 }
+
+

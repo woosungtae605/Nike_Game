@@ -22,11 +22,11 @@ MonoBehaviour:
       type: {class: RocketLauncherData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
         <GunName>k__BackingField: "\uB85C\uCF13\uB7F0\uCCD0"
-        damage: 50
+        damage: 30
         fireInterval: 0.3
         maxAmmo: 30
         reloadTime: 1.5
-        maxDistance: 20
+        maxDistance: 200
         aiRandomSpreadAngle: 1
         hitMask:
           serializedVersion: 2

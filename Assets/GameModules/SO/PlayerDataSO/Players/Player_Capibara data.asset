@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e27e82988834ae2bd94a862c03fba0a, type: 3}
+  m_Name: Player_Capibara data
+  m_EditorClassIdentifier: 
+  <NikkeID>k__BackingField: 3
+  <NikkeName>k__BackingField: John
+  <Age>k__BackingField: 3
+  <NikkeDescription>k__BackingField: "\uB85C\uCF13\uB7F0\uCCD0"
+  <Sexuality>k__BackingField: "\uC554\uCEF7"
+  <PlayerGunData>k__BackingField: {fileID: 11400000, guid: 04e44cee93e3c3f4fa243e4a00ea2ec2, type: 2}
+  <NikkeSprite>k__BackingField: {fileID: 269052864, guid: 1c54529c83a57124e9c64d572ee80d3c, type: 3}
+  <MaxHp>k__BackingField: 200
+  player: {fileID: 3707996834043131698, guid: 2a182d8c196fa564f99d33a1dd3ed7bc, type: 3}

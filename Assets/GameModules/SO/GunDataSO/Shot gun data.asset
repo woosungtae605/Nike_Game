@@ -26,7 +26,7 @@ MonoBehaviour:
         fireInterval: 0.7
         maxAmmo: 7
         reloadTime: 1.3
-        maxDistance: 100
+        maxDistance: 200
         aiRandomSpreadAngle: 7
         hitMask:
           serializedVersion: 2

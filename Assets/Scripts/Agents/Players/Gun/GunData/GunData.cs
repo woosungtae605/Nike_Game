@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Agents.Enemies;
 using UnityEngine;
 
@@ -36,8 +36,6 @@ namespace Agents.Players.Gun.GunData
         public float CameraShakeDuration => cameraShakeDuration;
         public float LineEffectDuration => lineEffectDuration;
 
-        public virtual bool CanShootInAimingState => false;
-
         public virtual void OnAimStart(PlayerGun playerGunOwner)
         {
         }
@@ -48,6 +46,11 @@ namespace Agents.Players.Gun.GunData
 
         public virtual void OnAimEnd(PlayerGun playerGunOwner)
         {
+        }
+
+        public virtual bool HandleAimingShot(PlayerGun playerGunOwner)
+        {
+            return false;
         }
 
         public abstract bool Shot(PlayerGun playerGunOwner);        
@@ -62,5 +65,5 @@ namespace Agents.Players.Gun.GunData
             Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-halfAngle, halfAngle), UnityEngine.Random.Range(-halfAngle, halfAngle), 0f);
             return Quaternion.Euler(randomOffset) * baseDirection;
         }
-}
+    }
 }

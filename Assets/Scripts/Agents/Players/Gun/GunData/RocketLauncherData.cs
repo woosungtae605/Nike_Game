@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Agents.CombatSystem;
 using Agents.Enemies;
+using Agents.FSM;
 using Agents.Module;
 using CoreSystem.BusSystem;
 using GameEvents.Camera;
@@ -28,8 +29,6 @@ namespace Agents.Players.Gun.GunData
         private readonly HashSet<IDamageable> _damagedTargets = new();
         private float _chargePercent;
 
-        public override bool CanShootInAimingState => true;
-
         public override void OnAimStart(PlayerGun playerGunOwner)
         {
             _chargePercent = 0f;
@@ -54,6 +53,12 @@ namespace Agents.Players.Gun.GunData
             RaiseChargeUI(false);
         }
 
+        public override bool HandleAimingShot(PlayerGun playerGunOwner)
+        {
+            Shot(playerGunOwner);
+            return true;
+        }
+
         public override bool Shot(PlayerGun playerGunOwner)
         {
             if (playerGunOwner.CurrentAmmo <= 0) return false;
@@ -62,7 +67,7 @@ namespace Agents.Players.Gun.GunData
             Ray ray = playerGunOwner.AimModule.GetAimRay();
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
 
-            bool isHit = TryGetRocketHit(ray.origin, ray.direction, playerGunOwner, out Vector3 hitPoint, out Vector3 hitNormal, out float hitDistance);
+            bool isHit = TryGetRocketHit(ray.origin, ray.direction, playerGunOwner, out Vector3 hitPoint, out Vector3 hitNormal, out _);
             Vector3 endPosition = isHit ? hitPoint : ray.origin + ray.direction.normalized * MaxDistance;
 
             playerGunOwner.LineEffectModule.Shot(LineEffectDuration, lineStartPosition, endPosition);
@@ -80,6 +85,7 @@ namespace Agents.Players.Gun.GunData
 
             _chargePercent = 0f;
             RaiseChargeUI(false);
+            ChangeStateAfterPlayerShot(playerGunOwner);
             return true;
         }
 
@@ -92,7 +98,7 @@ namespace Agents.Players.Gun.GunData
             Vector3 lineStartPosition = playerGunOwner.LineEffectModule.transform.position;
             Vector3 direction = GetSpreadDirection((target.HitPos.position - lineStartPosition).normalized, AIRandomSpreadAngle);
 
-            bool isHit = TryGetRocketHit(lineStartPosition, direction, playerGunOwner, out Vector3 hitPoint, out Vector3 hitNormal, out float hitDistance);
+            bool isHit = TryGetRocketHit(lineStartPosition, direction, playerGunOwner, out Vector3 hitPoint, out Vector3 hitNormal, out _);
             Vector3 endPosition = isHit ? hitPoint : lineStartPosition + direction.normalized * MaxDistance;
 
             playerGunOwner.LineEffectModule.Shot(LineEffectDuration, lineStartPosition, endPosition);
@@ -110,6 +116,17 @@ namespace Agents.Players.Gun.GunData
         public override AbstractEnemy SelectAITarget(EnemyRegisterSo enemyRegisterSo, Transform myTransform)
         {
             return enemyRegisterSo.ClosestEnemy(myTransform);
+        }
+
+        private void ChangeStateAfterPlayerShot(PlayerGun playerGunOwner)
+        {
+            playerGunOwner.Owner.GetModule<GunCursorModule>()?.UnActive();
+
+            PlayerStates nextState = playerGunOwner.CurrentAmmo <= 0
+                ? PlayerStates.RELOADING
+                : PlayerStates.IDLE;
+
+            playerGunOwner.Owner.ChangeState(nextState);
         }
 
         private bool TryGetRocketHit(Vector3 origin, Vector3 direction, PlayerGun playerGunOwner, out Vector3 hitPoint, out Vector3 hitNormal, out float hitDistance)
@@ -215,3 +232,6 @@ namespace Agents.Players.Gun.GunData
         }
     }
 }
+
+
+
