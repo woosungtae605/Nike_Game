@@ -14,6 +14,10 @@ namespace Sound
         private const string BGM = "BGMVolume";
         private const string SFX = "SFXVolume";
 
+        private const string MASTER_MUTE = "MasterMute";
+        private const string BGM_MUTE = "BGMMute";
+        private const string SFX_MUTE = "SFXMute";
+    
         protected override void Awake()
         {
             base.Awake();
@@ -24,52 +28,83 @@ namespace Sound
 
         private void Start()
         {
-            LoadVolume(MASTER);
-            LoadVolume(BGM);
-            LoadVolume(SFX);
+            ApplySavedVolume(MASTER, MASTER_MUTE);
+            ApplySavedVolume(BGM, BGM_MUTE);
+            ApplySavedVolume(SFX, SFX_MUTE);
         }
 
-        private void LoadVolume(string key)
-        {
-            float v = PlayerPrefs.GetFloat(key, 1f);
-            ApplyVolume(key, v);
-        }
+        public void SetMaster(float value) => SetVolume(MASTER, MASTER_MUTE, value);
+        public void SetBGM(float value) => SetVolume(BGM, BGM_MUTE, value);
+        public void SetSFX(float value) => SetVolume(SFX, SFX_MUTE, value);
 
-        // 슬라이더 값(0~1)을 데시벨로 변환해 믹서에 적용 + 저장
-        public void SetMaster(float value) => SetVolume(MASTER, value);
-        public void SetBGM(float value) => SetVolume(BGM, value);
-        public void SetSFX(float value) => SetVolume(SFX, value);
+        public void SetMasterMuted(bool muted) => SetMuted(MASTER, MASTER_MUTE, muted);
+        public void SetBGMMuted(bool muted) => SetMuted(BGM, BGM_MUTE, muted);
+        public void SetSFXMuted(bool muted) => SetMuted(SFX, SFX_MUTE, muted);
 
-        private void SetVolume(string key, float value)
+        public float GetMasterVolume() => GetSavedVolume(MASTER);
+        public float GetBGMVolume() => GetSavedVolume(BGM);
+        public float GetSFXVolume() => GetSavedVolume(SFX);
+
+        public bool IsMasterMuted() => GetSavedMuted(MASTER_MUTE);
+        public bool IsBGMMuted() => GetSavedMuted(BGM_MUTE);
+        public bool IsSFXMuted() => GetSavedMuted(SFX_MUTE);
+
+        private void SetVolume(string volumeKey, string muteKey, float value)
         {
-            ApplyVolume(key, value);
-            PlayerPrefs.SetFloat(key, value);
+            value = Mathf.Clamp01(value);
+            PlayerPrefs.SetFloat(volumeKey, value);
             PlayerPrefs.Save();
+
+            ApplyVolume(volumeKey, IsMuted(muteKey) ? 0f : value);
+        }
+
+        private void SetMuted(string volumeKey, string muteKey, bool muted)
+        {
+            PlayerPrefs.SetInt(muteKey, muted ? 1 : 0);
+            PlayerPrefs.Save();
+
+            ApplySavedVolume(volumeKey, muteKey);
+        }
+
+        private void ApplySavedVolume(string volumeKey, string muteKey)
+        {
+            float volume = GetSavedVolume(volumeKey);
+            ApplyVolume(volumeKey, IsMuted(muteKey) ? 0f : volume);
         }
 
         private void ApplyVolume(string key, float value)
         {
-            if (mixer == null) { Debug.LogWarning("Mixer 미할당"); return; }
+            if (mixer == null)
+            {
+                Debug.LogWarning("Mixer 미할당");
+                return;
+            }
+
             float dB = value <= 0.0001f ? -80f : Mathf.Log10(value) * 20f;
             if (!mixer.SetFloat(key, dB))
                 Debug.LogWarning($"믹서 파라미터 '{key}' 없음 ? Expose 이름 확인");
         }
 
-        // 효과음 재생용
         public void PlaySFX(AudioClip clip)
         {
-            if (clip != null) sfxSource.PlayOneShot(clip);
+            if (clip != null && sfxSource != null)
+                sfxSource.PlayOneShot(clip);
         }
 
-        // 배경음 재생용
         public void PlayBGM(AudioClip clip)
         {
-            if (bgmSource.clip == clip) return;
+            if (bgmSource == null || bgmSource.clip == clip)
+                return;
+
             bgmSource.clip = clip;
             bgmSource.loop = true;
             bgmSource.Play();
         }
 
         public float GetSavedVolume(string key) => PlayerPrefs.GetFloat(key, 1f);
+
+        private bool GetSavedMuted(string key) => IsMuted(key);
+
+        private bool IsMuted(string key) => PlayerPrefs.GetInt(key, 0) == 1;
     }
 }
