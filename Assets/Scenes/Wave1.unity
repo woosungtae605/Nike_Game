@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -33696,8 +33696,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a7d1b4eb5e4fbaabbf91006e32f9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.BattleUI.TutorialUI.TutorialGuide
+  playerInput: {fileID: 0}
   tutorialText: {fileID: 13100845}
   characterImage: {fileID: 1521501464}
+  guideRoot: {fileID: 0}
+  clickDelay: 1
+  lukaSprite: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
+  catSprite: {fileID: -770213566, guid: 4aaa1228ed4eed7448298ee4b8b2af1a, type: 3}
+  catIntroText1: "애옭."
+  catIntroText2: "애옭!!"
+  catIntroText3: "애옭!!!!!!!!!!!"
+  lukaIntroText: "야 뚱냥이년아 잠깐 비켜."
+  enemySpawnText: "저기 적이 나타났어."
+  attackGuideText: "적을 공격해봐. 적을 공격하는 방법은 오른쪽 클릭으로 조준 한다음 왼쪽클릭으로 총을 발사하면 돼."
+  enemyDeathText: "잘했어! 그럼 한번 계속 해봐!"
+  bossSpawnText: "랩처를 처치하며 전투를 진행하다 보면 무리를 이끄는 고위급 개체가 등장해. 이 타겟을 처치하면 게임에서 승리하게 돼!"
 --- !u!1001 &1397820829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50707,3 +50720,5 @@ SceneRoots:
   - {fileID: 124902373}
   - {fileID: 8129373320393362604}
   - {fileID: 698977751}
+
+

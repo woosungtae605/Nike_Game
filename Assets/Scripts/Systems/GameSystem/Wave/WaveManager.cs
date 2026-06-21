@@ -1,7 +1,9 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Agents.Enemies;
+using CoreSystem.BusSystem;
+using GameEvents.UI;
 using Reflex.Attributes;
 using Systems.GameSystem.Wave.Conditions;
 using UnityEngine;
@@ -16,6 +18,9 @@ namespace Systems.GameSystem.Wave
 
          private EnemyManager _enemyManager;
          private Coroutine _waveRoutine;
+         private WaveInformationSO _waveInformation;
+         private bool _hasRaisedTutorialEnemySpawn;
+         private bool _hasRaisedTutorialBossSpawn;
 
          public Action OnClear;         
          public Action<int, int> OnWaveStarted;
@@ -24,6 +29,10 @@ namespace Systems.GameSystem.Wave
 
          public void SetWaveInformation(WaveInformationSO waveInformation)
          {
+             _waveInformation = waveInformation;
+             _hasRaisedTutorialEnemySpawn = false;
+             _hasRaisedTutorialBossSpawn = false;
+
              if (waveInformation == null || waveInformation.WaveData == null)
                  return;
 
@@ -67,11 +76,15 @@ namespace Systems.GameSystem.Wave
                  SpawnDataSo spawnData = waveData.SpawnDataSos[i];
                     
                  List<AbstractEnemy> spawnedEnemies = Spawn(spawnData);
+                 RaiseTutorialEnemySpawnIfNeeded(spawnedEnemies);
 
                  if (spawnData.IsBossSpawned)
                  {
                      if (spawnedEnemies.Count > 0)
+                     {
+                         RaiseTutorialBossSpawnIfNeeded(spawnedEnemies[0]);
                          OnBossSpawn?.Invoke(spawnedEnemies[0]);
+                     }
                  }
                  else
                  {
@@ -92,6 +105,30 @@ namespace Systems.GameSystem.Wave
              
              _waveRoutine = null;
              OnClear?.Invoke();
+         }
+
+         private void RaiseTutorialEnemySpawnIfNeeded(List<AbstractEnemy> spawnedEnemies)
+         {
+             if (_hasRaisedTutorialEnemySpawn || _waveInformation == null || !_waveInformation.IsTutorial)
+                 return;
+
+             if (spawnedEnemies == null || spawnedEnemies.Count <= 0)
+                 return;
+
+             _hasRaisedTutorialEnemySpawn = true;
+             Bus<TutorialEnemySpawnEvent>.Raise(new TutorialEnemySpawnEvent(spawnedEnemies[0]));
+         }
+
+         private void RaiseTutorialBossSpawnIfNeeded(AbstractEnemy boss)
+         {
+             if (_hasRaisedTutorialBossSpawn || _waveInformation == null || !_waveInformation.IsTutorial)
+                 return;
+
+             if (boss == null)
+                 return;
+
+             _hasRaisedTutorialBossSpawn = true;
+             Bus<TutorialBossSpawnEvent>.Raise(new TutorialBossSpawnEvent(boss));
          }
          
          private List<AbstractEnemy> Spawn(SpawnDataSo spawnData)

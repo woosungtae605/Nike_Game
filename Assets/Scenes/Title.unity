@@ -1316,7 +1316,7 @@ MonoBehaviour:
   mainSceneName: MainScene
   waveClearSaveFile: {fileID: 11400000, guid: 7f5dc76ec7e34dd78a129441d4f73f0b, type: 2}
   currentWaveInformation: {fileID: 11400000, guid: 7a93d53a8ad94b61b5f920db63bb0182, type: 2}
-  practiceWaveInformation: {fileID: 11400000, guid: 19780bc1e12ed564a9058e780005cefb, type: 2}
+  practiceWaveInformation: {fileID: 11400000, guid: 2fab56d0dc0e69046aacc2d1eeb56c27, type: 2}
 --- !u!1 &1973056695
 GameObject:
   m_ObjectHideFlags: 0
