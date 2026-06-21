@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -33703,14 +33703,19 @@ MonoBehaviour:
   clickDelay: 1
   lukaSprite: {fileID: -202405410, guid: 4e8112134d2bb6c4b829a42abb528a27, type: 3}
   catSprite: {fileID: -770213566, guid: 4aaa1228ed4eed7448298ee4b8b2af1a, type: 3}
-  catIntroText1: "애옭."
-  catIntroText2: "애옭!!"
-  catIntroText3: "애옭!!!!!!!!!!!"
-  lukaIntroText: "야 뚱냥이년아 잠깐 비켜."
-  enemySpawnText: "저기 적이 나타났어."
-  attackGuideText: "적을 공격해봐. 적을 공격하는 방법은 오른쪽 클릭으로 조준 한다음 왼쪽클릭으로 총을 발사하면 돼."
-  enemyDeathText: "잘했어! 그럼 한번 계속 해봐!"
-  bossSpawnText: "랩처를 처치하며 전투를 진행하다 보면 무리를 이끄는 고위급 개체가 등장해. 이 타겟을 처치하면 게임에서 승리하게 돼!"
+  catIntroText1: "\uC560\uC62D."
+  catIntroText2: "\uC560\uC62D!!"
+  catIntroText3: "\uC560\uC62D!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  lukaIntroText: "\uC57C \uBE44\uCF1C."
+  enemySpawnText: "\uC800\uAE30 \uC801\uC774 \uB098\uD0C0\uB0AC\uC5B4."
+  attackGuideText: "\uC801\uC744 \uACF5\uACA9\uD574\uBD10. \uC801\uC744 \uACF5\uACA9\uD558\uB294
+    \uBC29\uBC95\uC740 \uC624\uB978\uCABD \uD074\uB9AD\uC73C\uB85C \uC870\uC900 \uD55C\uB2E4\uC74C
+    \uC67C\uCABD\uD074\uB9AD\uC73C\uB85C \uCD1D\uC744 \uBC1C\uC0AC\uD558\uBA74 \uB3FC."
+  enemyDeathText: "\uC798\uD588\uC5B4. \uADF8\uB7FC \uD55C\uBC88 \uACC4\uC18D \uD574\uBD10!"
+  bossSpawnText: "\uB7A9\uCC98\uB97C \uCC98\uCE58\uD558\uBA70 \uC804\uD22C\uB97C
+    \uC9C4\uD589\uD558\uB2E4 \uBCF4\uBA74 \uBB34\uB9AC\uB97C \uC774\uB044\uB294 \uACE0\uC704\uAE09
+    \uAC1C\uCCB4\uAC00 \uB4F1\uC7A5\uD574. \uC774 \uD0C0\uAC9F\uC744 \uCC98\uCE58\uD558\uBA74
+    \uAC8C\uC784\uC5D0\uC11C \uC2B9\uB9AC\uD558\uAC8C \uB3FC!"
 --- !u!1001 &1397820829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50720,5 +50725,3 @@ SceneRoots:
   - {fileID: 124902373}
   - {fileID: 8129373320393362604}
   - {fileID: 698977751}
-
-

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections;
 using System;
 using Agents.Players;
@@ -159,6 +159,16 @@ namespace UI.MainSceneUI.Nikkes
             OnClickProfile?.Invoke(playerData);
         }
 
+        public bool TryGetFirstProfileRect(out RectTransform profileRect)
+        {
+            profileRect = null;
+
+            if (_activeProfiles.Count <= 0 || _activeProfiles[0] == null)
+                return false;
+
+            profileRect = _activeProfiles[0].transform as RectTransform;
+            return profileRect != null;
+        }
         public void RefreshProfileLevels()
         {
             foreach (NikkeProfile profile in _activeProfiles)
@@ -183,3 +193,4 @@ namespace UI.MainSceneUI.Nikkes
         }
     }
 }
+
