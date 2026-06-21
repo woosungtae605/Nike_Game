@@ -15,7 +15,6 @@ MonoBehaviour:
   <SpawnDataSos>k__BackingField:
   - {fileID: 11400000, guid: bd2d0453b8bcef24ab45955625d30a58, type: 2}
   - {fileID: 11400000, guid: b6643b0f49dae1544868535c1ad6dbe9, type: 2}
-  - {fileID: 11400000, guid: 4e7d4e320c9264847b9f61f7518ed820, type: 2}
   - {fileID: 11400000, guid: 9c4231eac6ea58e43af0dcaffa8e7e3e, type: 2}
   - {fileID: 11400000, guid: bda754b5cf5d9b446b388b7d40c2937f, type: 2}
   - {fileID: 11400000, guid: ce16abce98f9d9a4eab59cfd67400691, type: 2}

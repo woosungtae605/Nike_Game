@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 802afc1a07ab4b26bf4eb5c0b8b5fdf1, type: 3}
-  m_Name: SpawnData3
+  m_Name: SpawnData5
   m_EditorClassIdentifier: Assembly-CSharp::Systems.GameSystem.Wave.SpawnDataSo
   <EnemySpawnDatas>k__BackingField:
-  - enemyDataSos: {fileID: 11400000, guid: 0d481c27b99f76c4595d5aacf0f0e691, type: 2}
+  - enemyDataSos: {fileID: 11400000, guid: ec123a7068f86654298624e15b8d8c69, type: 2}
+    spawnPos: 1
+    amount: 1
+  - enemyDataSos: {fileID: 11400000, guid: 61d1aad60f884f546b098943383e6db4, type: 2}
     spawnPos: 0
     amount: 1
-  - enemyDataSos: {fileID: 11400000, guid: 0d481c27b99f76c4595d5aacf0f0e691, type: 2}
+  - enemyDataSos: {fileID: 11400000, guid: 61d1aad60f884f546b098943383e6db4, type: 2}
     spawnPos: 2
     amount: 1
   <SpawnConditionSo>k__BackingField: {fileID: 11400000, guid: 099556840265c4d4b868ad67067f48ae, type: 2}
