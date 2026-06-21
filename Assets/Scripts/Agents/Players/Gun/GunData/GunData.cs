@@ -24,6 +24,9 @@ namespace Agents.Players.Gun.GunData
         
         [Header("Effects")]
         [SerializeField] private float lineEffectDuration = 0.05f;
+
+        [Header("sound")]
+        [SerializeField] private AudioClip shotSound;
         
         public int Damage => damage;
         public float FireInterval => fireInterval;
@@ -35,6 +38,7 @@ namespace Agents.Players.Gun.GunData
         public float CameraShakePower => cameraShakePower;
         public float CameraShakeDuration => cameraShakeDuration;
         public float LineEffectDuration => lineEffectDuration;
+        public AudioClip SHotSound => shotSound;
 
         public virtual void OnAimStart(PlayerGun playerGunOwner)
         {
