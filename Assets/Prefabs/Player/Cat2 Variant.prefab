@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 2d920d122bda95548bebd5d46915e602, type: 2}
+    - target: {fileID: 7167470356424675068, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+      propertyPath: aimOffsetX
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

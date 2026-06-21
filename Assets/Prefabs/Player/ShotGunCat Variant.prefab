@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotGunCat Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7167470356424675068, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+      propertyPath: aimOffsetX
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

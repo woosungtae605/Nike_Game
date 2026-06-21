@@ -642,7 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Module.PlayerAimPositionModule
   moveTarget: {fileID: 3809082974094868109}
   cameraTarget: {fileID: 7637889372196653766}
-  aimOffsetX: 1
+  aimOffsetX: 0.5
   moveDuration: 0.15
 --- !u!1 &7027308887202826881
 GameObject:
