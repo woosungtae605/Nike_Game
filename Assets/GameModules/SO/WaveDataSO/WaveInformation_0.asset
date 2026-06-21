@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2f5bb1c9ab47599bb9edbd70b95790, type: 3}
+  m_Name: WaveInformation_0
+  m_EditorClassIdentifier: Assembly-CSharp::Systems.GameSystem.Wave.WaveInformationSO
+  <WaveData>k__BackingField: {fileID: 11400000, guid: 63a58841b9677df44a3f88dad98470a6, type: 2}
+  <WaveName>k__BackingField: Wave1
+  <WaveNumber>k__BackingField: 0
+  <GetCoin>k__BackingField: 200
