@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1564514051056448827
 GameObject:
@@ -695,6 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Enemies.Module.EnemyDeathEffectModule
   poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
   deathEffect: {fileID: 11400000, guid: 46582048220f2554e91cd4f3a17d5004, type: 2}
+  deathSound: {fileID: 8300000, guid: 61d1a353385dce3469a4437468f3e353, type: 3}
 --- !u!1 &8176699719838521519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,3 +1776,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.CombatSystem.DamageHitBox
   damageMultiplier: 1
   isCritical: 0
+

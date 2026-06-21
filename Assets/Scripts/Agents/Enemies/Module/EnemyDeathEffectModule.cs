@@ -1,5 +1,6 @@
-using Gamelib.ObjectPool.Runtime;
+﻿using Gamelib.ObjectPool.Runtime;
 using Module;
+using Sound;
 using Systems;
 using UnityEngine;
 
@@ -9,12 +10,19 @@ namespace Agents.Enemies.Module
     {
         [SerializeField] private PoolManagerSo poolManagerSo;
         [SerializeField] private PoolItemSo deathEffect;
+        [SerializeField] private AudioClip deathSound;
 
         public void Initialize(ModuleOwner owner)
         {
         }
 
         public void Play(Transform effectPoint)
+        {
+            PlayEffect(effectPoint);
+            SoundManager.Instance?.PlaySFX(deathSound);
+        }
+
+        private void PlayEffect(Transform effectPoint)
         {
             if (poolManagerSo == null || deathEffect == null)
                 return;
