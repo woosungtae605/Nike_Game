@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2f5bb1c9ab47599bb9edbd70b95790, type: 3}
   m_Name: WaveInformation_2
   m_EditorClassIdentifier: Assembly-CSharp::Systems.GameSystem.Wave.WaveInformationSO
-  <WaveData>k__BackingField: {fileID: 11400000, guid: 63a58841b9677df44a3f88dad98470a6, type: 2}
+  <WaveData>k__BackingField: {fileID: 11400000, guid: 71bbd407c6ad49b59bb7477e587d13f2, type: 2}
   <WaveName>k__BackingField: Wave1
   <WaveNumber>k__BackingField: 2
-  <GetCoin>k__BackingField: 500
+  <GetCoin>k__BackingField: 800
