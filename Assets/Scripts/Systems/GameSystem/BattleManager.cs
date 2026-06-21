@@ -1,10 +1,11 @@
-﻿using Agents.Enemies;
+using Agents.Enemies;
 using Agents.Players;
 using CoreSystem.BusSystem;
 using GameEvents;
 using GameEvents.Coin;
 using GameEvents.UI;
 using Systems.GameSystem.Wave;
+using Systems.SaveSystem;
 using UnityEngine;
 
 namespace Systems.GameSystem
@@ -16,6 +17,7 @@ namespace Systems.GameSystem
         [SerializeField] private WaveManager waveManager;
         [SerializeField] private CurrentWaveInformationSO currentWaveInformation;
         [SerializeField] private WaveInformationSO fallbackWaveInformation;
+        [SerializeField] private SaveFileNameSO waveClearSaveFile;
 
         private WaveInformationSO _waveInformation;
         private bool _isBattleCleared;
@@ -104,11 +106,14 @@ namespace Systems.GameSystem
 
             _isBattleCleared = true;
 
-            int getCoin = _waveInformation != null ? _waveInformation.GetCoin : 0;
-            Debug.Log($"[Battle] Clear reward coin: {getCoin}", this);
+            bool firstClear = _waveInformation != null && WaveClearSave.MarkCleared(waveClearSaveFile, _waveInformation);
+            int getCoin = firstClear ? _waveInformation.GetCoin : 0;
+            Debug.Log($"[Battle] Clear reward coin: {getCoin} / FirstClear: {firstClear}", this);
 
             if (getCoin > 0)
                 Bus<CoinEvent>.Raise(new CoinEvent(getCoin));
         }
     }
 }
+
+
