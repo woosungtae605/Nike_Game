@@ -16,5 +16,5 @@ MonoBehaviour:
   - enemyDataSos: {fileID: 11400000, guid: 61d1aad60f884f546b098943383e6db4, type: 2}
     spawnPos: 0
     amount: 1
-  <SpawnConditionSo>k__BackingField: {fileID: 11400000, guid: e7202e3320f92b54cab5d516a2011ba3, type: 2}
+  <SpawnConditionSo>k__BackingField: {fileID: 11400000, guid: 6ccde098bdd98384ea871c503fd5b1ea, type: 2}
   <IsBossSpawned>k__BackingField: 0
