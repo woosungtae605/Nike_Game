@@ -1,6 +1,7 @@
-using Agents.Players;
+﻿using Agents.Players;
 using UI.MainSceneUI.Bottoms;
 using UI.MainSceneUI.Nikkes;
+using Sound;
 using UnityEngine;
 
 namespace UI.MainSceneUI.Squards
@@ -13,6 +14,7 @@ namespace UI.MainSceneUI.Squards
         [SerializeField] private NikkeContainer nikkeContainer;
         [SerializeField] private SquadPlusUI squadPlusUI;
         [SerializeField] private GameObject squad;
+        [SerializeField] private AudioClip equipSound;
 
         private bool _isSubscribed;
 
@@ -63,8 +65,14 @@ namespace UI.MainSceneUI.Squards
             if (!playerSquad.Equip(playerData))
                 return;
 
+            SoundManager.Instance?.PlaySFX(equipSound);
+
             if (squadPlusUI != null)
                 squadPlusUI.Init();
         }
     }
 }
+
+
+
+
