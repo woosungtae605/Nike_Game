@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1424664903130243665
 GameObject:
@@ -1141,8 +1141,20 @@ PrefabInstance:
       value: -82.98795
       objectReference: {fileID: 0}
     - target: {fileID: 1148155792711583849, guid: b67dca5d44bbc564ab59d7b6dfa0a41d, type: 3}
+      propertyPath: m_Height
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148155792711583849, guid: b67dca5d44bbc564ab59d7b6dfa0a41d, type: 3}
       propertyPath: m_Radius
-      value: 0.20150566
+      value: 0.2659746
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148155792711583849, guid: b67dca5d44bbc564ab59d7b6dfa0a41d, type: 3}
+      propertyPath: m_Center.x
+      value: 0.009092838
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148155792711583849, guid: b67dca5d44bbc564ab59d7b6dfa0a41d, type: 3}
+      propertyPath: m_Center.y
+      value: 0.5500001
       objectReference: {fileID: 0}
     - target: {fileID: 1148155792711583849, guid: b67dca5d44bbc564ab59d7b6dfa0a41d, type: 3}
       propertyPath: m_Center.z
@@ -1620,4 +1632,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1643276255186220659, guid: b67dca5d44bbc564ab59d7b6dfa0a41d, type: 3}
   m_PrefabInstance: {fileID: 9079063677375721698}
   m_PrefabAsset: {fileID: 0}
-

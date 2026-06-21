@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemySpawnDatas>k__BackingField:
   - enemyDataSos: {fileID: 11400000, guid: 61d1aad60f884f546b098943383e6db4, type: 2}
-    spawnPos: 0
+    spawnPos: 1
     amount: 1
-  <SpawnConditionSo>k__BackingField: {fileID: 11400000, guid: e7202e3320f92b54cab5d516a2011ba3, type: 2}
+  <SpawnConditionSo>k__BackingField: {fileID: 11400000, guid: 7deb192e30bf470429c67c031a77b014, type: 2}
   <IsBossSpawned>k__BackingField: 0
