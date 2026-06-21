@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 779402754116607154, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+      propertyPath: scalePower
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1980901830142180334, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
       propertyPath: <PlayerData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 34117403ea69e2349a217f72cde1e424, type: 2}
+    - target: {fileID: 3715982063727399575, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -908216926, guid: 618977d022926ad4ea6603e7de94a27d, type: 3}
     - target: {fileID: 3809082974094868109, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960.159
