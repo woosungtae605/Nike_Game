@@ -676,6 +676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capibara Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6837472316188129412, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 40cc883e7e93abc4e9e42ca572092cc7, type: 2}
     - target: {fileID: 7289806998457217704, guid: 11df0e7e09e71004e97f2e631a80cb81, type: 3}
       propertyPath: m_SizeDelta.x
       value: 250

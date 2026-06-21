@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -2105,6 +2105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Bases.LobbyUI
   battleStartButton: {fileID: 1072799188}
+  playerSquad: {fileID: 11400000, guid: b9db07e5b94b73b4c8ee63f75d768b0d, type: 2}
+  warningGuide: {fileID: 2023564424}
+  emptySquadWarningText: "스쿼드를 장착해야 합니다."
 --- !u!1 &336122486
 GameObject:
   m_ObjectHideFlags: 0
@@ -15248,3 +15251,4 @@ SceneRoots:
   - {fileID: 7545293825440867795}
   - {fileID: 8833306899482278024}
   - {fileID: 1405116939}
+

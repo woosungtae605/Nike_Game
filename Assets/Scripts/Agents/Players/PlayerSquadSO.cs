@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Systems.SaveSystem;
 using UnityEngine;
@@ -64,6 +64,18 @@ namespace Agents.Players
             SaveAndNotify();
         }
 
+        public bool HasEquippedPlayer()
+        {
+            EnsureSquadSize();
+
+            foreach (PlayerDataSO playerData in PlayerDataSos)
+            {
+                if (playerData != null)
+                    return true;
+            }
+
+            return false;
+        }
         public bool IsEquipped(PlayerDataSO playerData)
         {
             if (playerData == null)

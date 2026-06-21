@@ -49,7 +49,8 @@ namespace UI.MainSceneUI.Tutorial
             OpenNikke,
             ClickFirstProfile,
             UpgradeGuideMessage,
-            SquadGuideMessage
+            SquadGuideMessage,
+            WarningMessage
         }
 
         private void Awake()
@@ -75,7 +76,7 @@ namespace UI.MainSceneUI.Tutorial
 
         private void Update()
         {
-            if (_step != TutorialStep.UpgradeGuideMessage && _step != TutorialStep.SquadGuideMessage)
+            if (_step != TutorialStep.UpgradeGuideMessage && _step != TutorialStep.SquadGuideMessage && _step != TutorialStep.WarningMessage)
                 return;
 
             if (Time.unscaledTime < _messageCanCloseTime)
@@ -86,7 +87,7 @@ namespace UI.MainSceneUI.Tutorial
 
             if (_step == TutorialStep.SquadGuideMessage)
                 MarkSquadCleared();
-            else
+            else if (_step == TutorialStep.UpgradeGuideMessage)
                 MarkNikkeCleared();
 
             Hide();
@@ -118,6 +119,15 @@ namespace UI.MainSceneUI.Tutorial
             SetGuideActive(true);
         }
 
+        public void ShowWarning(string message)
+        {
+            _step = TutorialStep.WarningMessage;
+            _messageCanCloseTime = Time.unscaledTime + messageClickDelay;
+
+            SetGuideText(message);
+            SetBlockTarget(null);
+            SetGuideActive(true);
+        }
         public void Hide()
         {
             _step = TutorialStep.None;
@@ -270,3 +280,4 @@ namespace UI.MainSceneUI.Tutorial
         }
     }
 }
+
