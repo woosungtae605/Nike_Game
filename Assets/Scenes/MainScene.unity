@@ -5445,7 +5445,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 478227201}
   sfxToggle: {fileID: 1600924587}
   exitBtn: {fileID: 662001914}
-  exitObject: {fileID: 0}
+  exitObject: {fileID: 112446588}
 --- !u!1 &825443752
 GameObject:
   m_ObjectHideFlags: 0

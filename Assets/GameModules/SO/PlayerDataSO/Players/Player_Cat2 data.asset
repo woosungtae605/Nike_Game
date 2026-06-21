@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e27e82988834ae2bd94a862c03fba0a, type: 3}
+  m_Name: Player_Cat2 data
+  m_EditorClassIdentifier: 
+  <NikkeID>k__BackingField: 4
+  <NikkeName>k__BackingField: "\uC57C\uC639\uC774"
+  <Age>k__BackingField: 6
+  <NikkeDescription>k__BackingField: "\uBA00\uC639\uC774\uC758 \uCE5C\uAD6C"
+  <Sexuality>k__BackingField: "\uC218\uCEF7"
+  <PlayerGunData>k__BackingField: {fileID: 11400000, guid: c46f195d8adb7e94f9a1b0e1991ff117, type: 2}
+  <NikkeSprite>k__BackingField: {fileID: -770213566, guid: 4aaa1228ed4eed7448298ee4b8b2af1a, type: 3}
+  <MaxHp>k__BackingField: 100
+  player: {fileID: 8519790500440365739, guid: 487172497dbe65f4eaa63746755e6cfd, type: 3}
