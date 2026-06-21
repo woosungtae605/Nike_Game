@@ -19,5 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34117403ea69e2349a217f72cde1e424, type: 2}
   - {fileID: 11400000, guid: afa3203f8e662d4458b84727850d8c5c, type: 2}
   - {fileID: 11400000, guid: 8c138b18e0faf734eb90ff2287891fad, type: 2}
+  - {fileID: 11400000, guid: 004cc4ef6a1a7f647bf7cb93ec6aaef8, type: 2}
   nowPlayerDatas:
   - {fileID: 11400000, guid: 8c8a6efbd81a1c14f893ea10627af983, type: 2}
