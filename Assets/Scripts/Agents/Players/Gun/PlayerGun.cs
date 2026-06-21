@@ -4,6 +4,7 @@ using Agents.Module;
 using CoreSystem.BusSystem;
 using GameEvents.UI;
 using Module;
+using Sound;
 using UnityEngine;
 
 namespace Agents.Players.Gun
@@ -81,6 +82,7 @@ namespace Agents.Players.Gun
         {
             _lastFireTime = Time.time;
             _currentAmmo--;
+            SoundManager.Instance?.PlaySFX(GunData.ShotSound);
             
             if(_owner.IsControl && showAmmoUI)
                 Bus<GunAmmoUIActiveEvent>.Raise(new GunAmmoUIActiveEvent(CurrentAmmo, GunData.MaxAmmo, true));
@@ -92,6 +94,8 @@ namespace Agents.Players.Gun
         }
     }
 }
+
+
 
 
 

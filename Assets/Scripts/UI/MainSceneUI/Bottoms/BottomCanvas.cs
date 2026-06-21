@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LitMotion;
 using LitMotion.Extensions;
+using Systems.CursorSystem;
 using UnityEngine;
 
 namespace UI.MainSceneUI.Bottoms
@@ -20,6 +21,8 @@ namespace UI.MainSceneUI.Bottoms
 
         public void Awake()
         {
+            CursorManager.ResetToDefault();
+
             foreach (GameObject obj in mainSceneUIObjects)
             {
                 if (obj.TryGetComponent(out IMainSceneUIElement element))
@@ -119,3 +122,4 @@ namespace UI.MainSceneUI.Bottoms
         }
     }
 }
+

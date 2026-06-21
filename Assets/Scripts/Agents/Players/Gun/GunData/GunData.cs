@@ -38,7 +38,7 @@ namespace Agents.Players.Gun.GunData
         public float CameraShakePower => cameraShakePower;
         public float CameraShakeDuration => cameraShakeDuration;
         public float LineEffectDuration => lineEffectDuration;
-        public AudioClip SHotSound => shotSound;
+        public AudioClip ShotSound => shotSound;
 
         public virtual void OnAimStart(PlayerGun playerGunOwner)
         {
@@ -71,3 +71,4 @@ namespace Agents.Players.Gun.GunData
         }
     }
 }
+
