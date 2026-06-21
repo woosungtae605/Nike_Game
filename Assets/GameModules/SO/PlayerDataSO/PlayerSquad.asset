@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.Players.PlayerSquadSO
   saveFileName: {fileID: 11400000, guid: a0d7e5a14d7b4f77b814af72bd995c3b, type: 2}
   playerDataSos: {fileID: 11400000, guid: 49dbbb0e805018e4894011d061ec669f, type: 2}
+  initialPlayerDataSos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

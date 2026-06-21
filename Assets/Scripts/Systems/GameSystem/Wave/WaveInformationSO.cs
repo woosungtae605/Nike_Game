@@ -48,6 +48,15 @@ namespace Systems.GameSystem.Wave
             return true;
         }
 
+        public static bool HasAnyCleared(SaveFileNameSO saveFile)
+        {
+            if (saveFile == null)
+                return false;
+
+            WaveClearSaveData data = Load(saveFile);
+            return data.clearedWaveNumbers != null && data.clearedWaveNumbers.Count > 0;
+        }
+
         private static WaveClearSaveData Load(SaveFileNameSO saveFile)
         {
             if (_cache != null && _cacheSaveFile == saveFile)

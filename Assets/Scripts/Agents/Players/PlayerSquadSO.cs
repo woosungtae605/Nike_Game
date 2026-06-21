@@ -13,6 +13,7 @@ namespace Agents.Players
 
         [SerializeField] private SaveFileNameSO saveFileName;
         [SerializeField] private PlayerDataSos playerDataSos;
+        [SerializeField] private PlayerDataSO[] initialPlayerDataSos = new PlayerDataSO[SquadCount];
 
         public PlayerDataSO[] PlayerDataSos { get; private set; } = new PlayerDataSO[SquadCount];
         public event Action OnChanged;
@@ -20,7 +21,13 @@ namespace Agents.Players
         private void OnEnable()
         {
             EnsureSquadSize();
+            EnsureInitialSquadSize();
             Load();
+        }
+
+        private void OnValidate()
+        {
+            EnsureInitialSquadSize();
         }
 
         public bool Equip(PlayerDataSO playerData)
@@ -90,27 +97,17 @@ namespace Agents.Players
         public void Load()
         {
             EnsureSquadSize();
+            EnsureInitialSquadSize();
             Clear(false);
 
-            if (saveFileName == null || playerDataSos == null)
-                return;
-
-            if (!JsonSaveService.TryLoad(saveFileName, out SaveData saveData))
-                return;
-
-            if (saveData == null || saveData.playerIds == null)
-                return;
-
-            int count = Mathf.Min(SquadCount, saveData.playerIds.Count);
-            for (int i = 0; i < count; i++)
+            if (TryLoadSavedSquad())
             {
-                int playerId = saveData.playerIds[i];
-                if (playerId == EmptyId)
-                    continue;
-
-                PlayerDataSos[i] = playerDataSos.GetPlayerData(playerId);
+                OnChanged?.Invoke();
+                return;
             }
 
+            ApplyInitialSquad();
+            Save();
             OnChanged?.Invoke();
         }
 
@@ -125,6 +122,42 @@ namespace Agents.Players
 
             if (save)
                 SaveAndNotify();
+        }
+
+        private bool TryLoadSavedSquad()
+        {
+            if (saveFileName == null || playerDataSos == null)
+                return false;
+
+            if (!JsonSaveService.TryLoad(saveFileName, out SaveData saveData))
+                return false;
+
+            if (saveData == null || saveData.playerIds == null)
+                return false;
+
+            int count = Mathf.Min(SquadCount, saveData.playerIds.Count);
+            for (int i = 0; i < count; i++)
+            {
+                int playerId = saveData.playerIds[i];
+                if (playerId == EmptyId)
+                    continue;
+
+                PlayerDataSos[i] = playerDataSos.GetPlayerData(playerId);
+            }
+
+            return true;
+        }
+
+        private void ApplyInitialSquad()
+        {
+            for (int i = 0; i < SquadCount; i++)
+            {
+                PlayerDataSO initialPlayerData = initialPlayerDataSos[i];
+                if (initialPlayerData == null || IsEquipped(initialPlayerData))
+                    continue;
+
+                PlayerDataSos[i] = initialPlayerData;
+            }
         }
 
         private int GetFirstEmptyIndex()
@@ -153,6 +186,12 @@ namespace Agents.Players
         {
             if (PlayerDataSos == null || PlayerDataSos.Length != SquadCount)
                 PlayerDataSos = new PlayerDataSO[SquadCount];
+        }
+
+        private void EnsureInitialSquadSize()
+        {
+            if (initialPlayerDataSos == null || initialPlayerDataSos.Length != SquadCount)
+                Array.Resize(ref initialPlayerDataSos, SquadCount);
         }
 
         [Serializable]
