@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using CoreSystem.BusSystem;
 using GameEvents;
 using GameEvents.Camera;
 using GameEvents.UI;
 using Gamelib.ObjectPool.Runtime;
+using Sound;
 using Systems;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Splines;
 
 namespace Agents.Enemies.Obliterators
 {
@@ -15,8 +15,13 @@ namespace Agents.Enemies.Obliterators
     {
         [SerializeField] private PoolManagerSo poolManagerSo;
         [SerializeField] private PoolItemSo effect;
+        [SerializeField] private AudioClip explosionSound;
+        [SerializeField] private float explosionSoundVolumeScale = 2f;
+
         [field: SerializeField] public Transform CameraTarget { get; private set; }
+
         private CinemachineImpulseSource _impulseSource;
+
         protected override void HandleDeath()
         {
             HealthModule.OnDeath -= HandleDeath;
@@ -40,8 +45,9 @@ namespace Agents.Enemies.Obliterators
 
             yield return new WaitForSeconds(1.5f);
 
-            ParticlePooling particlePooling = poolManagerSo.Pop<ParticlePooling>(this.effect);
+            SoundManager.Instance?.PlaySFX(explosionSound, 0f, explosionSoundVolumeScale);
 
+            ParticlePooling particlePooling = poolManagerSo.Pop<ParticlePooling>(this.effect);
             particlePooling.PoolManagerSo = poolManagerSo;
             particlePooling.Play(HitPos.position);
 
@@ -51,4 +57,3 @@ namespace Agents.Enemies.Obliterators
         }
     }
 }
-

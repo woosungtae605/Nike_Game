@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &278835853909853513
 GameObject:
@@ -643,6 +643,8 @@ MonoBehaviour:
   <HitPos>k__BackingField: {fileID: 8176508965273982317}
   poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
   effect: {fileID: 11400000, guid: 6bcd9b955fdb8934b9dee4f7f102a43d, type: 2}
+  explosionSound: {fileID: 8300000, guid: c483dabda353ff04da88e8de74fa8934, type: 3}
+  explosionSoundVolumeScale: 2
   <CameraTarget>k__BackingField: {fileID: 1064247378253800702}
 --- !u!54 &6645597432175168322
 Rigidbody:

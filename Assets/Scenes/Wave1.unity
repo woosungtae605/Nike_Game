@@ -33706,7 +33706,7 @@ MonoBehaviour:
   catIntroText1: "\uC560\uC62D."
   catIntroText2: "\uC560\uC62D!!"
   catIntroText3: "\uC560\uC62D!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  lukaIntroText: "\uC57C \uBE44\uCF1C."
+  lukaIntroText: "\uB0B4\uAC00 \uB300\uC2E0 \uBC88\uC5ED\uD574\uC904\uAC8C \uBE44\uCF1C\uBD10."
   enemySpawnText: "\uC800\uAE30 \uC801\uC774 \uB098\uD0C0\uB0AC\uC5B4."
   attackGuideText: "\uC801\uC744 \uACF5\uACA9\uD574\uBD10. \uC801\uC744 \uACF5\uACA9\uD558\uB294
     \uBC29\uBC95\uC740 \uC624\uB978\uCABD \uD074\uB9AD\uC73C\uB85C \uC870\uC900 \uD55C\uB2E4\uC74C
@@ -50506,6 +50506,98 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
   m_PrefabInstance: {fileID: 2147443517}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &918452771012345687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918452771012345688}
+  - component: {fileID: 918452771012345689}
+  m_Layer: 0
+  m_Name: Wave1BGMStopper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &918452771012345688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918452771012345687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &918452771012345689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918452771012345687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08dc3b5e9f14a0dac96e701acdb21d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &918452771012345690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918452771012345691}
+  - component: {fileID: 918452771012345692}
+  m_Layer: 0
+  m_Name: BossSpawnSoundPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &918452771012345691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918452771012345690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &918452771012345692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918452771012345690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a7cc2d996c4b0e85b6dcf14c258b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveManager: {fileID: 604650599}
+  bossSpawnClip: {fileID: 8300000, guid: ea97414c1a763bf44b153a69337b6213, type: 3}
+  clipStartTime: 11
+  volumeScale: 5
 --- !u!1001 &1642006291941340217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50725,3 +50817,5 @@ SceneRoots:
   - {fileID: 124902373}
   - {fileID: 8129373320393362604}
   - {fileID: 698977751}
+  - {fileID: 918452771012345688}
+  - {fileID: 918452771012345691}

@@ -1,4 +1,4 @@
-ï»¿using DefaultNamespace;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -76,19 +76,60 @@ namespace Sound
         {
             if (mixer == null)
             {
-                Debug.LogWarning("Mixer ë¯¸í• ë‹¹");
+                Debug.LogWarning("Mixer ¹ÌÇÒ´ç");
                 return;
             }
 
             float dB = value <= 0.0001f ? -80f : Mathf.Log10(value) * 20f;
             if (!mixer.SetFloat(key, dB))
-                Debug.LogWarning($"ë¯¹ì„œ íŒŒë¼ë¯¸í„° '{key}' ì—†ìŒ ? Expose ì´ë¦„ í™•ì¸");
+                Debug.LogWarning($"¹Í¼­ ÆÄ¶ó¹ÌÅÍ '{key}' ¾øÀ½ ? Expose ÀÌ¸§ È®ÀÎ");
         }
 
         public void PlaySFX(AudioClip clip)
         {
             if (clip != null && sfxSource != null)
                 sfxSource.PlayOneShot(clip);
+        }
+
+        public void PlaySFX(AudioClip clip, float startTime)
+        {
+            PlaySFX(clip, startTime, 1f);
+        }
+
+        public void PlaySFX(AudioClip clip, float startTime, float volumeScale)
+        {
+            if (clip == null || sfxSource == null)
+                return;
+
+            startTime = Mathf.Clamp(startTime, 0f, clip.length);
+            volumeScale = Mathf.Max(0f, volumeScale);
+
+            while (volumeScale > 0f)
+            {
+                float layerVolume = Mathf.Min(1f, volumeScale);
+                PlaySFXLayer(clip, startTime, layerVolume);
+                volumeScale -= layerVolume;
+            }
+        }
+
+        private void PlaySFXLayer(AudioClip clip, float startTime, float volumeScale)
+        {
+            if (startTime <= 0f)
+            {
+                sfxSource.PlayOneShot(clip, volumeScale);
+                return;
+            }
+
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = sfxSource.outputAudioMixerGroup;
+            source.volume = sfxSource.volume * volumeScale;
+            source.pitch = sfxSource.pitch;
+            source.spatialBlend = sfxSource.spatialBlend;
+            source.clip = clip;
+            source.time = startTime;
+            source.Play();
+
+            Destroy(source, clip.length - startTime + 0.1f);
         }
 
         public void PlayBGM(AudioClip clip)
@@ -101,6 +142,15 @@ namespace Sound
             bgmSource.Play();
         }
 
+        public void StopBGM()
+        {
+            if (bgmSource == null)
+                return;
+
+            bgmSource.Stop();
+            bgmSource.clip = null;
+        }
+
         public float GetSavedVolume(string key) => PlayerPrefs.GetFloat(key, 1f);
 
         private bool GetSavedMuted(string key) => IsMuted(key);
@@ -108,3 +158,6 @@ namespace Sound
         private bool IsMuted(string key) => PlayerPrefs.GetInt(key, 0) == 1;
     }
 }
+
+
+
