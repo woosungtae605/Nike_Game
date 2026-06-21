@@ -22,10 +22,10 @@ MonoBehaviour:
       type: {class: ShotgunData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
         <GunName>k__BackingField: "\uC0F7\uAC74"
-        damage: 10
-        fireInterval: 0.7
+        damage: 11
+        fireInterval: 0.75
         maxAmmo: 7
-        reloadTime: 1.3
+        reloadTime: 1.4
         maxDistance: 200
         aiRandomSpreadAngle: 7
         hitMask:

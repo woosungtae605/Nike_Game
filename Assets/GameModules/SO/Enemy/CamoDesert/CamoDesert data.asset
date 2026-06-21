@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemyName>k__BackingField: Camo Desert
   <MaxHp>k__BackingField: 200
-  <Damage>k__BackingField: 20
+  <Damage>k__BackingField: 12
   <Speed>k__BackingField: 1

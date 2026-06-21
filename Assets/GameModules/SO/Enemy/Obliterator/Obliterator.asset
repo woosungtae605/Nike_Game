@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Obliterator
   m_EditorClassIdentifier: 
   <EnemyName>k__BackingField: Obliterator
-  <MaxHp>k__BackingField: 1000
-  <Damage>k__BackingField: 20
+  <MaxHp>k__BackingField: 1800
+  <Damage>k__BackingField: 18
   <Speed>k__BackingField: 0.5

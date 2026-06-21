@@ -22,10 +22,10 @@ MonoBehaviour:
       type: {class: RocketLauncherData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
         <GunName>k__BackingField: "\uB85C\uCF13\uB7F0\uCCD0"
-        damage: 20
-        fireInterval: 0.7
+        damage: 35
+        fireInterval: 0.8
         maxAmmo: 5
-        reloadTime: 2
+        reloadTime: 2.2
         maxDistance: 200
         aiRandomSpreadAngle: 1
         hitMask:
@@ -35,9 +35,9 @@ MonoBehaviour:
         cameraShakeDuration: 0.08
         lineEffectDuration: 0.05
         shotSound: {fileID: 8300000, guid: 1d64b63fd8a655d478e1ee6d3e0c3155, type: 3}
-        chargeTime: 1
+        chargeTime: 1.1
         minDamageMultiplier: 1
-        maxDamageMultiplier: 2.5
-        explosionRadius: 4
+        maxDamageMultiplier: 2.3
+        explosionRadius: 3.5
         poolManagerSo: {fileID: 11400000, guid: fb310284c99a8404f9a278f88aa1d85a, type: 2}
         explosionEffect: {fileID: 11400000, guid: 6bcd9b955fdb8934b9dee4f7f102a43d, type: 2}

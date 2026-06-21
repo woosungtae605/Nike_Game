@@ -22,9 +22,9 @@ MonoBehaviour:
       type: {class: ARData, ns: Agents.Players.Gun.GunData, asm: Assembly-CSharp}
       data:
         <GunName>k__BackingField: AR
-        damage: 10
-        fireInterval: 0.1
-        maxAmmo: 30
+        damage: 8
+        fireInterval: 0.09
+        maxAmmo: 32
         reloadTime: 1.5
         maxDistance: 200
         aiRandomSpreadAngle: 1

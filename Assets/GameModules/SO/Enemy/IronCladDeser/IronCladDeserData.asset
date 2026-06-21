@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IronCladDeserData
   m_EditorClassIdentifier: 
   <EnemyName>k__BackingField: Iron Clad
-  <MaxHp>k__BackingField: 200
-  <Damage>k__BackingField: 20
-  <Speed>k__BackingField: 0.5
+  <MaxHp>k__BackingField: 120
+  <Damage>k__BackingField: 8
+  <Speed>k__BackingField: 0.65

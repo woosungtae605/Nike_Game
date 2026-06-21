@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DoomShotData
   m_EditorClassIdentifier: 
   <EnemyName>k__BackingField: DoomShot
-  <MaxHp>k__BackingField: 200
-  <Damage>k__BackingField: 20
+  <MaxHp>k__BackingField: 270
+  <Damage>k__BackingField: 14
   <Speed>k__BackingField: 1
