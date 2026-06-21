@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Agents.Players;
 using Systems.SaveSystem;
@@ -60,6 +60,23 @@ namespace Systems.GameSystem.Wave
             WaveClearSaveData data = Load(saveFile);
             return data.clearedWaveNumbers != null && data.clearedWaveNumbers.Count > 0;
         }
+        public static bool HasClearedThrough(SaveFileNameSO saveFile, int lastWaveNumber, int firstWaveNumber = 1)
+        {
+            if (saveFile == null || firstWaveNumber > lastWaveNumber)
+                return false;
+
+            WaveClearSaveData data = Load(saveFile);
+            if (data.clearedWaveNumbers == null)
+                return false;
+
+            for (int waveNumber = firstWaveNumber; waveNumber <= lastWaveNumber; waveNumber++)
+            {
+                if (!data.clearedWaveNumbers.Contains(waveNumber))
+                    return false;
+            }
+
+            return true;
+        }
 
         private static WaveClearSaveData Load(SaveFileNameSO saveFile)
         {
@@ -82,3 +99,4 @@ namespace Systems.GameSystem.Wave
         }
     }
 }
+
