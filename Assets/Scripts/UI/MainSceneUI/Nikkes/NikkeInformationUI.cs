@@ -1,4 +1,4 @@
-using Agents.Players;
+﻿using Agents.Players;
 using Systems.Coin;
 using Systems.UpgradeSystem;
 using TMPro;
@@ -32,7 +32,9 @@ namespace UI.MainSceneUI.Nikkes
         [SerializeField] private Button upgradeBtn;
         
         PlayerDataSO _playerData;
+        public bool IsShowing => showGameObject != null && showGameObject.activeInHierarchy;
         public event System.Action<PlayerDataSO> OnUpgrade;
+        public event System.Action OnHide;
         
         private void Awake()
         {
@@ -102,8 +104,13 @@ namespace UI.MainSceneUI.Nikkes
 
         public void Hide()
         {
+            bool wasShowing = showGameObject != null && showGameObject.activeSelf;
+
             _playerData = null;
             showGameObject.SetActive(false);
+
+            if (wasShowing)
+                OnHide?.Invoke();
         }
 
         private int GetBaseAttack(PlayerDataSO playerData)
@@ -114,3 +121,5 @@ namespace UI.MainSceneUI.Nikkes
         }
     }
 }
+
+

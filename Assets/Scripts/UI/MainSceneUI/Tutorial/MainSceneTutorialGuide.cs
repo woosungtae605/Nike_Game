@@ -16,6 +16,7 @@ namespace UI.MainSceneUI.Tutorial
         [Header("Targets")]
         [SerializeField] private BottomButtonController bottomButtonController;
         [SerializeField] private NikkeContainer nikkeContainer;
+        [SerializeField] private NikkeInformationUI nikkeInformationUI;
         [SerializeField] private RectTransform nikkeButton;
         [SerializeField] private TutorialBlockerImage blockerImage;
         [SerializeField] private GameObject guideRoot;
@@ -29,6 +30,7 @@ namespace UI.MainSceneUI.Tutorial
         [SerializeField] private string guideText = "한번 냥케로 들어가봐.";
         [SerializeField] private string clickProfileText = "클릭해.";
         [SerializeField] private string upgradeGuideText = "방금 얻은 돈으로 이제 냥케를 업그레이드 할 수 있어.";
+        [SerializeField] private string unlockGuideText = "캐릭터는 웨이브를 깰때마다 하나씩 획득 가능해.";
 
         [Header("Squad Tutorial")]
         [SerializeField] private ButtonsType squadButtonType = ButtonsType.Squard;
@@ -41,7 +43,9 @@ namespace UI.MainSceneUI.Tutorial
 
         private TutorialStep _step;
         private Coroutine _focusProfileRoutine;
+        private Coroutine _waitNikkeInformationHideRoutine;
         private float _messageCanCloseTime;
+        private bool _waitForNikkeInformationHide;
 
         private enum TutorialStep
         {
@@ -49,6 +53,7 @@ namespace UI.MainSceneUI.Tutorial
             OpenNikke,
             ClickFirstProfile,
             UpgradeGuideMessage,
+            UnlockGuideMessage,
             SquadGuideMessage,
             WarningMessage
         }
@@ -60,6 +65,12 @@ namespace UI.MainSceneUI.Tutorial
 
             if (nikkeContainer != null)
                 nikkeContainer.OnClickProfile += HandleClickProfile;
+
+            if (nikkeInformationUI == null)
+                nikkeInformationUI = FindFirstObjectByType<NikkeInformationUI>();
+
+            if (nikkeInformationUI != null)
+                nikkeInformationUI.OnHide += HandleNikkeInformationHide;
         }
 
         private void Start()
@@ -76,7 +87,7 @@ namespace UI.MainSceneUI.Tutorial
 
         private void Update()
         {
-            if (_step != TutorialStep.UpgradeGuideMessage && _step != TutorialStep.SquadGuideMessage && _step != TutorialStep.WarningMessage)
+            if (_step != TutorialStep.UpgradeGuideMessage && _step != TutorialStep.UnlockGuideMessage && _step != TutorialStep.SquadGuideMessage && _step != TutorialStep.WarningMessage)
                 return;
 
             if (Time.unscaledTime < _messageCanCloseTime)
@@ -86,11 +97,24 @@ namespace UI.MainSceneUI.Tutorial
                 return;
 
             if (_step == TutorialStep.SquadGuideMessage)
+            {
                 MarkSquadCleared();
+                Hide();
+            }
             else if (_step == TutorialStep.UpgradeGuideMessage)
+            {
+                StartWaitNikkeInformationHide();
+                Hide();
+            }
+            else if (_step == TutorialStep.UnlockGuideMessage)
+            {
                 MarkNikkeCleared();
-
-            Hide();
+                Hide();
+            }
+            else
+            {
+                Hide();
+            }
         }
 
         private void OnDestroy()
@@ -101,7 +125,11 @@ namespace UI.MainSceneUI.Tutorial
             if (nikkeContainer != null)
                 nikkeContainer.OnClickProfile -= HandleClickProfile;
 
+            if (nikkeInformationUI != null)
+                nikkeInformationUI.OnHide -= HandleNikkeInformationHide;
+
             StopFocusProfileRoutine();
+            StopWaitNikkeInformationHideRoutine();
         }
 
         public void Show()
@@ -109,6 +137,7 @@ namespace UI.MainSceneUI.Tutorial
             if (IsNikkeCleared())
                 return;
 
+            _waitForNikkeInformationHide = false;
             _step = TutorialStep.OpenNikke;
 
             if (nikkeButton == null && bottomButtonController != null)
@@ -144,6 +173,7 @@ namespace UI.MainSceneUI.Tutorial
             if (_step == TutorialStep.OpenNikke && buttonType == targetButtonType)
             {
                 StopFocusProfileRoutine();
+                StopWaitNikkeInformationHideRoutine();
                 _focusProfileRoutine = StartCoroutine(FocusFirstProfileRoutine());
                 return;
             }
@@ -187,6 +217,65 @@ namespace UI.MainSceneUI.Tutorial
             _messageCanCloseTime = Time.unscaledTime + messageClickDelay;
 
             SetGuideText(upgradeGuideText);
+            SetBlockTarget(null);
+            SetGuideActive(true);
+        }
+
+        private void HandleNikkeInformationHide()
+        {
+            if (!_waitForNikkeInformationHide || IsNikkeCleared())
+                return;
+
+            _waitForNikkeInformationHide = false;
+            StopWaitNikkeInformationHideRoutine();
+            ShowPlayerUnlockGuideMessage();
+        }
+
+        private void StartWaitNikkeInformationHide()
+        {
+            _waitForNikkeInformationHide = true;
+            StopWaitNikkeInformationHideRoutine();
+
+            if (nikkeInformationUI == null)
+            {
+                NikkeInformationUI[] informationUis = FindObjectsByType<NikkeInformationUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                if (informationUis.Length > 0)
+                    nikkeInformationUI = informationUis[0];
+            }
+
+            if (nikkeInformationUI == null || !nikkeInformationUI.IsShowing)
+            {
+                HandleNikkeInformationHide();
+                return;
+            }
+
+            _waitNikkeInformationHideRoutine = StartCoroutine(WaitNikkeInformationHideRoutine());
+        }
+
+        private IEnumerator WaitNikkeInformationHideRoutine()
+        {
+            while (_waitForNikkeInformationHide && nikkeInformationUI != null && nikkeInformationUI.IsShowing)
+                yield return null;
+
+            _waitNikkeInformationHideRoutine = null;
+            HandleNikkeInformationHide();
+        }
+
+        private void StopWaitNikkeInformationHideRoutine()
+        {
+            if (_waitNikkeInformationHideRoutine == null)
+                return;
+
+            StopCoroutine(_waitNikkeInformationHideRoutine);
+            _waitNikkeInformationHideRoutine = null;
+        }
+
+        private void ShowPlayerUnlockGuideMessage()
+        {
+            _step = TutorialStep.UnlockGuideMessage;
+            _messageCanCloseTime = Time.unscaledTime + messageClickDelay;
+
+            SetGuideText(unlockGuideText);
             SetBlockTarget(null);
             SetGuideActive(true);
         }
@@ -280,4 +369,8 @@ namespace UI.MainSceneUI.Tutorial
         }
     }
 }
+
+
+
+
 

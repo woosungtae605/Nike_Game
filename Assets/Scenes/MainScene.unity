@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   battleStartButton: {fileID: 1072799188}
   playerSquad: {fileID: 11400000, guid: b9db07e5b94b73b4c8ee63f75d768b0d, type: 2}
   warningGuide: {fileID: 2023564424}
-  emptySquadWarningText: "스쿼드를 장착해야 합니다."
+  emptySquadWarningText: "\uC2A4\uCFFC\uB4DC\uB97C \uC7A5\uCC29\uD574\uC57C \uD569\uB2C8\uB2E4."
 --- !u!1 &336122486
 GameObject:
   m_ObjectHideFlags: 0
@@ -14854,6 +14854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomButtonController: {fileID: 1854497862}
   nikkeContainer: {fileID: 466474936}
+  nikkeInformationUI: {fileID: 0}
   nikkeButton: {fileID: 336122487}
   blockerImage: {fileID: 2100000004}
   guideRoot: {fileID: 1202058668}
@@ -14864,6 +14865,8 @@ MonoBehaviour:
   clickProfileText: "\uD074\uB9AD\uD574."
   upgradeGuideText: "\uBC29\uAE08 \uC5BB\uC740 \uB3C8\uC73C\uB85C \uC774\uC81C \uB0E5\uCF00\uB97C
     \uC5C5\uADF8\uB808\uC774\uB4DC \uD560 \uC218 \uC788\uC5B4."
+  unlockGuideText: "\uCE90\uB9AD\uD130\uB294 \uC6E8\uC774\uBE0C\uB97C \uAE70\uB54C\uB9C8\uB2E4
+    \uD558\uB098\uC529 \uD68D\uB4DD \uAC00\uB2A5\uD574."
   squadButtonType: 1
   squadGuideText: "\uC5EC\uAE30\uC120 \uCE90\uB9AD\uD130\uB97C \uC7A5\uCC29\uC2DC\uD0AC
     \uC218 \uC788\uC5B4. \uB2E4\uC2DC \uBE84\uB824\uBA74 \uC7A5\uCC29\uB418\uC788\uB294
@@ -15115,6 +15118,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainSceneUI.Nikkes.CoinText
   goldText: {fileID: 694840947}
   coinManager: {fileID: 8833306899482278025}
+--- !u!1 &918452771012345681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918452771012345682}
+  - component: {fileID: 918452771012345683}
+  m_Layer: 0
+  m_Name: MainSceneBGMPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &918452771012345682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918452771012345681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &918452771012345683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918452771012345681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79c4d292d3642b4abf36c9ff5cc8a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmClip: {fileID: 8300000, guid: 5c1140a1de4d05249bfcde5d8654bfe7, type: 3}
 --- !u!1001 &7545293825440867795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15252,50 +15300,4 @@ SceneRoots:
   - {fileID: 7545293825440867795}
   - {fileID: 8833306899482278024}
   - {fileID: 1405116939}
-
---- !u!1 &918452771012345681
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 918452771012345682}
-  - component: {fileID: 918452771012345683}
-  m_Layer: 0
-  m_Name: MainSceneBGMPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &918452771012345682
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918452771012345681}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &918452771012345683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918452771012345681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79c4d292d3642b4abf36c9ff5cc8a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bgmClip: {fileID: 8300000, guid: 5c1140a1de4d05249bfcde5d8654bfe7, type: 3}
-
+  - {fileID: 918452771012345682}
