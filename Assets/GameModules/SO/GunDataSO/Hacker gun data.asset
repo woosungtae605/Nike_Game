@@ -34,6 +34,7 @@ MonoBehaviour:
         cameraShakePower: 8
         cameraShakeDuration: 0.3
         lineEffectDuration: 0.05
+        shotSound: {fileID: 8300000, guid: 8cfac7c68def6dc438886e679ed656f2, type: 3}
         chargeTime: 1.4
         minDamageMultiplier: 1
         maxDamageMultiplier: 4

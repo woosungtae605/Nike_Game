@@ -34,3 +34,4 @@ MonoBehaviour:
         cameraShakePower: 0.3
         cameraShakeDuration: 0.1
         lineEffectDuration: 0.05
+        shotSound: {fileID: 8300000, guid: 22a96481d141b1749b05e809d02fe4da, type: 3}
