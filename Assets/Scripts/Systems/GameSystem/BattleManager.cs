@@ -18,6 +18,7 @@ namespace Systems.GameSystem
         [SerializeField] private CurrentWaveInformationSO currentWaveInformation;
         [SerializeField] private WaveInformationSO fallbackWaveInformation;
         [SerializeField] private SaveFileNameSO waveClearSaveFile;
+        [SerializeField] private PlayerDataSos playerDataSos;
 
         private WaveInformationSO _waveInformation;
         private bool _isBattleCleared;
@@ -112,6 +113,20 @@ namespace Systems.GameSystem
 
             if (getCoin > 0)
                 Bus<CoinEvent>.Raise(new CoinEvent(getCoin));
+
+            TryUnlockClearPlayer(firstClear);
+        }
+
+        private void TryUnlockClearPlayer(bool firstClear)
+        {
+            if (_waveInformation == null || playerDataSos == null || _waveInformation.UnlockPlayerData == null)
+                return;
+
+            if (!firstClear && playerDataSos.HasNowPlayerData(_waveInformation.UnlockPlayerData))
+                return;
+
+            bool unlocked = playerDataSos.UnlockPlayerData(_waveInformation.UnlockPlayerData);
+            Debug.Log($"[Battle] Unlock player reward: {_waveInformation.UnlockPlayerData.NikkeName} / Unlocked: {unlocked}", this);
         }
     }
 }

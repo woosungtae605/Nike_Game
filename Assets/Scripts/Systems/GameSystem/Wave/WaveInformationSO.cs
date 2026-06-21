@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using Agents.Players;
 using Systems.SaveSystem;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Systems.GameSystem.Wave
         [field: SerializeField] public string WaveName { get; private set; }
         [field: SerializeField] public int WaveNumber { get; private set; }
         [field: SerializeField] public int GetCoin { get; private set; }
+        [field: SerializeField] public PlayerDataSO UnlockPlayerData { get; private set; }
 
         public bool IsTutorial => WaveNumber == 0;
     }

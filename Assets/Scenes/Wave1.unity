@@ -22027,6 +22027,7 @@ MonoBehaviour:
   currentWaveInformation: {fileID: 11400000, guid: 7a93d53a8ad94b61b5f920db63bb0182, type: 2}
   fallbackWaveInformation: {fileID: 11400000, guid: 19780bc1e12ed564a9058e780005cefb, type: 2}
   waveClearSaveFile: {fileID: 11400000, guid: 7f5dc76ec7e34dd78a129441d4f73f0b, type: 2}
+  playerDataSos: {fileID: 11400000, guid: 49dbbb0e805018e4894011d061ec669f, type: 2}
 --- !u!1 &987649284
 GameObject:
   m_ObjectHideFlags: 0

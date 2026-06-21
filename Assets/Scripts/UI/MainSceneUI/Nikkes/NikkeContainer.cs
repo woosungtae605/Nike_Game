@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections;
 using System;
 using Agents.Players;
@@ -59,7 +59,7 @@ namespace UI.MainSceneUI.Nikkes
             if (playerDataSos == null)
                 return;
 
-            foreach (PlayerDataSO playerData in playerDataSos.AllPlayerDatas)
+            foreach (PlayerDataSO playerData in playerDataSos.NowPlayerDatas)
             {
                 if (playerData == null)
                     continue;

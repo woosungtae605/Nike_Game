@@ -9,23 +9,20 @@ namespace Agents.Players
     {
         [SerializeField] private SaveFileNameSO saveFileName;
         [SerializeField] private List<PlayerDataSO> allPlayerDatas = new List<PlayerDataSO>();
-        private List<PlayerDataSO> _nowPlayerDatas = new List<PlayerDataSO>();
+        [SerializeField] private List<PlayerDataSO> nowPlayerDatas = new List<PlayerDataSO>();
 
         public IReadOnlyList<PlayerDataSO> AllPlayerDatas => allPlayerDatas;
-        public IReadOnlyList<PlayerDataSO> NowPlayerDatas => _nowPlayerDatas;
+        public IReadOnlyList<PlayerDataSO> NowPlayerDatas => nowPlayerDatas;
 
         private void OnEnable()
         {
-            foreach (PlayerDataSO playerData in allPlayerDatas)
-            {
-                AddNowPlayerData(playerData);
-            }
-            Load();
+            if (!TryLoad())
+                Save();
         }
 
         public void SetNowPlayerDatas(IEnumerable<PlayerDataSO> playerDatas)
         {
-            _nowPlayerDatas.Clear();
+            nowPlayerDatas.Clear();
 
             foreach (PlayerDataSO playerData in playerDatas)
             {
@@ -35,12 +32,26 @@ namespace Agents.Players
             Save();
         }
 
+        public bool HasNowPlayerData(PlayerDataSO playerData)
+        {
+            return playerData != null && nowPlayerDatas.Contains(playerData);
+        }
+
+        public bool UnlockPlayerData(PlayerDataSO playerData)
+        {
+            if (HasNowPlayerData(playerData))
+                return false;
+
+            AddNowPlayerData(playerData);
+            return true;
+        }
+
         public void AddNowPlayerData(PlayerDataSO playerData, bool save = true)
         {
-            if (playerData == null || _nowPlayerDatas.Contains(playerData))
+            if (playerData == null || nowPlayerDatas.Contains(playerData))
                 return;
 
-            _nowPlayerDatas.Add(playerData);
+            nowPlayerDatas.Add(playerData);
 
             if (save)
                 Save();
@@ -51,7 +62,7 @@ namespace Agents.Players
             if (playerData == null)
                 return;
 
-            if (!_nowPlayerDatas.Remove(playerData))
+            if (!nowPlayerDatas.Remove(playerData))
                 return;
 
             if (save)
@@ -62,7 +73,7 @@ namespace Agents.Players
         {
             SaveData saveData = new SaveData();
 
-            foreach (PlayerDataSO playerData in _nowPlayerDatas)
+            foreach (PlayerDataSO playerData in nowPlayerDatas)
             {
                 if (playerData == null)
                     continue;
@@ -75,13 +86,18 @@ namespace Agents.Players
 
         public void Load()
         {
-            _nowPlayerDatas.Clear();
+            TryLoad();
+        }
 
+        private bool TryLoad()
+        {
             if (!JsonSaveService.TryLoad(saveFileName, out SaveData saveData))
-                return;
+                return false;
+
+            nowPlayerDatas.Clear();
 
             if (saveData == null || saveData.playerIds == null)
-                return;
+                return false;
 
             foreach (int playerId in saveData.playerIds)
             {
@@ -89,6 +105,8 @@ namespace Agents.Players
                 if (playerData != null)
                     AddNowPlayerData(playerData, false);
             }
+
+            return true;
         }
 
         public PlayerDataSO GetPlayerData(int nikkeId)
