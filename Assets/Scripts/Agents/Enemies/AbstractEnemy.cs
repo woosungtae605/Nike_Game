@@ -31,6 +31,9 @@
             public StateChannel StateChannel { get; private set; }
             
             private EnemyManager _enemyManager;
+            private bool _hasDefaultNavAgentSettings;
+            private bool _defaultNavAgentUpdatePosition;
+            private bool _defaultNavAgentUpdateRotation;
 
             public bool GotoLeft { get; private set; } = false;
 
@@ -46,6 +49,12 @@
                 GunLineEffectModule = GetModule<GunLineEffectModule>();
                 HitEffectModule = GetModule<Agents.Enemies.Module.EnemyHitEffectModule>();
                 DeathEffectModule = GetModule<Agents.Enemies.Module.EnemyDeathEffectModule>();
+            }
+
+            protected override void AfterInitComponents()
+            {
+                base.AfterInitComponents();
+                CaptureDefaultNavAgentSettings();
             }
 
             public override void ApplyDamage(DamageData damageData)
@@ -86,9 +95,20 @@
                 return BTAgent.GetVariable<T>(variableName, out variable);
             }
 
+            private void CaptureDefaultNavAgentSettings()
+            {
+                if (NavMovement?.NavAgent == null)
+                    return;
+
+                _defaultNavAgentUpdatePosition = NavMovement.NavAgent.updatePosition;
+                _defaultNavAgentUpdateRotation = NavMovement.NavAgent.updateRotation;
+                _hasDefaultNavAgentSettings = true;
+            }
+
             public virtual void ResetItem()
             {
                 GotoLeft = false;
+                EnemySkillModule?.StopCurrentSkill();
                 HealthModule.ChangeHealth(EnemyDataSo.MaxHp);
                 
                 HealthModule.OnDeath -= HandleDeath;
@@ -99,7 +119,73 @@
                     StateChannel = channel.Value;
                 }
             }
-            
+
+            public virtual void PrepareSpawn(Vector3 spawnPosition)
+            {
+                transform.position = spawnPosition;
+                ResetMovementState(spawnPosition);
+                ResetAnimationState();
+                ChangeState(EnemyState.IDLE);
+                RestartBehaviorGraph();
+            }
+
+            private void ResetMovementState(Vector3 spawnPosition)
+            {
+                if (NavMovement?.NavAgent != null)
+                {
+                    var navAgent = NavMovement.NavAgent;
+
+                    if (!navAgent.enabled)
+                        navAgent.enabled = true;
+
+                    navAgent.speed = EnemyDataSo.Speed;
+                    navAgent.isStopped = false;
+
+                    if (_hasDefaultNavAgentSettings)
+                    {
+                        navAgent.updatePosition = _defaultNavAgentUpdatePosition;
+                        navAgent.updateRotation = _defaultNavAgentUpdateRotation;
+                    }
+
+                    if (navAgent.isOnNavMesh)
+                    {
+                        navAgent.ResetPath();
+                        navAgent.velocity = Vector3.zero;
+                        navAgent.Warp(spawnPosition);
+                    }
+                }
+
+                Rigidbody rigid = GetComponent<Rigidbody>();
+                if (rigid == null)
+                    return;
+
+                rigid.useGravity = true;
+                rigid.linearVelocity = Vector3.zero;
+                rigid.angularVelocity = Vector3.zero;
+            }
+
+            private void ResetAnimationState()
+            {
+                if (Renderer is NavAgentRendererModule navAgentRenderer)
+                    navAgentRenderer.ResetRendererState();
+
+                if (Renderer?.Animator == null)
+                    return;
+
+                Renderer.Animator.enabled = true;
+                Renderer.Animator.speed = 1f;
+                Renderer.Animator.Rebind();
+                Renderer.Animator.Update(0f);
+            }
+
+            private void RestartBehaviorGraph()
+            {
+                if (BTAgent == null)
+                    return;
+
+                BTAgent.enabled = false;
+                BTAgent.enabled = true;
+            }
             protected virtual void HandleDeath()
             {
                 HealthModule.OnDeath -= HandleDeath;

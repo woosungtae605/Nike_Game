@@ -1,4 +1,4 @@
-﻿    using System.Collections;
+    using System.Collections;
     using Agents.CombatSystem;
     using Agents.Module;
     using Systems.AnimationSystems;
@@ -26,6 +26,11 @@
             private AgentTriggerModule _trigger;
             private Rigidbody _rigid;
             private Coroutine _skillCoroutine;
+            private NavMeshAgent _jumpAgent;
+            private bool _hasCachedMovementState;
+            private bool _cachedAgentStopped;
+            private bool _cachedAgentUpdatePosition;
+            private bool _cachedUseGravity;
             
             public override void InitializeSkill(ISkillModule skillModule)
             {
@@ -64,6 +69,7 @@
             private IEnumerator Jump()
             {
                 NavMeshAgent agent = _enemy.NavMovement.NavAgent;
+                CacheMovementState(agent);
                 
                 agent.ResetPath();
                 agent.velocity = Vector3.zero;
@@ -119,10 +125,7 @@
                 _enemy.transform.position = goToPos;
                 
                 agent.Warp(goToPos);
-                agent.isStopped = false;
-                agent.updatePosition = true;
-
-                _rigid.useGravity = true;
+                RestoreMovementState();
                 
                 _enemy.SetGotoLeft(!_enemy.GotoLeft);
                 
@@ -130,8 +133,37 @@
             }
 
 
+            private void CacheMovementState(NavMeshAgent agent)
+            {
+                _jumpAgent = agent;
+                _cachedAgentStopped = agent.isStopped;
+                _cachedAgentUpdatePosition = agent.updatePosition;
+                _cachedUseGravity = _rigid != null && _rigid.useGravity;
+                _hasCachedMovementState = true;
+            }
+
+            private void RestoreMovementState()
+            {
+                if (!_hasCachedMovementState)
+                    return;
+
+                if (_jumpAgent != null)
+                {
+                    _jumpAgent.isStopped = _cachedAgentStopped;
+                    _jumpAgent.updatePosition = _cachedAgentUpdatePosition;
+                }
+
+                if (_rigid != null)
+                    _rigid.useGravity = _cachedUseGravity;
+
+                _hasCachedMovementState = false;
+                _jumpAgent = null;
+            }
+
             public override void StopSkill()
             {
+                RestoreMovementState();
+
                 if (_skillCoroutine != null)
                 {
                     StopCoroutine(_skillCoroutine);

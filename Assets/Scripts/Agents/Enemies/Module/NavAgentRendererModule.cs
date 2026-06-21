@@ -48,10 +48,27 @@ namespace Agents.Enemies.Module
         public void AfterInit()
         {
             _navAgent = _navMovement.NavAgent;
+            ApplyNavAgentSettings();
+        }
+
+        public void ResetRendererState()
+        {
+            _smoothDeltaPosition = Vector2.zero;
+            _velocity = Vector2.zero;
+            ApplyNavAgentSettings();
+
+            if (speedParam != null)
+                SetFloat(speedParam, 0f);
+        }
+
+        private void ApplyNavAgentSettings()
+        {
+            if (_navAgent == null)
+                return;
+
             _navAgent.updatePosition = updatePositionByNavAgent;
             _navAgent.updateRotation = updateRotationByNavAgent;
         }
-
         private void OnAnimatorMove()
         {
             if (_navAgent == null) return;

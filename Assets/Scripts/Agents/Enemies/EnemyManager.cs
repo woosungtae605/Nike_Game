@@ -25,10 +25,10 @@ namespace Agents.Enemies
                 return null;
 
             abstractEnemy.SetManager(this);
-            abstractEnemy.transform.position = spawnPosition;
             abstractEnemy.SetVariableValue("PlayerManager", playerManager);
             abstractEnemy.SetVariableValue("Enemy", abstractEnemy);
             enemyRegisterSo.Register(abstractEnemy);
+            abstractEnemy.PrepareSpawn(spawnPosition);
             
             return abstractEnemy;
         }

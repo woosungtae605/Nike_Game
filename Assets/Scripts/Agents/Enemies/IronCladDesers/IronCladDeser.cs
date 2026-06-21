@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Agents.Enemies.IronCladDesers
@@ -16,6 +16,12 @@ namespace Agents.Enemies.IronCladDesers
         public void SetFirstRun(bool value)
         {
             FirstRun = value;
+        }
+
+        public override void PrepareSpawn(Vector3 spawnPosition)
+        {
+            base.PrepareSpawn(spawnPosition);
+            NavMovement.NavAgent.updateRotation = false;
         }
 
         private void Start()

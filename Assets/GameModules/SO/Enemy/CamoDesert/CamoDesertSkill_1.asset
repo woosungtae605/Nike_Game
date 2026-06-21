@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.CombatSystem.SkillDataSO
   skillIndex: 0
   skillName: CamoShootMisile
-  cooldown: 10
+  cooldown: 8
   damage: 6
   maxDistance: 60
   hitMask:

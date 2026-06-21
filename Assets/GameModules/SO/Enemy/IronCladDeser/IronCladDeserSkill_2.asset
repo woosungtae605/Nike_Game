@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Agents.CombatSystem.SkillDataSO
   skillIndex: 1
   skillName: IronCladDeserJump
-  cooldown: 20
+  cooldown: 12
   damage: 6
   maxDistance: 60
   hitMask:
